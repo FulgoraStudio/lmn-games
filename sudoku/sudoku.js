@@ -105,7 +105,7 @@ function selectTile() {
         let r = parseInt(coords[0]);
         let c = parseInt(coords[1]);
 
-        if(solution[r][c] == numSelected.id) {
+        if(boardsolution[r][c] == numSelected.id) {
             this.innerText = numSelected.id;
         }
         else
