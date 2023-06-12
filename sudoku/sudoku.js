@@ -79,6 +79,9 @@ function setBoard() {
         isResolved(boardsolution);
         console.log("Try");
     } while (!isResolved(boardsolution));
+    
+    console.log('%cHacer trampa es MUY MALO', 'color: red; font-size: 21px; margin: 4px;');
+    console.log('%cPero aqui hay una pista....', 'color: red; font-size: 12px;');
     console.log("Board: ", gameBoard);
     console.log("Solution: ", boardsolution);
 }
