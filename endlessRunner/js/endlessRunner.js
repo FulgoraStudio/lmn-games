@@ -40,6 +40,7 @@ function updateGame() {
     // Friction
     player.velocity *= 0.9;
     player.x += player.velocity;
+    checkBorders(player, canvas);
 
     // Clear screen
     context.clearRect(0, 0, canvas.width, canvas.height);
@@ -50,6 +51,28 @@ function updateGame() {
     // Update next frame
     requestAnimationFrame(updateGame);
 }
+
+function checkBorders(actor, container) {
+    // Left
+    if (actor.x < 0) {
+      actor.x = 0;
+    }
+  
+    // Right
+    if (actor.x + actor.width > container.width) {
+      actor.x = container.width - actor.width;
+    }
+  
+    // Above
+    if (actor.y < 0) {
+      actor.y = 0;
+    }
+  
+    // Below
+    if (actor.y + actor.height > container.height) {
+      actor.y = container.height - actor.height;
+    }
+  }
 
 // Game loop
 updateGame();
