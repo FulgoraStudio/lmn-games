@@ -1,5 +1,8 @@
+const gameContainer = document.getElementById('container');
 const canvas = document.getElementById('canvas');
 const context = canvas.getContext('2d');
+
+console.log(`Canvas size ${canvas.width} ${canvas.height}`)
 
 // Player settings
 const player = {
@@ -55,7 +58,7 @@ function updateObstacles() {
         context.drawImage(obstacleImage, obstacle.x, obstacle.y, obstacleWidth, obstacleHeight);
     
         // TODO: CheckCollision
-        console.log("Dibuja en: ", obstacle.x, obstacle.y);
+
         // Delete obstacle
         if (obstacle.y > canvas.height) {
             obstacles.splice(i, 1);
@@ -114,9 +117,14 @@ function checkBorders(actor, container) {
     }
 }
 
+function resizeCanvas() {
+    canvas.width = gameContainer.offsetWidth;
+    canvas.height = gameContainer.offsetHeight;
+}
 // Spawn obstacle
 setInterval(spawnObstacle, obstacleSpawnInterval);
 
+resizeCanvas();
 // Game loop
 updateGame();
 
@@ -124,6 +132,7 @@ updateGame();
 
 // TODO:
 /*
+    Add global width
     Add points
     Add visualization points
     Add collision in objets
