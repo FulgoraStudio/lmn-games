@@ -119,3 +119,14 @@ setInterval(spawnObstacle, obstacleSpawnInterval);
 
 // Game loop
 updateGame();
+
+
+
+// TODO:
+/*
+    Add points
+    Add visualization points
+    Add collision in objets
+    Add menu buttons
+    Add art, add music
+*/
