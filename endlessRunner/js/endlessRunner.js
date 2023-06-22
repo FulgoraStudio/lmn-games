@@ -34,6 +34,16 @@ const keys = {};
 const gameOverSound = new Audio("./assets/audio/CONFIRM_1.wav");
 const pointSound = new Audio("./assets/audio/CLICK_DENY_6.wav");
 
+const soundUrls = [
+    './assets/audio/CONFIRM_1.wav', 
+    './assets/audio/CLICK_DENY_6.wav',
+];
+
+SoundManager.loadSounds(soundUrls)
+  .catch(function(error) {
+    console.error('Error al cargar los sonidos:', error);
+  });
+
 
 /**
  * SETTINGS
@@ -259,12 +269,12 @@ function checkCollision(actorA, actorB) {
 function checkCollisionActorTag(tag){
     if(tag == TAGS.ENEMY) {
         console.log("Game Over")
-        gameOverSound.play();
+        SoundManager.handleCollision('./assets/audio/CLICK_DENY_6.wav');
     }
 
     if(tag == TAGS.COLLECTABLE) {
         points++;
-        pointSound.play();
+        SoundManager.handleCollision('./assets/audio/CONFIRM_1.wav');
         console.log(`Poinst: ${points}`);
     }
 }
