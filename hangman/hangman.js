@@ -4,7 +4,8 @@ const optionsContainer = document.getElementById("options-container");
 const userInputSection = document.getElementById("user-input-section");
 const newGameContainer = document.getElementById("new-game-container");
 const newGameButton = document.getElementById("new-game-button");
-const canvas = document.getElementById("canvas");
+//const canvas = document.getElementById("canvas");
+const imageStatus = document.getElementById("image-status")
 const resultText = document.getElementById("result-text");
 
 //Options values for buttons
@@ -12,70 +13,80 @@ let options = {
     fruits: [
         "Manzana",
         "Naranja",
-        "Plátano",
+        "Platano",
         "Uva",
-        "Sandía",
+        "Sandia",
         "Fresa",
-        "Piña",
         "Kiwi",
-        "Melón",
+        "Melon",
         "Mango",
         "Pera",
         "Cereza",
         "Mandarina",
-        "Limón",
+        "Limon",
         "Pomelo",
-        "Melocotón",
+        "Melocoton",
         "Ciruela",
         "Frambuesa",
-        "Arándano",
+        "Arandano",
         "Higo"
     ],
     animals: [
         "Perro",
         "Gato",
-        "León",
+        "Leon",
         "Tigre",
         "Elefante",
         "Jirafa",
         "Cebra",
         "Oso",
         "Lobo",
-        "Hipopótamo",
+        "Hipopotamo",
         "Rinoceronte",
         "Koala",
         "Panda",
         "Camello",
         "Canguro",
-        "Murciélago",
-        "Delfín",
-        "Tiburón",
+        "Murcielago",
+        "Delfin",
+        "Tiburon",
         "Pez",
         "Tortuga"
     ],
     countries: [
         "Estados Unidos",
-        "Canadá",
-        "México",
+        "Canada",
+        "Mexico",
         "Brasil",
         "Argentina",
         "Colombia",
-        "Perú",
+        "Peru",
         "Chile",
-        "España",
         "Francia",
         "Alemania",
         "Italia",
-        "Reino Unido",
-        "Japón",
+        "Japon",
         "China",
         "Australia",
         "India",
-        "Sudáfrica",
         "Egipto",
         "Rusia"
     ]
 };
+
+//Images in secuence
+const imgSequencePath = [
+    "./assets/img/A.png",
+    "./assets/img/B.png",
+    "./assets/img/C.png",
+    "./assets/img/D.png",
+]
+
+const winImagePath = "";
+const loseImagePath = "";
+
+let currentImgIndex = 0;
+const TRYES = 6;
 
 //count
 let winCount = 0;
@@ -140,6 +151,8 @@ const generateWord = (optionValue) => {
 const initializer = () => {
     winCount = 0;
     count = 0;
+    currentImgIndex = 0;
+    imageStatus.src = imgSequencePath[currentImgIndex];
 
     //Initially erase all content and hide letteres and new game button
     userInputSection.innerHTML = "";
@@ -178,12 +191,13 @@ const initializer = () => {
         } else {
             //lose count
             count += 1;
-            //for drawing man
-            drawMan(count);
+            //update image status
+            updateImage(count);
+            //drawMan(count);
             //Count==6 because head,body,left arm, right arm,left leg,right leg
-            if (count == 6) {
-            resultText.innerHTML = `<h2 class='lose-msg'>You Lose!!</h2><p>The word was <span>${chosenWord}</span></p>`;
-            blocker();
+            if (count == TRYES) {
+                resultText.innerHTML = `<h2 class='lose-msg'>You Lose!!</h2><p>The word was <span>${chosenWord}</span></p>`;
+                blocker();
             }
         }
         //disable clicked button
@@ -194,9 +208,9 @@ const initializer = () => {
 
     displayOptions();
     //Call to canvasCreator (for clearing previous canvas and creating initial canvas)
-    let { initialDrawing } = canvasCreator();
+    //let { initialDrawing } = canvasCreator();
     //initialDrawing would draw the frame
-    initialDrawing();
+    //initialDrawing();
 };
 
 //Canvas
@@ -282,6 +296,17 @@ const drawMan = (count) => {
         break;
     }
 };
+
+function updateImage(count) {
+    let imgCount = imgSequencePath.length / TRYES;
+    console.log("Count", imgCount)
+    console.log("tryes", count)
+    console.log("index", currentImgIndex)
+    if(currentImgIndex < imgCount * count && currentImgIndex + 1 < imgSequencePath.length){
+        currentImgIndex++;
+        imageStatus.src = imgSequencePath[currentImgIndex];
+    }
+}
 
 //New Game
 newGameButton.addEventListener("click", initializer);
