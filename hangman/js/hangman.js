@@ -183,37 +183,40 @@ const initializer = () => {
         button.innerText = String.fromCharCode(i);
         //character button click
         button.addEventListener("click", () => {
-        let charArray = chosenWord.split("");
-        let dashes = document.getElementsByClassName("dashes");
-        //if array contains clciked value replace the matched dash with letter else dram on canvas
-        if (charArray.includes(button.innerText)) {
-            charArray.forEach((char, index) => {
-            //if character in array is same as clicked button
-            if (char === button.innerText) {
-                //replace dash with letter
-                dashes[index].innerText = char;
-                //increment counter
-                winCount += 1;
-                //if winCount equals word lenfth
-                if (winCount == charArray.length) {
-                resultText.innerHTML = `<h2 class='win-msg'>You Win!!</h2><p>The word was <span>${chosenWord}</span></p>`;
-                //block all buttons
-                blocker();
+            let charArray = chosenWord.split("");
+            let dashes = document.getElementsByClassName("dashes");
+            //if array contains clciked value replace the matched dash with letter else dram on canvas
+            if (charArray.includes(button.innerText)) {
+                charArray.forEach((char, index) => {
+                    //if character in array is same as clicked button
+                    if (char === button.innerText) {
+                        //replace dash with letter
+                        dashes[index].innerText = char;
+                        //increment counter
+                        winCount += 1;
+                        //if winCount equals word lenfth
+                        if (winCount == charArray.length) {
+                            resultText.innerHTML = `<h2 class='win-msg'>You Win!!</h2><p>The word was <span>${chosenWord}</span></p>`;
+                            SoundManager.play(gameSounds.WIN_SOUND);
+                            //block all buttons
+                            blocker();
+                        }
+                    }
+                });
+            } else {
+                //lose count
+                count += 1;
+                //update image status
+                updateImage(count);
+                //drawMan(count);
+                //Count==6 because head,body,left arm, right arm,left leg,right leg
+                if (count == TRYES) {
+                    resultText.innerHTML = `<h2 class='lose-msg'>You Lose!!</h2><p>The word was <span>${chosenWord}</span></p>`;
+                    SoundManager.play(gameSounds.LOSE_SOUND);
+                    blocker();
                 }
             }
-            });
-        } else {
-            //lose count
-            count += 1;
-            //update image status
-            updateImage(count);
-            //drawMan(count);
-            //Count==6 because head,body,left arm, right arm,left leg,right leg
-            if (count == TRYES) {
-                resultText.innerHTML = `<h2 class='lose-msg'>You Lose!!</h2><p>The word was <span>${chosenWord}</span></p>`;
-                blocker();
-            }
-        }
+
         //disable clicked button
         button.disabled = true;
         });
@@ -221,10 +224,6 @@ const initializer = () => {
     }
 
     displayOptions();
-    //Call to canvasCreator (for clearing previous canvas and creating initial canvas)
-    //let { initialDrawing } = canvasCreator();
-    //initialDrawing would draw the frame
-    //initialDrawing();
 };
 
 //Canvas
