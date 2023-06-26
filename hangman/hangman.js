@@ -299,9 +299,6 @@ const drawMan = (count) => {
 
 function updateImage(count) {
     let imgCount = imgSequencePath.length / TRYES;
-    console.log("Count", imgCount)
-    console.log("tryes", count)
-    console.log("index", currentImgIndex)
     if(currentImgIndex < imgCount * count && currentImgIndex + 1 < imgSequencePath.length){
         currentImgIndex++;
         imageStatus.src = imgSequencePath[currentImgIndex];

@@ -62,14 +62,22 @@ body {
   flex-wrap: wrap;
   justify-content: center;
   gap: 0.6em;
+  max-width: 525px;
 }
 
+/* Letters */
 #letter-container button {
-  height: 2.4em;
-  width: 2.4em;
-  border-radius: 0.3em;
-  background-color: #ffffff;
+  height: 2.1em;
+  width: 2.1em;
+  /* flex-basis: calc(100% / 9 - 20px); */
+  border-radius: 50%;
+  background-color: #AFA5A4;
   cursor: pointer;
+
+  /*font*/
+  color:white;
+  font-size: 21px;
+  font-weight: bold;
 }
 
 .new-game-popup {
