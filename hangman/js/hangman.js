@@ -8,6 +8,20 @@ const newGameButton = document.getElementById("new-game-button");
 const imageStatus = document.getElementById("image-status")
 const resultText = document.getElementById("result-text");
 
+/**
+ *  SETTINGS
+ */
+
+const gameSounds = {
+    WIN_SOUND: './assets/audio/CONFIRM_1.wav', 
+    LOSE_SOUND: './assets/audio/CLICK_DENY_6.wav',
+};
+
+SoundManager.loadSounds(Object.values(gameSounds))
+  .catch(function(error) {
+    console.error('Error al cargar los sonidos:', error);
+});
+
 //Options values for buttons
 let options = {
     fruits: [
