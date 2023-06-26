@@ -8,6 +8,21 @@ const borderColor = 'black';
 context.lineWidth = borderWidth;
 context.strokeStyle = borderColor;
 
+const startButton = document.getElementById('start-button');
+const resetButton = document.getElementById('reset-button');
+
+const pointsLabel = document.getElementById('points-label');
+const distanceLabel = document.getElementById('distance-label');
+
+startButton.onclick = () => {
+    startButton.classList.add('hide');
+    resetButton.classList.remove('hide');
+    startGame()
+};
+resetButton.onclick = () => resetGame();
+
+let timeOuts = []
+
 const TAGS = Object.freeze({
     PLAYER: 'PLAYER',
     ENEMY: 'ENEMY',
@@ -19,19 +34,25 @@ const TAGS = Object.freeze({
  * GLOBAL VARIABLES
  */
 let points = 0;
+let distance = 0;
+const PLAYER_LIVES = 5;
+let lives = PLAYER_LIVES;
 
 // Spawner settings
 const obstacleSpawnInterval = 500; // msec
 const collectableSpawnInterval = 600; // msec
 
 let obstacles = [];
-let collectables = []
+let collectables = [];
 
 // Key's pressed
 const keys = {};
+let isDead = false;
+let isPlaying = false;
 
 // Audio
 const gameSounds = {
+    MUSIC: './assets/audio/RUNNER.mp3',
     COLLECTABLE: './assets/audio/CONFIRM_1.wav', 
     ENEMY: './assets/audio/CLICK_DENY_6.wav',
 };
@@ -179,22 +200,26 @@ function gameLoop() {
     context.clearRect(0, 0, canvas.width, canvas.height);
     
     //Player update
-    player.update(keys);
-    player.draw(context);
+    if(!isDead) {
+        player.update(keys);
+        player.draw(context);
+    
+        obstacles.forEach((obstacle, index) => {
+            if(checkCollision(player, obstacle))
+            {
+                obstacles.splice(index, 1);
+            }
+        })
+    
+        collectables.forEach((collectable, index) => {
+            if(checkCollision(player, collectable))
+            {
+                collectables.splice(index, 1);
+            }
+        })
 
-    obstacles.forEach((obstacle, index) => {
-        if(checkCollision(player, obstacle))
-        {
-            obstacles.splice(index, 1);
-        }
-    })
-
-    collectables.forEach((collectable, index) => {
-        if(checkCollision(player, collectable))
-        {
-            collectables.splice(index, 1);
-        }
-    })
+        addDistance();
+    }
 
     //Update Objects
     updateObstacles(context);
@@ -202,6 +227,12 @@ function gameLoop() {
 
     //Request frames
     requestAnimationFrame(gameLoop);
+}
+
+function addDistance() {
+    if(!isPlaying) return;
+    distance += 0.01;
+    distanceLabel.innerText = `Distance: ${distance.toFixed(3)}m`;
 }
 
 function checkBorders(actor, container) {
@@ -265,21 +296,62 @@ function checkCollision(actorA, actorB) {
 
 function checkCollisionActorTag(tag){
     if(tag == TAGS.ENEMY) {
-        console.log("Game Over")
-        SoundManager.play(gameSounds.ENEMY);
+        SoundManager.playSound(gameSounds.ENEMY);
+        lives--;
+        if(lives <= 0) {
+            isDead = true;
+            isPlaying = false;
+        }
     }
 
     if(tag == TAGS.COLLECTABLE) {
         points++;
-        SoundManager.play(gameSounds.COLLECTABLE);
-        console.log(`Poinst: ${points}`);
+        SoundManager.playSound(gameSounds.COLLECTABLE);
+        pointsLabel.innerText = `Points: ${points}`;
     }
 }
 
+function startGame() {
+    let spawnObstacleTimeOut = setInterval(spawnObstacle, obstacleSpawnInterval);
+    let spawnCollectableTimeOut = setInterval(spawnCollectable, collectableSpawnInterval);
 
-// Spawn obstacle
-setInterval(spawnObstacle, obstacleSpawnInterval);
-setInterval(spawnCollectable, collectableSpawnInterval);
+    timeOuts.push(spawnObstacleTimeOut);
+    timeOuts.push(spawnCollectableTimeOut);
+
+    player.x = 200;
+    player.y = 550;
+    player.velocity = 0;
+
+    lives = PLAYER_LIVES;
+    isDead = false;
+    isPlaying = true;
+
+    points = 0;
+    distance = 0;
+
+    pointsLabel.innerText = `Points: ${points}`;
+    distanceLabel.innerText = `Distance: ${distance.toFixed(3)}m`;
+
+    SoundManager.playMusic(gameSounds.MUSIC, true);
+}
+
+function resetGame() {
+    SoundManager.stopMusic();
+    clearAllTimeouts();
+
+    obstacles = [];
+    collectables = [];
+
+    startGame();
+}
+
+function clearAllTimeouts() {
+    for (var i = 0; i < timeOuts.length; i++) {
+      clearTimeout(timeOuts[i]);
+    }
+  
+    timeOuts = [];
+}
 
 resizeCanvas();
 // Game loop
@@ -287,10 +359,6 @@ gameLoop();
 
 // TODO:
 /*
-    Add global width
-    Add points -
-    Add visualization points
-    Add collision in objets - 
-    Add menu buttons
     Add art, add music
+    Add Saved score in local Storage
 */

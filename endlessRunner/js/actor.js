@@ -1,4 +1,15 @@
 class Actor {
+    /**
+     * 
+     * @param {Number} x 
+     * @param {Number} y 
+     * @param {Number} width 
+     * @param {Number} height 
+     * @param {Number} speed 
+     * @param {Number} velocity 
+     * @param {Number} acceleration 
+     * @param {HTMLImageElement} image 
+     */
     constructor(x, y, width, height, speed, velocity, acceleration, image){
         this._x = x;
         this._y =  y;

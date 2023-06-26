@@ -1,16 +1,25 @@
 <!DOCTYPE html>
 <html>
-<head>
-  <title>Endless Runner</title>
-  <link rel="stylesheet" href="./css/style.css">
-</head>
-<body>
-  <div id="container">
-    <canvas id="canvas"></canvas>
-  </div>
-  
-  <script src="./js/soundManager.js"></script>
-  <script src="./js/actor.js"></script>
-  <script src="./js/endlessRunner.js"></script>
-</body>
+    <head>
+        <title>Endless Runner</title>
+        <link rel="stylesheet" href="./css/style.css">
+    </head>
+
+    <body>
+        <div id="container">
+            <canvas id="canvas"></canvas>
+        </div>
+        <div class="buttons-container">
+            <button id="start-button" class="control-button">Start</button>
+            <button id="reset-button" class="control-button hide">Reset</button>
+        </div>
+        <div class="hud">
+            <label for="" id="points-label">Puntos: 999</label>
+            <label for="" id="distance-label">Distancia: 999m</label>
+        </div>
+
+        <script src="./js/soundManager.js"></script>
+        <script src="./js/actor.js"></script>
+        <script src="./js/endlessRunner.js"></script>
+    </body>
 </html>
