@@ -5,10 +5,16 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Memory game</title>
     <link rel="stylesheet" href="./memory.css">
-    <script src="./memory.js"></script>
 </head>
 <body>
     <h2>Errors: <span id="errors">0</span></h2>
     <div id="board"></div>
+    <div class="buttons-container">
+        <button onclick="start()" id="start-button" class="control-button">Start</button>
+        <button onclick="restartGame()" id="restart-button" class="control-button hide">Jugar de vuelta</button>
+    </div>
+
+    <script src="./js/soundManager.js"></script>
+    <script src="./js/memory.js"></script>
 </body>
 </html>

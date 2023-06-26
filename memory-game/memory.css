@@ -4,8 +4,8 @@ body {
 }
 
 #board {
-    height: 532px;
-    width: 475px;
+    height: 700px;
+    width: 1000px;
     margin: 0 auto;
     display: flex;
     flex-wrap: wrap;
@@ -14,7 +14,44 @@ body {
 }
 
 .card {
-    height: 128px;
-    width: 90px;
-    margin: 2.5px;
+    width: 20%;
+}
+
+.hide {
+    display: none;
+}
+
+.control-button {
+    background: rgb(190,9,35);
+    background: linear-gradient(
+        90deg, 
+        rgba(190,9,35,1) 0%, 
+        rgba(231,78,80,1) 100%);
+    border-radius: 8px;
+    border-style: none;
+    box-sizing: border-box;
+    color: #FFFFFF;
+    cursor: pointer;
+    font-family: "Haas Grot Text R Web", "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-size: 14px;
+    font-weight: 500;
+    height: 40px;
+    line-height: 20px;
+    list-style: none;
+    margin: 0;
+    outline: none;
+    padding: 10px 16px;
+    position: relative;
+    text-align: center;
+    text-decoration: none;
+    transition: color 100ms;
+    vertical-align: baseline;
+    user-select: none;
+    -webkit-user-select: none;
+    touch-action: manipulation;
+}
+
+.control-button:hover,
+.control-button:focus {
+  background-color: #F082AC;
 }
