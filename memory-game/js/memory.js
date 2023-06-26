@@ -1,3 +1,5 @@
+const startButton = document.getElementById("start-button");
+
 let errors = 0;
 let cardList = [
     "card01",
@@ -19,10 +21,24 @@ let board = [];
 let rows = 4;
 let columns = 5;
 
-window.onload = function() {
-    shuffleCards();
-    startGame();
-}
+/**
+ * SETTINGS
+ */
+
+const gameSounds = {
+    GAME_MUSIC: './assets/audio/MUSICA_JUEGO_MEMORIA.mp3', 
+    WIN_GAME: './assets/audio/VICTORIA.mp3',
+    LOSE_GAME: './assets/audio/DERROTA.mp3',
+    ASSERT: './assets/audio/CORRECTO.mp3',
+    ERROR: './assets/audio/INCORRECTO.mp3',
+    SHOVEL: './assets/audio/PALA_1.mp3',
+    SHOVEL_2: './assets/audio/PALA_2.mp3',
+};
+
+SoundManager.loadSounds(Object.values(gameSounds))
+  .catch(function(error) {
+    console.error('Error al cargar los sonidos:', error);
+});
 
 function shuffleCards() {
     cardSet = cardList.concat(cardList) //two of each card
@@ -35,9 +51,17 @@ function shuffleCards() {
         cardSet[i] = cardSet[j];
         cardSet[j] = temp;
     }
+
+}
+
+function start(){
+    startButton.classList.add("hide");
+    startGame();
+    SoundManager.play(gameSounds.GAME_MUSIC);
 }
 
 function startGame() {
+
     for (let r = 0; r < rows; r++) {
         let row = []
         for (let c = 0; c < columns; c++) {
@@ -47,7 +71,7 @@ function startGame() {
             //Create card in document
             let card = document.createElement("img");
             card.id = r.toString() + "-" + c.toString();
-            card.src = "assets/images/" + cardImg + ".jpg";
+            card.src = "assets/images/" + cardImg + ".png";
             card.classList.add("card");
             card.addEventListener("click", selectCard);
             document.getElementById("board").append(card);
@@ -57,6 +81,7 @@ function startGame() {
     console.log('%cHacer trampa es MUY MALO', 'color: red; font-size: 21px; margin: 4px;');
     console.log('%cPero aqui hay una pista....', 'color: red; font-size: 12px;');
     console.log(board);
+
     setTimeout(hideCards, 1200);
 }
 
@@ -64,7 +89,7 @@ function hideCards() {
     for (let r = 0; r < rows; r++) {
         for (let c = 0; c < columns; c++) {
             let card = document.getElementById(r.toString() + "-" + c.toString());
-            card.src = "assets/images/back.jpg"
+            card.src = "assets/images/back.png"
         }
     }
 }
@@ -78,15 +103,19 @@ function selectCard() {
             let r = parseInt(coords[0]);
             let c = parseInt(coords[1]);
 
-            card1Selected.src = "assets/images/" + board[r][c] + ".jpg";
+            card1Selected.src = "assets/images/" + board[r][c] + ".png";
+
+            SoundManager.play(gameSounds.SHOVEL);
         } else if (!card2Selected && this != card1Selected) {
             card2Selected = this;
-
+            
             let coords = card2Selected.id.split("-");
             let r = parseInt(coords[0]);
             let c = parseInt(coords[1]);
+            
+            card2Selected.src = "assets/images/" + board[r][c] + ".png";
 
-            card2Selected.src = "assets/images/" + board[r][c] + ".jpg";
+            SoundManager.play(gameSounds.SHOVEL_2);
             setTimeout(update, 1000);
         }
     }
@@ -94,14 +123,26 @@ function selectCard() {
 
 function update() {
     if(card1Selected.src != card2Selected.src) {
-        card1Selected.src = "assets/images/back.jpg";
-        card2Selected.src = "assets/images/back.jpg";
-
+        card1Selected.src = "assets/images/back.png";
+        card2Selected.src = "assets/images/back.png";
+        
         errors += 1;
-
+        
+        SoundManager.play(gameSounds.ERROR);
         document.getElementById("errors").innerText = errors;
+    } else {
+        SoundManager.play(gameSounds.ASSERT);
     }
 
     card1Selected = null;
     card2Selected = null;
+}
+
+
+/**
+ * GAME LOOP
+ */
+window.onload = function() {
+    shuffleCards();
+    //startGame();
 }
