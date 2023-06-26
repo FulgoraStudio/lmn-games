@@ -1,6 +1,8 @@
 (function () {
     var audioContext = new (window.AudioContext || window.webkitAudioContext)();
     var soundBuffers = new Map();
+    var currentSource;
+    var currentMusic;
 
     function loadSound(url) {
         return fetch(url)
@@ -13,14 +15,64 @@
             .catch(err => console.error(err));
     }
 
-    function playSound(soundUrl) {
+    function playMusic(soundUrl, loop) {
         var soundBuffer = soundBuffers.get(soundUrl);
 
         if (soundBuffer) {
             var source = audioContext.createBufferSource();
             source.buffer = soundBuffer;
             source.connect(audioContext.destination);
-            source.start();
+            source.loop = loop || false; // Configurar loop
+            source.start(0);
+            currentSource = source; 
+            currentMusic = source;
+        }
+    }
+
+    function stopMusic(){
+        if (currentMusic) {
+            currentMusic.stop(); // Detener el sonido actual
+            currentMusic = null;
+        }
+    }
+
+    function playSound(soundUrl, loop) {
+        var soundBuffer = soundBuffers.get(soundUrl);
+
+        if (soundBuffer) {
+            var source = audioContext.createBufferSource();
+            source.buffer = soundBuffer;
+            source.connect(audioContext.destination);
+            source.loop = loop || false; // Configurar loop
+            source.start(0);
+            currentSource = source; // Guardar la referencia al objeto source actual
+        }
+    }
+
+    function playOneShoot(soundUrl) {
+        var soundBuffer = soundBuffers.get(soundUrl);
+
+        if (soundBuffer) {
+            stopSound(); // Detener el sonido actual, si hay alguno en reproducción
+
+            var source = audioContext.createBufferSource();
+            source.buffer = soundBuffer;
+            source.connect(audioContext.destination);
+            source.start(0);
+            currentSource = source; // Guardar la referencia al objeto source actual
+        }
+    }
+
+    function stopSound() {        
+        if (currentSource) {
+            currentSource.stop(); // Detener el sonido actual
+        }
+    }
+    
+    function restartSound() {
+        if (currentSource) {
+            currentSource.stop(); // Detener el sonido actual
+            currentSource.start(0); // Reiniciar el sonido desde el principio
         }
     }
 
@@ -36,8 +88,28 @@
             return Promise.all(promises);
         },
 
-        play: function (soundUrl) {
-            playSound(soundUrl);
+        playMusic: function (soundUrl, loop) {
+            playMusic(soundUrl, loop);
+        },
+
+        stopMusic: function (soundUrl) {
+            stopMusic(soundUrl);
+        },
+
+        playSound: function (soundUrl, loop) {
+            playSound(soundUrl, loop);
+        },
+        
+        playOneShoot: function (soundUrl) {
+            playOneShoot(soundUrl);
+        },
+
+        stopSound: function() {
+            stopSound();
+        },
+      
+        restartSound: function() {
+            restartSound();
         }
     };
 })();

@@ -25,6 +25,8 @@ let columns = 5;
 let pairs = (rows * columns) / 2;
 let gameOver = false;
 
+let timeOuts = [];
+
 /**
  * SETTINGS
  */
@@ -87,7 +89,10 @@ function startGame() {
     console.log('%cPero aqui hay una pista....', 'color: red; font-size: 12px;');
     console.log(board);
 
-    setTimeout(hideCards, 1200);
+    SoundManager.playMusic(gameSounds.GAME_MUSIC, true);
+
+    const timeOut = setTimeout(hideCards, 1200);
+    timeOuts.push(timeOut);
 }
 
 function hideCards() {
@@ -110,7 +115,7 @@ function selectCard() {
 
             card1Selected.src = "assets/images/" + board[r][c] + ".png";
 
-            SoundManager.play(gameSounds.SHOVEL);
+            SoundManager.playSound(gameSounds.SHOVEL);
         } else if (!card2Selected && this != card1Selected) {
             card2Selected = this;
             
@@ -120,8 +125,10 @@ function selectCard() {
             
             card2Selected.src = "assets/images/" + board[r][c] + ".png";
 
-            SoundManager.play(gameSounds.SHOVEL_2);
-            setTimeout(update, 1000);
+            SoundManager.playSound(gameSounds.SHOVEL_2);
+
+            const timeOut = setTimeout(update, 1000);
+            timeOuts.push(timeOut);
         }
     }
 }
@@ -133,7 +140,7 @@ function update() {
         
         errors += 1;
         
-        SoundManager.play(gameSounds.ERROR);
+        SoundManager.playSound(gameSounds.ERROR);
         document.getElementById("errors").innerText = errors;
     } else {
         pairs--;
@@ -141,9 +148,9 @@ function update() {
             gameOver = true;
             restartButton.classList.remove("hide");
 
-            SoundManager.play(gameSounds.WIN_GAME);
+            SoundManager.playSound(gameSounds.WIN_GAME);
         } else {
-            SoundManager.play(gameSounds.ASSERT);
+            SoundManager.playSound(gameSounds.ASSERT);
         }
     }
 
@@ -151,10 +158,37 @@ function update() {
     card2Selected = null;
 }
 
+function cleanBoard() {
+
+    board = [];
+
+    let boardNode = document.getElementById("board");
+
+    let chieldNodes = boardNode.childNodes;
+
+    for (let i = chieldNodes.length - 1; i >= 0; i--) {
+        const child = chieldNodes[i];
+        boardNode.removeChild(child);
+    }
+}
+
 function restartGame() {
+    //restartButton.classList.add("hide");
+
+    cleanBoard();
+    clearAllTimeouts();
+    SoundManager.stopMusic();
+    
     shuffleCards();
-    restartButton.classList.add("hide");
-    startButton.classList.remove("hide");
+    startGame();
+}
+
+function clearAllTimeouts() {
+    for (var i = 0; i < timeOuts.length; i++) {
+      clearTimeout(timeOuts[i]);
+    }
+  
+    timeOuts = [];
 }
 
 
@@ -162,5 +196,5 @@ function restartGame() {
  * GAME LOOP
  */
 window.onload = function() {
-    restartGame();
+    shuffleCards();
 }
