@@ -1,4 +1,5 @@
 const startButton = document.getElementById("start-button");
+const restartButton = document.getElementById("restart-button");
 
 let errors = 0;
 let cardList = [
@@ -20,6 +21,9 @@ let cardSet;
 let board = [];
 let rows = 4;
 let columns = 5;
+
+let pairs = (rows * columns) / 2;
+let gameOver = false;
 
 /**
  * SETTINGS
@@ -57,7 +61,6 @@ function shuffleCards() {
 function start(){
     startButton.classList.add("hide");
     startGame();
-    SoundManager.play(gameSounds.GAME_MUSIC);
 }
 
 function startGame() {
@@ -78,7 +81,9 @@ function startGame() {
         }
         board.push(row);
     }
-    console.log('%cHacer trampa es MUY MALO', 'color: red; font-size: 21px; margin: 4px;');
+
+    /** LOGS */
+    console.log('%cHacer trampa es MUY MALO', 'color: red; font-size: 86px; margin: 4px;');
     console.log('%cPero aqui hay una pista....', 'color: red; font-size: 12px;');
     console.log(board);
 
@@ -131,11 +136,25 @@ function update() {
         SoundManager.play(gameSounds.ERROR);
         document.getElementById("errors").innerText = errors;
     } else {
-        SoundManager.play(gameSounds.ASSERT);
+        pairs--;
+        if(pairs <= 0 && !gameOver) {
+            gameOver = true;
+            restartButton.classList.remove("hide");
+
+            SoundManager.play(gameSounds.WIN_GAME);
+        } else {
+            SoundManager.play(gameSounds.ASSERT);
+        }
     }
 
     card1Selected = null;
     card2Selected = null;
+}
+
+function restartGame() {
+    shuffleCards();
+    restartButton.classList.add("hide");
+    startButton.classList.remove("hide");
 }
 
 
@@ -143,6 +162,5 @@ function update() {
  * GAME LOOP
  */
 window.onload = function() {
-    shuffleCards();
-    //startGame();
+    restartGame();
 }

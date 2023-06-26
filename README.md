@@ -15,9 +15,7 @@ Los juegos pueden probarse en el siguiente enlace:
 - Estilizar
 
 ### Memory game
-- Añadir boton de comenzar para visualizacion
-- Remplazar assets
-- Agrgegar audio system
+
 
 ### Extinto
 - Validar caracteres espaciales
