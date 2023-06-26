@@ -62,6 +62,7 @@ function shuffleCards() {
 
 function start(){
     startButton.classList.add("hide");
+    restartButton.classList.remove("hide");
     startGame();
 }
 

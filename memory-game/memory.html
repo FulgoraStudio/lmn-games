@@ -9,8 +9,10 @@
 <body>
     <h2>Errors: <span id="errors">0</span></h2>
     <div id="board"></div>
-    <button onclick="start()" id="start-button">Start</button>
-    <button onclick="restartGame()" id="restart-button">Restart</button>
+    <div class="buttons-container">
+        <button onclick="start()" id="start-button" class="control-button">Start</button>
+        <button onclick="restartGame()" id="restart-button" class="control-button hide">Jugar de vuelta</button>
+    </div>
 
     <script src="./js/soundManager.js"></script>
     <script src="./js/memory.js"></script>
