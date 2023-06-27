@@ -2,15 +2,15 @@
 const letterContainer = document.getElementById("letter-container");
 const optionsContainer = document.getElementById("options-container");
 const userInputSection = document.getElementById("user-input-section");
-const newGameContainer = document.getElementById("new-game-container");
 const newGameButton = document.getElementById("new-game-button");
 //const canvas = document.getElementById("canvas");
 const imageStatus = document.getElementById("image-status");
 const resultText = document.getElementById("result-text");
-
 const hintButton = document.getElementById("hint-button");
+
 const hintDisplay = document.getElementById("hint-display");
 const nohintsDisplay = document.getElementById("no-hints-display");
+const intentsDisplay = document.getElementById("intents-display");
 
 /**
  *  SETTINGS
@@ -31,7 +31,7 @@ SoundManager.loadSounds(Object.values(gameSounds))
 
 //Options values for buttons
 let options = {
-    fruits: {
+    frutas: {
         mainWord1: {
             word: "Manzana",
             hints: [
@@ -201,7 +201,7 @@ let options = {
             ]
         }
     },
-    things: {
+    cosas: {
         mainWord1: {
             word: "Mesa",
             hints: [
@@ -371,7 +371,7 @@ let options = {
             ]
         }
     },
-    plants: {
+    plantas: {
         mainWord1: {
           word: "Rosa",
           hints: [
@@ -541,7 +541,7 @@ let options = {
           ]
         }
     },
-    countries: {
+    paises: {
         mainWord1: {
             word: "Argentina",
             hints: [
@@ -711,7 +711,7 @@ let options = {
             ]
         }
     },
-    lakes: {
+    lagos: {
         mainWord1: {
             word: "NahuelHuapi",
             hints: [
@@ -818,7 +818,7 @@ let options = {
             ]
         }
     },
-    tools: {
+    herramientas: {
         mainWord1: {
           word: "Martillo",
           hints: [
@@ -947,10 +947,12 @@ const imgSequencePath = [
     "./assets/img/B.png",
     "./assets/img/C.png",
     "./assets/img/D.png",
+    "./assets/img/E.png",
+    "./assets/img/F.png",
 ]
 
-const winImagePath = "";
-const loseImagePath = "";
+const winImagePath = "./assets/img/WIN.png";
+const loseImagePath = "./assets/img/LOSE.png";
 
 let currentImgIndex = 0;
 const TRYES = 6;
@@ -958,6 +960,7 @@ const TRYES = 6;
 //intents
 let winCount = 0;
 let intents = 0;
+let gameOver = false;
 
 let chosenWord = "";
 let sWord = "";
@@ -978,8 +981,6 @@ const blocker = () => {
     let optionsButtons = document.querySelectorAll(".options");
     let letterButtons = document.querySelectorAll(".letters");
 
-    letterContainer.classList.add("hide");
-    newGameContainer.classList.add("hide");
     hintButton.classList.add("hide");
     nohintsDisplay.classList.add("hide");
     hintDisplay.classList.add("hide");
@@ -993,7 +994,8 @@ const blocker = () => {
     letterButtons.forEach((button) => {
         button.disabled.true;
     });
-    newGameContainer.classList.remove("hide");
+
+    // newGameButton.classList.remove("hide");
 };
 
 //Word Generator
@@ -1016,9 +1018,11 @@ const generateWord = (optionValue) => {
     let keys = Object.keys(optionArray)
     sWord = optionArray[keys[Math.floor(Math.random() * keys.length)]];
     hints = [...sWord.hints];
-    console.log();
     //choose random word
     chosenWord = sWord.word;
+    console.log('%cHacer trampa es MUY MALO', 'color: red; font-size: 86px; margin: 4px;');
+    console.log('%cPero aqui hay una pista....', 'color: red; font-size: 12px;');
+    console.log(chosenWord);
     chosenWord = chosenWord.toUpperCase();
 
 
@@ -1031,16 +1035,20 @@ const generateWord = (optionValue) => {
 
 //Initial Function (Called when page loads/user presses new game)
 const initializer = () => {
+    resultText.classList.add("hide");
+
+    gameOver = false;
     winCount = 0;
     intents = 0;
     currentImgIndex = 0;
     imageStatus.src = imgSequencePath[currentImgIndex];
 
+    intentsDisplay.innerText = `Intentos: ${TRYES - intents}`;
+
     //Initially erase all content and hide letteres and new game button
     userInputSection.innerHTML = "";
     optionsContainer.innerHTML = "";
     letterContainer.classList.add("hide");
-    newGameContainer.classList.add("hide");
     hintButton.classList.add("hide");
     nohintsDisplay.classList.add("hide");
 
@@ -1054,6 +1062,7 @@ const initializer = () => {
         button.innerText = String.fromCharCode(i);
         //character button click
         button.addEventListener("click", () => {
+            if(gameOver) return;
             let charArray = chosenWord.split("");
             let dashes = document.getElementsByClassName("dashes");
             //if array contains clicked value replace the matched dash with letter else dram on canvas
@@ -1069,6 +1078,7 @@ const initializer = () => {
                         //if winCount equals word lenfth
                         if (winCount == charArray.length) {
                             resultText.innerHTML = `<h2 class='win-msg'>You Win!!</h2><p>The word was <span>${chosenWord}</span></p>`;
+                            imageStatus.src = winImagePath;
                             SoundManager.play(gameSounds.WIN_SOUND);
                             //block all buttons
                             blocker();
@@ -1081,15 +1091,18 @@ const initializer = () => {
                 SoundManager.play(gameSounds.INCORRECT_SOUND);
                 updateImage(intents);
 
-                if (intents == TRYES) {
+                if (intents >= TRYES) {
+                    gameOver = true;
                     resultText.innerHTML = `<h2 class='lose-msg'>You Lose!!</h2><p>The word was <span>${chosenWord}</span></p>`;
+                    imageStatus.src = loseImagePath;
                     SoundManager.play(gameSounds.LOSE_SOUND);
                     blocker();
                 }
             }
 
-        //disable clicked button
-        button.disabled = true;
+            //disable clicked button
+            button.disabled = true;
+            intentsDisplay.innerText = `Intentos: ${TRYES - intents}`;
         });
         letterContainer.append(button);
     }
@@ -1098,6 +1111,7 @@ const initializer = () => {
 };
 
 function updateImage(intents) {
+    if(gameOver) return;
     let imgCount = imgSequencePath.length / TRYES;
     if(currentImgIndex < imgCount * intents && currentImgIndex + 1 < imgSequencePath.length){
         currentImgIndex++;
@@ -1106,7 +1120,7 @@ function updateImage(intents) {
 }
 
 function getHint() {
-    
+    if(gameOver) return;
     if(hintDisplay.classList.contains('hide')) {
         hintDisplay.classList.remove('hide');
     }
@@ -1125,9 +1139,12 @@ function getHint() {
     SoundManager.play(gameSounds.INCORRECT_SOUND);
     intents++;
 
+    intentsDisplay.innerText = `Intentos: ${TRYES - intents}`;
     hints.splice(index, 1);
 }
 
 //New Game
 newGameButton.addEventListener("click", initializer);
+hintButton.addEventListener("click", getHint)
+
 window.onload = initializer;
