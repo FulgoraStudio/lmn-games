@@ -172,3 +172,8 @@ canvas {
 #image-container {
   width: 50%;
 }
+
+#no-hints-display {
+  color: red;
+  font-weight: bold;
+}
