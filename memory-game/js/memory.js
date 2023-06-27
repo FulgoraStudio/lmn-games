@@ -1,6 +1,9 @@
 const startButton = document.getElementById("start-button");
 const restartButton = document.getElementById("restart-button");
 
+startButton.addEventListener('click', start);
+restartButton.addEventListener('click', restartGame);
+
 let errors = 0;
 let cardList = [
     "card01",
@@ -80,6 +83,8 @@ function startGame() {
             card.src = "assets/images/" + cardImg + ".png";
             card.classList.add("card");
             card.addEventListener("click", selectCard);
+            card.addEventListener('mouseenter', hoverCard);
+            card.addEventListener('mouseleave', leaveCard);
             document.getElementById("board").append(card);
         }
         board.push(row);
@@ -109,6 +114,9 @@ function selectCard() {
     if (this.src.includes("back")) {
         if(!card1Selected){
             card1Selected = this;
+            
+            this.classList.remove("card-hovered");
+            this.classList.add("card-selected");
 
             let coords = card1Selected.id.split("-");
             let r = parseInt(coords[0]);
@@ -119,6 +127,9 @@ function selectCard() {
             SoundManager.playSound(gameSounds.SHOVEL);
         } else if (!card2Selected && this != card1Selected) {
             card2Selected = this;
+
+            this.classList.remove("card-hovered");
+            this.classList.add("card-selected");
             
             let coords = card2Selected.id.split("-");
             let r = parseInt(coords[0]);
@@ -128,7 +139,7 @@ function selectCard() {
 
             SoundManager.playSound(gameSounds.SHOVEL_2);
 
-            const timeOut = setTimeout(update, 1000);
+            const timeOut = setTimeout(update, 2000);
             timeOuts.push(timeOut);
         }
     }
@@ -143,6 +154,9 @@ function update() {
         
         SoundManager.playSound(gameSounds.ERROR);
         document.getElementById("errors").innerText = errors;
+
+        card1Selected.classList.remove("card-selected");
+        card2Selected.classList.remove("card-selected");
     } else {
         pairs--;
         if(pairs <= 0 && !gameOver) {
@@ -190,6 +204,16 @@ function clearAllTimeouts() {
     }
   
     timeOuts = [];
+}
+
+function hoverCard() {
+    if(this.classList.contains("card-selected")) return;
+    this.classList.add("card-hovered");
+}
+
+function leaveCard() {
+    if(this.classList.contains("card-selected")) return;
+    this.classList.remove("card-hovered");
 }
 
 

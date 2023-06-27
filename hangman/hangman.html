@@ -12,18 +12,20 @@
         <div id="game-container">
             <div id="widget-container">
                 <div id="widget-content">
+                    <div id="result-text"></div>
                     <div id="letter-container" class="letter-container hide"></div>
                     <div id="user-input-section"></div>
+                    <button id="hint-button" type="button" class="hide">Pista</button>
+                    <span id="hint-display" class="hide">PISTA!</span>
+                    <span id="no-hints-display" class="hide">No quedan mas pistas!</span>
                 </div>
             </div>
             <div id="image-container">
                 <img src="./assets/img/A.png" alt="Image status" id="image-status">
+                <span id="intents-display">Intentos: 6</span>
             </div>
         </div>
-        <div id="new-game-container" class="new-game-popup hide">
-            <div id="result-text"></div>
-            <button id="new-game-button">New Game</button>
-        </div>
+        <button id="new-game-button">New Game</button>
     </div>
 
     <!--Scripts-->
