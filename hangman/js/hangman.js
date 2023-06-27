@@ -995,6 +995,8 @@ const blocker = () => {
         button.disabled.true;
     });
 
+    resultText.classList.remove("hide");
+
     // newGameButton.classList.remove("hide");
 };
 

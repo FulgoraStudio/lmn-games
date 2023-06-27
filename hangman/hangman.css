@@ -101,6 +101,12 @@ body {
   margin: 0.6em 0 1.2em 0;
 }
 
+#result-text {
+  text-align: center;
+  margin: 20px;
+  font-weight: 600;
+}
+
 canvas {
   display: block;
   margin: auto;
@@ -162,4 +168,8 @@ canvas {
 #no-hints-display {
   color: red;
   font-weight: bold;
+}
+
+#intents-display {
+  font-weight: 600;
 }
