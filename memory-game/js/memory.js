@@ -1,6 +1,9 @@
 const startButton = document.getElementById("start-button");
 const restartButton = document.getElementById("restart-button");
 
+startButton.addEventListener('click', start);
+restartButton.addEventListener('click', restartGame);
+
 let errors = 0;
 let cardList = [
     "card01",
