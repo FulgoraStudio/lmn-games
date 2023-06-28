@@ -91,7 +91,7 @@ const drawPlayer = function(ctx){
 
 player.draw = drawPlayer;
 player.update = updatePlayer;
-player.image.src = './assets/img/redBall.png';
+player.image.src = './assets/img/player/idle.png';
 player.tag = TAGS.PLAYER;
 
 
