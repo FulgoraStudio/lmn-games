@@ -47,6 +47,7 @@ let collectables = [];
 
 // Key's pressed
 const keys = {};
+let lastKeyPressed;
 let isDead = false;
 let isPlaying = false;
 
@@ -74,8 +75,16 @@ const updatePlayer = function(inputKeys){
     // Input: Update player velocity
     if (inputKeys['ArrowLeft']) {
         this._velocity -= this._acceleration;
+        if(!this._isAnimating) {
+            this.playAnimation("left");
+        }
     } else if (inputKeys['ArrowRight']) {
         this._velocity += this._acceleration;
+        if(!this._isAnimating)  {
+            this.playAnimation("right");
+        }
+    } else {
+        this.stopAnimation();
     }
 
     // Friction
@@ -92,6 +101,21 @@ const drawPlayer = function(ctx){
 player.draw = drawPlayer;
 player.update = updatePlayer;
 player.image.src = './assets/img/player/idle.png';
+player.idleImage = './assets/img/player/idle.png';
+
+player.animations = {
+    "left": [
+        (new Image()).src='./assets/img/player/left01.png',
+        (new Image()).src='./assets/img/player/left02.png'
+    ],
+    "right": [
+        (new Image()).src='./assets/img/player/right01.png',
+        (new Image()).src='./assets/img/player/right02.png'
+    ]
+}
+
+// player.image.src = player.animations['left'][0];
+
 player.tag = TAGS.PLAYER;
 
 
@@ -131,6 +155,14 @@ originalCollectable.tag = TAGS.COLLECTABLE;
 
 // Add events
 document.addEventListener('keydown', function(event) {
+    console.log(keys);
+    if(!lastKeyPressed || lastKeyPressed != event.code){
+        lastKeyPressed = event.code
+        keys['ArrowLeft'] = false;
+        keys['ArrowRight'] = false;
+        player.stopAnimation();
+    }
+    
     keys[event.code] = true;
 });
 

@@ -19,9 +19,27 @@ class Actor {
         this._velocity = velocity;
         this._acceleration = acceleration;
         this._image = image;
+        this._idleImageSrc;
         this._tag = undefined;
         this._draw = undefined;
         this._update = undefined;
+        this._currentAnimation = [];
+        this._currentSpriteIndex = 0;
+        this._isAnimating = false;
+        this._animations = {};
+        console.log(this._isAnimating)
+    }
+
+    get isAnimating() {
+        return this._isAnimating;
+    }
+
+    get animations() {
+        return this._animations;
+    }
+
+    set animations(anim) {
+        this._animations = anim;
     }
 
     get x() {
@@ -88,6 +106,16 @@ class Actor {
         this._image = newImage;
     }
 
+    get idleImage() {
+        return this._idleImageSrc;
+    }
+
+    set idleImage(newIdleImage) {
+        this._idleImageSrc = newIdleImage;
+    }
+
+
+
     get tag() {
         return this._tag;
     }
@@ -118,5 +146,43 @@ class Actor {
         } else {
             throw new Error('update must be a function');
         }
+    }
+
+    animate() {
+        if (this._isAnimating) {
+            this._image.src = this._currentAnimation[this._currentSpriteIndex];
+            this.nextSprite();
+
+            requestAnimationFrame(() => this.animate());
+        }
+    }
+
+    playAnimation(animName) {
+        if (!this._isAnimating) {
+            this._currentAnimation = this._animations[animName];//Array with animations
+            this._isAnimating = true;
+            this.animate();
+        }
+    }
+
+    nextSprite() {
+        // this._currentSpriteIndex++;
+        // console.log("Llamado a Next")
+        // console.log("Current: ", this._currentSpriteIndex)
+        // console.log("Lenght: ", this._currentAnimation.length)
+        // console.log("Resultado: ", this._currentSpriteIndex < this._currentAnimation.length)
+        if (this._currentSpriteIndex + 1 < this._currentAnimation.length) {
+            console.log("Pasa")
+            this._currentSpriteIndex += 1;
+            console.log("El unevo valor es: ", this._currentSpriteIndex);
+            // this._currentSpriteIndex = 0;
+        }
+    }
+
+    stopAnimation() {
+        this._image.src = this._idleImageSrc;
+        this._currentAnimation = [];
+        this._isAnimating = false;
+        this._currentSpriteIndex = 0;
     }
 }
