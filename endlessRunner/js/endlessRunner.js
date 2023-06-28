@@ -155,7 +155,6 @@ originalCollectable.tag = TAGS.COLLECTABLE;
 
 // Add events
 document.addEventListener('keydown', function(event) {
-    console.log(keys);
     if(!lastKeyPressed || lastKeyPressed != event.code){
         lastKeyPressed = event.code
         keys['ArrowLeft'] = false;

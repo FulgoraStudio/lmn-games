@@ -27,7 +27,16 @@ class Actor {
         this._currentSpriteIndex = 0;
         this._isAnimating = false;
         this._animations = {};
-        console.log(this._isAnimating)
+        this._lastFrameTime = 0;
+        this._fps = 10;
+    }
+
+    get fps(){
+        return this._fps
+    }
+
+    set fps(fps) {
+        this._fps = fps;
     }
 
     get isAnimating() {
@@ -148,12 +157,19 @@ class Actor {
         }
     }
 
-    animate() {
+    animate(currentTime) {
         if (this._isAnimating) {
-            this._image.src = this._currentAnimation[this._currentSpriteIndex];
-            this.nextSprite();
+            let deltaTime = currentTime - this._lastFrameTime;
+            let frameTime = 1000 / this._fps;
 
-            requestAnimationFrame(() => this.animate());
+            if (deltaTime >= frameTime) {
+                this._image.src = this._currentAnimation[this._currentSpriteIndex];
+                this.nextSprite();
+
+                this._lastFrameTime = currentTime;
+            }
+
+            requestAnimationFrame((x) => this.animate(x));
         }
     }
 
@@ -162,20 +178,13 @@ class Actor {
             this._currentAnimation = this._animations[animName];//Array with animations
             this._isAnimating = true;
             this.animate();
+            this._lastFrameTime = performance.now();
         }
     }
 
     nextSprite() {
-        // this._currentSpriteIndex++;
-        // console.log("Llamado a Next")
-        // console.log("Current: ", this._currentSpriteIndex)
-        // console.log("Lenght: ", this._currentAnimation.length)
-        // console.log("Resultado: ", this._currentSpriteIndex < this._currentAnimation.length)
         if (this._currentSpriteIndex + 1 < this._currentAnimation.length) {
-            console.log("Pasa")
             this._currentSpriteIndex += 1;
-            console.log("El unevo valor es: ", this._currentSpriteIndex);
-            // this._currentSpriteIndex = 0;
         }
     }
 
