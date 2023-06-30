@@ -11,11 +11,18 @@ hr {
     color: coral;
 }
 
-#board {
-    width: 450px;
-    height: 450px;
+#game-container {
+    /* border-radius: 21px; */
+    border-radius: 21px;
+    border-right: 1px solid greenyellow;
+}
 
-    /* background-color: yellow; */
+#board {
+    width: 454px;
+    height: 454px;
+    
+    border-radius: 21px;
+
     margin: 0 auto;
     display: flex;
     flex-wrap: wrap;
@@ -25,6 +32,8 @@ hr {
     width: 48px;
     height: 48px;
     border: 1px solid lightgray;
+
+    color: white;
 
     /* Text */
     font-size: 20px;
@@ -37,6 +46,8 @@ hr {
 #digits {
     width: 450px;
     height: 50px;
+
+    color: white;
 
     /* background-color: yellow; */
     margin: 0 auto;
@@ -56,20 +67,56 @@ hr {
     display: flex;
     justify-content: center;
     align-items: center;
+
+    background : #2F2F2F;
+    box-shadow: 0px 10px #ffffff;
+    box-shadow: 0px 7px 10px  rgba(0, 0, 0, 0.24);
+}
+
+.number:first-child {
+    border-radius: 21px 0 0 21px;
+}
+
+.number:last-child {
+    border-radius: 0 21px 21px 0;
 }
 
 .number-selected {
-    background-color: gray;
+    background-color: white;
+    color: #cb4a3e;
 }
 
 .tile-start {
-    background-color: whitesmoke;
+    background-color: #cb4a3e;
+    color: white;
+}
+
+.tile-lu {
+    border-radius: 21px 0 0 0;
+}
+
+.tile-ru {
+    border-radius: 0 21px 0 0;
+}
+
+.tile-rd {
+    border-radius: 0 0 21px 0;
+}
+
+.tile-ld {
+    border-radius: 0 0 0 21px;
 }
 
 .horizontal-line {
-    border-bottom: 1px solid black;
+    border-bottom: 3px solid red;
 }
 
 .vertical-line {
-    border-right: 1px solid black;
+    border-right: 3px solid red;
+}
+
+.letter {
+    font-size: 21px;
+    font-weight: 800;
+    font-weight: 800;
 }

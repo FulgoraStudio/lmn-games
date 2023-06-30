@@ -1,6 +1,7 @@
 const board = document.getElementById("board");
 const digitspanel = document.getElementById("digits");
 const newGameButton = document.getElementById("new-game-button");
+const howtToButton = document.getElementById("htp-button");
 
 let numSelected = null;
 let tileSelected = null;
@@ -13,6 +14,7 @@ let isPlaying = false;
 let winGame = false;
 
 newGameButton.addEventListener('click', setGame);
+howtToButton.addEventListener('click', openModal);
 
 function resetGame() {
     while (board.firstChild) {
@@ -42,6 +44,7 @@ function setGame() {
         number.innerText = i;
         number.addEventListener("click", selectNumber);
         number.classList.add("number");
+        number.classList.add("letter");
         document.getElementById("digits").appendChild(number);
     }
 
@@ -50,9 +53,25 @@ function setGame() {
         for (let c = 0; c < 9; c++) {
             let tile = document.createElement("div");
             tile.id = r.toString() + "-" + c.toString();
+
             if(gameBoard[r][c] != "0") {
                 tile.innerText = gameBoard[r][c];
                 tile.classList.add("tile-start");
+                tile.classList.add("letter");
+
+                //Check is corner grid
+                if(r == 0 && c == 0) {
+                    tile.classList.add("tile-lu");
+                }
+                if(r == 0 && c == 8) {
+                    tile.classList.add("tile-ru");
+                }
+                if(r == 8 && c == 0) {
+                    tile.classList.add("tile-ld");
+                }
+                if(r == 8 && c == 8) {
+                    tile.classList.add("tile-rd");
+                }
             }
 
             if(r == 2 || r == 5) {
@@ -64,6 +83,7 @@ function setGame() {
             }
             tile.addEventListener("click", selectTile);
             tile.classList.add("tile");
+            tile.classList.add("letter");
             document.getElementById("board").append(tile);
         }
     }
@@ -269,4 +289,8 @@ function boardResolved(boardArr, solutionArr) {
     }
     
     return true;
+}
+
+function openModal(){
+    alert("Bro.... es un sudoku")
 }
