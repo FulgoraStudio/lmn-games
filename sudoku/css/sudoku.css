@@ -17,15 +17,37 @@ hr {
     border-right: 1px solid greenyellow;
 }
 
+#display-container {
+    display: flex;
+    position: relative;
+}
+
 #board {
+    display: flex;
+
     width: 454px;
     height: 454px;
-    
+   
     border-radius: 21px;
-
     margin: 0 auto;
-    display: flex;
     flex-wrap: wrap;
+}
+
+#board-container {
+    position: absolute;
+    top: 9px;
+    left: 150px;
+    z-index: 2;
+    border: 5px solid red;
+}
+
+#bg-image {
+    width: 70%;
+    position: relative;
+    align-self: flex-end;
+    top: 0;
+    right: 0;
+    z-index: 1;
 }
 
 .tile {
