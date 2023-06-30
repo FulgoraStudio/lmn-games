@@ -10,8 +10,7 @@
 </head>
 <body>
     <h1>Sud ocu</h1>
-    <hr>
-    <h2 id="errors">0</h2>
+    <!-- <h2 id="errors">0</h2> -->
     <!-- 9x9 board-->
     <div id="game-container">
         <div id="display-container">
@@ -20,12 +19,16 @@
                     <div id="board" class="box"></div>
                     <div id="controls-container">
                         <div id="digits" class="box"></div>
-                        <button id="htp-button">¿Como jugar?</button>
-                        <button id="new-game-button">Jugar</button>
+                        <div id="buttons-container">
+                            <button id="htp-button" class="btn">¿Como jugar?</button>
+                            <button id="new-game-button" class="btn">Jugar</button>
+                        </div>
                     </div>
                 </div>
             </div>
-            <img id="bg-image" src="./assets/image.jpg" alt="Image">
+            <div id="wrapper-image">
+                <img id="bg-image" src="./assets/image.jpg" alt="Image">
+            </div>
         </div>
     </div>
     <script src="sudoku.js"></script>
