@@ -20,8 +20,19 @@ hr {
 #display-container {
     display: flex;
     position: relative;
+    width: 1280px;
+    margin: 0 auto;
 }
 
+
+#wrapper-board {
+    border: 5px solid blue;
+}
+
+#board-container {
+    width: 30%;
+    border: 5px solid red;
+}
 #board {
     display: flex;
 
@@ -31,23 +42,32 @@ hr {
     border-radius: 21px;
     margin: 0 auto;
     flex-wrap: wrap;
-}
 
-#board-container {
-    position: absolute;
-    top: 9px;
-    left: 150px;
+    position: relative;
+    top: 10px;
+    left: 110px;
     z-index: 2;
-    border: 5px solid red;
 }
 
-#bg-image {
+#controls-container {
+    position: relative;
+    top: 10px;
+    left: 110px;
+    z-index: 2;
+}
+
+#wrapper-image {
     width: 70%;
     position: relative;
     align-self: flex-end;
     top: 0;
     right: 0;
     z-index: 1;
+}
+
+#bg-image {
+    width: 100%;
+    border-radius: 21px;
 }
 
 .tile {
