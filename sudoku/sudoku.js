@@ -1,3 +1,8 @@
+const board = document.getElementById("board");
+const digitspanel = document.getElementById("digits");
+const newGameButton = document.getElementById("new-game-button");
+const howtToButton = document.getElementById("htp-button");
+
 let numSelected = null;
 let tileSelected = null;
 let errors = 0;
@@ -5,36 +10,30 @@ let errors = 0;
 let gameBoard = [];
 let boardsolution = [];
 
-// //EXAMPLE
-// let board = [
-//     "--74916-5",
-//     "2---6-3-9",
-//     "-----7-1-",
-//     "-586----4",
-//     "--3----9-",
-//     "--62--187",
-//     "9-4-7---2",
-//     "67-83----",
-//     "81--45---"
-// ]
+let isPlaying = false;
+let winGame = false;
 
-// let solution = [
-//     "387491625",
-//     "241568379",
-//     "569327418",
-//     "758619234",
-//     "123784596",
-//     "496253187",
-//     "934176852",
-//     "675832941",
-//     "812945763"
-// ]
+newGameButton.addEventListener('click', setGame);
+howtToButton.addEventListener('click', openModal);
 
-window.onload = function() {
-    setGame();    
+function resetGame() {
+    while (board.firstChild) {
+        board.removeChild(board.firstChild);
+    }
+    
+    while (digitspanel.firstChild) {
+        digitspanel.removeChild(digitspanel.firstChild);
+    }
+
+    isPlaying = false;
+    winGame = false;
 }
 
 function setGame() {
+    if (isPlaying == true) return;
+    isPlaying = true;
+
+    newGameButton.innerText = "Jugar de vuelta";
     //Set Board Game
     setBoard();
     
@@ -45,6 +44,7 @@ function setGame() {
         number.innerText = i;
         number.addEventListener("click", selectNumber);
         number.classList.add("number");
+        number.classList.add("letter");
         document.getElementById("digits").appendChild(number);
     }
 
@@ -53,9 +53,25 @@ function setGame() {
         for (let c = 0; c < 9; c++) {
             let tile = document.createElement("div");
             tile.id = r.toString() + "-" + c.toString();
+
             if(gameBoard[r][c] != "0") {
                 tile.innerText = gameBoard[r][c];
                 tile.classList.add("tile-start");
+                tile.classList.add("letter");
+            }
+
+            //Check is corner grid
+            if(r == 0 && c == 0) {
+                tile.classList.add("tile-lu");
+            }
+            if(r == 0 && c == 8) {
+                tile.classList.add("tile-ru");
+            }
+            if(r == 8 && c == 0) {
+                tile.classList.add("tile-ld");
+            }
+            if(r == 8 && c == 8) {
+                tile.classList.add("tile-rd");
             }
 
             if(r == 2 || r == 5) {
@@ -67,6 +83,7 @@ function setGame() {
             }
             tile.addEventListener("click", selectTile);
             tile.classList.add("tile");
+            tile.classList.add("letter");
             document.getElementById("board").append(tile);
         }
     }
@@ -80,6 +97,7 @@ function setBoard() {
         console.log("Try");
     } while (!isResolved(boardsolution));
     
+    //TODO: Pistas
     console.log('%cHacer trampa es MUY MALO', 'color: red; font-size: 21px; margin: 4px;');
     console.log('%cPero aqui hay una pista....', 'color: red; font-size: 12px;');
     console.log("Board: ", gameBoard);
@@ -107,6 +125,19 @@ function selectTile() {
 
         if(boardsolution[r][c] == numSelected.id) {
             this.innerText = numSelected.id;
+            // console.log("Logg")
+            // console.log(gameBoard);
+            // console.log(numSelected.id);
+            gameBoard[r][c] = Number(numSelected.id);
+            // console.log(gameBoard);
+            // console.log(boardsolution);
+            if(boardResolved(gameBoard, boardsolution)) {
+                isPlaying = false;
+                winGame = true;
+                console.log("WIN GAME");
+            }else{
+                console.log("No win yet");
+            }
         }
         else
         {
@@ -202,9 +233,9 @@ function isResolved(board) {
 function findEmptyCell(board) {
     for (let i = 0; i < 9; i++) {
         for (let j = 0; j < 9; j++) {
-        if (board[i][j] === 0) {
-            return [i, j];
-        }
+            if (board[i][j] === 0) {
+                return [i, j];
+            }
         }
     }
     return null; // No hay celdas vacías
@@ -242,4 +273,24 @@ function existsInRegion(board, row, column, num) {
         }
     }
     return false;
+}
+
+function boardResolved(boardArr, solutionArr) {
+    if (boardArr.length !== solutionArr.length || boardArr[0].length !== solutionArr[0].length) {
+      return false;
+    }
+    
+    for (var i = 0; i < boardArr.length; i++) {
+      for (var j = 0; j < boardArr[0].length; j++) {
+        if (boardArr[i][j] !== solutionArr[i][j]) {
+          return false;
+        }
+      }
+    }
+    
+    return true;
+}
+
+function openModal(){
+    alert("Bro.... es un sudoku")
 }

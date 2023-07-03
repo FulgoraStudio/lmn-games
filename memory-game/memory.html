@@ -4,14 +4,18 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Memory game</title>
-    <link rel="stylesheet" href="./memory.css">
+    <link rel="stylesheet" href="./css/memory.css">
 </head>
 <body>
+    <h1>Memoria</h1>
+    <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Delectus numquam ad in unde temporibus? Dicta unde accusantium velit, a enim praesentium voluptates est quisquam dolorem mollitia veniam qui totam ipsa?</p>
     <h2>Errors: <span id="errors">0</span></h2>
-    <div id="board"></div>
-    <div class="buttons-container">
-        <button id="start-button" class="control-button">Start</button>
-        <button id="restart-button" class="control-button hide">Jugar de vuelta</button>
+    <div id="game-container">
+        <div id="board"></div>
+        <div id="buttons-container">
+            <button id="start-button" class="btn">¿Cómo Jugar?</button>
+            <button id="restart-button" class="btn">Jugar de nuevo</button>
+        </div>
     </div>
 
     <script src="./js/soundManager.js"></script>

@@ -19,9 +19,36 @@ class Actor {
         this._velocity = velocity;
         this._acceleration = acceleration;
         this._image = image;
+        this._idleImageSrc;
         this._tag = undefined;
         this._draw = undefined;
         this._update = undefined;
+        this._currentAnimation = [];
+        this._currentSpriteIndex = 0;
+        this._isAnimating = false;
+        this._animations = {};
+        this._lastFrameTime = 0;
+        this._fps = 10;
+    }
+
+    get fps(){
+        return this._fps
+    }
+
+    set fps(fps) {
+        this._fps = fps;
+    }
+
+    get isAnimating() {
+        return this._isAnimating;
+    }
+
+    get animations() {
+        return this._animations;
+    }
+
+    set animations(anim) {
+        this._animations = anim;
     }
 
     get x() {
@@ -88,6 +115,16 @@ class Actor {
         this._image = newImage;
     }
 
+    get idleImage() {
+        return this._idleImageSrc;
+    }
+
+    set idleImage(newIdleImage) {
+        this._idleImageSrc = newIdleImage;
+    }
+
+
+
     get tag() {
         return this._tag;
     }
@@ -118,5 +155,43 @@ class Actor {
         } else {
             throw new Error('update must be a function');
         }
+    }
+
+    animate(currentTime) {
+        if (this._isAnimating) {
+            let deltaTime = currentTime - this._lastFrameTime;
+            let frameTime = 1000 / this._fps;
+
+            if (deltaTime >= frameTime) {
+                this._image.src = this._currentAnimation[this._currentSpriteIndex];
+                this.nextSprite();
+
+                this._lastFrameTime = currentTime;
+            }
+
+            requestAnimationFrame((x) => this.animate(x));
+        }
+    }
+
+    playAnimation(animName) {
+        if (!this._isAnimating) {
+            this._currentAnimation = this._animations[animName];//Array with animations
+            this._isAnimating = true;
+            this.animate();
+            this._lastFrameTime = performance.now();
+        }
+    }
+
+    nextSprite() {
+        if (this._currentSpriteIndex + 1 < this._currentAnimation.length) {
+            this._currentSpriteIndex += 1;
+        }
+    }
+
+    stopAnimation() {
+        this._image.src = this._idleImageSrc;
+        this._currentAnimation = [];
+        this._isAnimating = false;
+        this._currentSpriteIndex = 0;
     }
 }
