@@ -58,7 +58,7 @@ body {
 }
 
 .letter-container {
-  max-width: 325px;
+  max-width: 323px;
   display: flex;
   flex-wrap: wrap;
   /* justify-content: center; */
@@ -67,8 +67,8 @@ body {
   border-radius : 24px;
   -moz-border-radius : 24px;
   -webkit-border-radius : 24px;
-  box-shadow: 0px 10px #ffffff;
-  box-shadow: 0px 7px 10px  rgba(0, 0, 0, 0.24);
+  /* box-shadow: 0px 10px #ffffff;
+  box-shadow: 0px 7px 10px  rgba(0, 0, 0, 0.24); */
 }
 
 /* Letters */
@@ -76,6 +76,8 @@ body {
   height: 2.1em;
   width: 2.1em;
   margin: 1px;
+
+  border: 1px dotted #919191;
 
   cursor: pointer;
 
@@ -85,8 +87,9 @@ body {
   font-weight: bold;
 
   background : #2F2F2F;
-  box-shadow: 0px 10px #ffffff;
-  box-shadow: 0px 7px 10px  rgba(0, 0, 0, 0.24);
+  /* box-shadow: 0px 10px #ffffff;
+  box-shadow: 0px 7px 10px  rgba(0, 0, 0, 0.24); */
+  
 }
 
 .letter-first {
@@ -204,7 +207,7 @@ canvas {
 #image-status {
   width: 100%;
   margin: auto;
-  border: 10px solid #000000;
+  /* border: 10px solid #000000; */
   border-radius: 10px;
 }
 
@@ -236,5 +239,7 @@ canvas {
 }
 
 #intents-display {
-  font-weight: 600;
+  color: #fe5152;
+  font-size: 21px;
+  font-weight: bold;
 }

@@ -1047,7 +1047,7 @@ const initializer = () => {
     currentImgIndex = 0;
     imageStatus.src = imgSequencePath[currentImgIndex];
 
-    intentsDisplay.innerText = `Intentos: ${TRYES - intents}`;
+    intentsDisplay.innerText = `¡Te quedan ${TRYES - intents} vidas!`;
 
     //Initially erase all content and hide letteres and new game button
     userInputSection.innerHTML = "";
@@ -1118,7 +1118,7 @@ const initializer = () => {
 
             //disable clicked button
             button.disabled = true;
-            intentsDisplay.innerText = `Intentos: ${TRYES - intents}`;
+            intentsDisplay.innerText = `¡Te quedan ${TRYES - intents} vidas!`;
         });
         letterContainer.append(button);
     }
@@ -1155,7 +1155,7 @@ function getHint() {
     SoundManager.play(gameSounds.INCORRECT_SOUND);
     intents++;
 
-    intentsDisplay.innerText = `Intentos: ${TRYES - intents}`;
+    intentsDisplay.innerText = `¡Te quedan ${TRYES - intents} vidas!`;
     hints.splice(index, 1);
 }
 
