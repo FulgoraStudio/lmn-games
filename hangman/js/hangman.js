@@ -968,6 +968,8 @@ let hints = [];
 
 //Display option buttons
 const displayOptions = () => {
+  generateWord("frutas");
+    return;
     optionsContainer.innerHTML += `<h3>Please Select An Option</h3>`;
     let buttonCon = document.createElement("div");
     for (let value in options) {
@@ -1060,6 +1062,18 @@ const initializer = () => {
     for (let i = 65; i < 91; i++) {
         let button = document.createElement("button");
         button.classList.add("letters");
+
+        if (i == 65) {
+          button.classList.add("letter-first");
+        }
+
+        if (i == 71) {
+          button.classList.add("letter-middle");
+        }
+
+        if (i == 86) {
+          button.classList.add("letter-last");
+        }
         //Number to ASCII[A-Z]
         button.innerText = String.fromCharCode(i);
         //character button click
