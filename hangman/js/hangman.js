@@ -1031,7 +1031,7 @@ const generateWord = (optionValue) => {
 
 
     //replace every letter with span containing dash
-    let displayItem = chosenWord.replace(/./g, '<span class="dashes">_</span>');
+    let displayItem = chosenWord.replace(/./g, '<div class="dashes">&nbsp</div>');
 
     //Display each element as span
     userInputSection.innerHTML = displayItem;
