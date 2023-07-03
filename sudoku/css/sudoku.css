@@ -32,12 +32,12 @@ h1 {
 
 
 #wrapper-board {
-    border: 5px solid blue;
+    /* border: 5px solid blue; */
 }
 
 #board-container {
     width: 30%;
-    border: 5px solid red;
+    /* border: 5px solid red; */
 }
 
 #board {
@@ -54,6 +54,8 @@ h1 {
     top: 10px;
     left: 110px;
     z-index: 2;
+
+    border: 0px;
 }
 
 #controls-container {

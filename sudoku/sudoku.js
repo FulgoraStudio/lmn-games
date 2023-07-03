@@ -58,20 +58,20 @@ function setGame() {
                 tile.innerText = gameBoard[r][c];
                 tile.classList.add("tile-start");
                 tile.classList.add("letter");
+            }
 
-                //Check is corner grid
-                if(r == 0 && c == 0) {
-                    tile.classList.add("tile-lu");
-                }
-                if(r == 0 && c == 8) {
-                    tile.classList.add("tile-ru");
-                }
-                if(r == 8 && c == 0) {
-                    tile.classList.add("tile-ld");
-                }
-                if(r == 8 && c == 8) {
-                    tile.classList.add("tile-rd");
-                }
+            //Check is corner grid
+            if(r == 0 && c == 0) {
+                tile.classList.add("tile-lu");
+            }
+            if(r == 0 && c == 8) {
+                tile.classList.add("tile-ru");
+            }
+            if(r == 8 && c == 0) {
+                tile.classList.add("tile-ld");
+            }
+            if(r == 8 && c == 8) {
+                tile.classList.add("tile-rd");
             }
 
             if(r == 2 || r == 5) {
