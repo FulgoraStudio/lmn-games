@@ -22,7 +22,7 @@ let card2Selected;
 
 let cardSet;
 let board = [];
-let rows = 4;
+let rows = 2;
 let columns = 5;
 
 let pairs = (rows * columns) / 2;
@@ -50,7 +50,8 @@ SoundManager.loadSounds(Object.values(gameSounds))
 });
 
 function shuffleCards() {
-    cardSet = cardList.concat(cardList) //two of each card
+    cardQuantity = cardList.slice(0, 5)
+    cardSet = cardQuantity.concat(cardQuantity) //two of each card
 
     //shuffle
     for (let i = 0; i < cardSet.length; i++) {
