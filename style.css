@@ -37,6 +37,7 @@
 
 .button:hover
 {
+  color: white;
   background : #6EA96E;
 }
 
