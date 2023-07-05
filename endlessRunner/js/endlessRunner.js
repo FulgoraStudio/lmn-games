@@ -97,6 +97,7 @@ const updatePlayer = function(inputKeys){
 }
 
 const drawPlayer = function(ctx){
+    ctx.clearRect(this._x, this._y, this._width, this._height);
     ctx.drawImage(this._image, this._x, this._y, this._width, this._height);
 }
 
@@ -183,7 +184,6 @@ document.addEventListener('keydown', function(event) {
         keys['ArrowLeft'] = false;
         keys['ArrowRight'] = false;
         player.stopAnimation();
-        // player.playAnimation("idle", true);
     }
     
     keys[event.code] = true;
@@ -191,6 +191,7 @@ document.addEventListener('keydown', function(event) {
 
 document.addEventListener('keyup', function(event) {
     player.stopAnimation();
+    // player.playAnimation("idle", true);
     keys[event.code] = false;
 });
 
@@ -249,11 +250,9 @@ function updateCollectables(ctx) {
 
 
 function gameLoop() {
-   
-
-    checkBorders(player, canvas);
 
     context.clearRect(0, 0, canvas.width, canvas.height);
+    checkBorders(player, canvas);
     
     //Player update
     if(!isDead) {
