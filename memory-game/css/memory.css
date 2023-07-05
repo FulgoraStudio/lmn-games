@@ -1,6 +1,19 @@
 body {
     font-family : Encode Sans Semi Condensed;
     text-align: center;
+    background-image: url("./../assets/images/memoria-bg.png")
+}
+
+#main-title {
+    width: 30%;
+    margin: 0 10% 1% 10%;
+    text-align: justify;
+}
+
+#leyend {
+    width: 30%;
+    margin: 0 10%;
+    text-align: justify;
 }
 
 #board {
