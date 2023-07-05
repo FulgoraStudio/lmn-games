@@ -11,8 +11,8 @@ context.strokeStyle = borderColor;
 const startButton = document.getElementById('start-button');
 const resetButton = document.getElementById('reset-button');
 
-const pointsLabel = document.getElementById('points-label');
-const distanceLabel = document.getElementById('distance-label');
+const pointsLabel = document.getElementById('points-text');
+const distanceLabel = document.getElementById('distance-text');
 
 startButton.onclick = () => {
     startButton.classList.add('hide');
@@ -69,7 +69,7 @@ SoundManager.loadSounds(Object.values(gameSounds))
  */
 
 // PLAYER
-const player = new Actor(200, 550, 50, 50, 300, 0, 1.2, new Image());
+const player = new Actor(200, 550, 100, 100, 300, 0, 1.2, new Image());
 
 const updatePlayer = function(inputKeys){
     // Input: Update player velocity
@@ -84,7 +84,9 @@ const updatePlayer = function(inputKeys){
             this.playAnimation("right");
         }
     } else {
-        this.stopAnimation();
+        if(!this._isAnimating)  {
+            this.playAnimation("idle", true);
+        }
     }
 
     // Friction
@@ -95,22 +97,44 @@ const updatePlayer = function(inputKeys){
 }
 
 const drawPlayer = function(ctx){
+    ctx.clearRect(this._x, this._y, this._width, this._height);
     ctx.drawImage(this._image, this._x, this._y, this._width, this._height);
 }
 
 player.draw = drawPlayer;
 player.update = updatePlayer;
-player.image.src = './assets/img/player/idle.png';
-player.idleImage = './assets/img/player/idle.png';
+player.image.src = './assets/img/player/idle/idle00.png';
+player.idleImage = './assets/img/player/idle/idle00.png';
 
 player.animations = {
+    "idle": [
+        (new Image()).src='./assets/img/player/idle/idle00.png',
+        (new Image()).src='./assets/img/player/idle/idle01.png',
+        (new Image()).src='./assets/img/player/idle/idle02.png',
+        (new Image()).src='./assets/img/player/idle/idle03.png',
+        (new Image()).src='./assets/img/player/idle/idle04.png',
+        (new Image()).src='./assets/img/player/idle/idle05.png',
+        (new Image()).src='./assets/img/player/idle/idle06.png',
+        (new Image()).src='./assets/img/player/idle/idle07.png',
+        (new Image()).src='./assets/img/player/idle/idle08.png'
+    ],
     "left": [
-        (new Image()).src='./assets/img/player/left01.png',
-        (new Image()).src='./assets/img/player/left02.png'
+        (new Image()).src='./assets/img/player/moveL/moveleft01.png',
+        (new Image()).src='./assets/img/player/moveL/moveleft02.png',
+        (new Image()).src='./assets/img/player/moveL/moveleft03.png',
+        (new Image()).src='./assets/img/player/moveL/moveleft04.png',
+        (new Image()).src='./assets/img/player/moveL/moveleft05.png',
+        (new Image()).src='./assets/img/player/moveL/moveleft06.png',
+        (new Image()).src='./assets/img/player/moveL/moveleft07.png'
     ],
     "right": [
-        (new Image()).src='./assets/img/player/right01.png',
-        (new Image()).src='./assets/img/player/right02.png'
+        (new Image()).src='./assets/img/player/moveR/moveright01.png',
+        (new Image()).src='./assets/img/player/moveR/moveright02.png',
+        (new Image()).src='./assets/img/player/moveR/moveright03.png',
+        (new Image()).src='./assets/img/player/moveR/moveright04.png',
+        (new Image()).src='./assets/img/player/moveR/moveright05.png',
+        (new Image()).src='./assets/img/player/moveR/moveright06.png',
+        (new Image()).src='./assets/img/player/moveR/moveright07.png'
     ]
 }
 
@@ -166,6 +190,8 @@ document.addEventListener('keydown', function(event) {
 });
 
 document.addEventListener('keyup', function(event) {
+    player.stopAnimation();
+    // player.playAnimation("idle", true);
     keys[event.code] = false;
 });
 
@@ -224,11 +250,9 @@ function updateCollectables(ctx) {
 
 
 function gameLoop() {
-   
-
-    checkBorders(player, canvas);
 
     context.clearRect(0, 0, canvas.width, canvas.height);
+    checkBorders(player, canvas);
     
     //Player update
     if(!isDead) {
@@ -263,7 +287,7 @@ function gameLoop() {
 function addDistance() {
     if(!isPlaying) return;
     distance += 0.01;
-    distanceLabel.innerText = `Distance: ${distance.toFixed(3)}m`;
+    distanceLabel.innerText = `${distance.toFixed(3)}m`;
 }
 
 function checkBorders(actor, container) {
@@ -338,7 +362,7 @@ function checkCollisionActorTag(tag){
     if(tag == TAGS.COLLECTABLE) {
         points++;
         SoundManager.playSound(gameSounds.COLLECTABLE);
-        pointsLabel.innerText = `Points: ${points}`;
+        pointsLabel.innerText = `${points}`;
     }
 }
 
@@ -360,8 +384,8 @@ function startGame() {
     points = 0;
     distance = 0;
 
-    pointsLabel.innerText = `Points: ${points}`;
-    distanceLabel.innerText = `Distance: ${distance.toFixed(3)}m`;
+    pointsLabel.innerText = `${points}`;
+    distanceLabel.innerText = `${distance.toFixed(3)}m`;
 
     SoundManager.playMusic(gameSounds.MUSIC, true);
 }
