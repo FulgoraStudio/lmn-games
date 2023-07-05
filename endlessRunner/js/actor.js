@@ -28,7 +28,7 @@ class Actor {
         this._isAnimating = false;
         this._animations = {};
         this._lastFrameTime = 0;
-        this._fps = 10;
+        this._fps = 15;
     }
 
     get fps(){
@@ -157,34 +157,36 @@ class Actor {
         }
     }
 
-    animate(currentTime) {
+    animate(currentTime, looped = false) {
         if (this._isAnimating) {
             let deltaTime = currentTime - this._lastFrameTime;
             let frameTime = 1000 / this._fps;
 
             if (deltaTime >= frameTime) {
                 this._image.src = this._currentAnimation[this._currentSpriteIndex];
-                this.nextSprite();
+                this.nextSprite(looped);
 
                 this._lastFrameTime = currentTime;
             }
 
-            requestAnimationFrame((x) => this.animate(x));
+            requestAnimationFrame((x) => this.animate(x, looped));
         }
     }
 
-    playAnimation(animName) {
+    playAnimation(animName, looped = false) {
         if (!this._isAnimating) {
             this._currentAnimation = this._animations[animName];//Array with animations
             this._isAnimating = true;
-            this.animate();
+            this.animate(this._lastFrameTime, looped);
             this._lastFrameTime = performance.now();
         }
     }
 
-    nextSprite() {
+    nextSprite(looped = false) {
         if (this._currentSpriteIndex + 1 < this._currentAnimation.length) {
             this._currentSpriteIndex += 1;
+        } else if (looped) {
+            this._currentSpriteIndex = 0;
         }
     }
 

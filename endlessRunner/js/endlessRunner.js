@@ -69,7 +69,7 @@ SoundManager.loadSounds(Object.values(gameSounds))
  */
 
 // PLAYER
-const player = new Actor(200, 550, 50, 50, 300, 0, 1.2, new Image());
+const player = new Actor(200, 550, 100, 100, 300, 0, 1.2, new Image());
 
 const updatePlayer = function(inputKeys){
     // Input: Update player velocity
@@ -84,7 +84,9 @@ const updatePlayer = function(inputKeys){
             this.playAnimation("right");
         }
     } else {
-        this.stopAnimation();
+        if(!this._isAnimating)  {
+            this.playAnimation("idle", true);
+        }
     }
 
     // Friction
@@ -100,17 +102,38 @@ const drawPlayer = function(ctx){
 
 player.draw = drawPlayer;
 player.update = updatePlayer;
-player.image.src = './assets/img/player/idle.png';
-player.idleImage = './assets/img/player/idle.png';
+player.image.src = './assets/img/player/idle/idle00.png';
+player.idleImage = './assets/img/player/idle/idle00.png';
 
 player.animations = {
+    "idle": [
+        (new Image()).src='./assets/img/player/idle/idle00.png',
+        (new Image()).src='./assets/img/player/idle/idle01.png',
+        (new Image()).src='./assets/img/player/idle/idle02.png',
+        (new Image()).src='./assets/img/player/idle/idle03.png',
+        (new Image()).src='./assets/img/player/idle/idle04.png',
+        (new Image()).src='./assets/img/player/idle/idle05.png',
+        (new Image()).src='./assets/img/player/idle/idle06.png',
+        (new Image()).src='./assets/img/player/idle/idle07.png',
+        (new Image()).src='./assets/img/player/idle/idle08.png'
+    ],
     "left": [
-        (new Image()).src='./assets/img/player/left01.png',
-        (new Image()).src='./assets/img/player/left02.png'
+        (new Image()).src='./assets/img/player/moveL/moveleft01.png',
+        (new Image()).src='./assets/img/player/moveL/moveleft02.png',
+        (new Image()).src='./assets/img/player/moveL/moveleft03.png',
+        (new Image()).src='./assets/img/player/moveL/moveleft04.png',
+        (new Image()).src='./assets/img/player/moveL/moveleft05.png',
+        (new Image()).src='./assets/img/player/moveL/moveleft06.png',
+        (new Image()).src='./assets/img/player/moveL/moveleft07.png'
     ],
     "right": [
-        (new Image()).src='./assets/img/player/right01.png',
-        (new Image()).src='./assets/img/player/right02.png'
+        (new Image()).src='./assets/img/player/moveR/moveright01.png',
+        (new Image()).src='./assets/img/player/moveR/moveright02.png',
+        (new Image()).src='./assets/img/player/moveR/moveright03.png',
+        (new Image()).src='./assets/img/player/moveR/moveright04.png',
+        (new Image()).src='./assets/img/player/moveR/moveright05.png',
+        (new Image()).src='./assets/img/player/moveR/moveright06.png',
+        (new Image()).src='./assets/img/player/moveR/moveright07.png'
     ]
 }
 
@@ -160,12 +183,14 @@ document.addEventListener('keydown', function(event) {
         keys['ArrowLeft'] = false;
         keys['ArrowRight'] = false;
         player.stopAnimation();
+        // player.playAnimation("idle", true);
     }
     
     keys[event.code] = true;
 });
 
 document.addEventListener('keyup', function(event) {
+    player.stopAnimation();
     keys[event.code] = false;
 });
 
