@@ -11,8 +11,8 @@ context.strokeStyle = borderColor;
 const startButton = document.getElementById('start-button');
 const resetButton = document.getElementById('reset-button');
 
-const pointsLabel = document.getElementById('points-label');
-const distanceLabel = document.getElementById('distance-label');
+const pointsLabel = document.getElementById('points-text');
+const distanceLabel = document.getElementById('distance-text');
 
 startButton.onclick = () => {
     startButton.classList.add('hide');
@@ -263,7 +263,7 @@ function gameLoop() {
 function addDistance() {
     if(!isPlaying) return;
     distance += 0.01;
-    distanceLabel.innerText = `Distance: ${distance.toFixed(3)}m`;
+    distanceLabel.innerText = `${distance.toFixed(3)}m`;
 }
 
 function checkBorders(actor, container) {
@@ -338,7 +338,7 @@ function checkCollisionActorTag(tag){
     if(tag == TAGS.COLLECTABLE) {
         points++;
         SoundManager.playSound(gameSounds.COLLECTABLE);
-        pointsLabel.innerText = `Points: ${points}`;
+        pointsLabel.innerText = `${points}`;
     }
 }
 
@@ -360,8 +360,8 @@ function startGame() {
     points = 0;
     distance = 0;
 
-    pointsLabel.innerText = `Points: ${points}`;
-    distanceLabel.innerText = `Distance: ${distance.toFixed(3)}m`;
+    pointsLabel.innerText = `${points}`;
+    distanceLabel.innerText = `${distance.toFixed(3)}m`;
 
     SoundManager.playMusic(gameSounds.MUSIC, true);
 }
