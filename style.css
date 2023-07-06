@@ -31,8 +31,7 @@
   border-radius : 21px;
   -moz-border-radius : 21px;
   -webkit-border-radius : 21px;
-  box-shadow: 0px 10px #ffffff;
-  box-shadow: 0px 7px 10px  rgba(0, 0, 0, 0.24);
+  box-shadow: 0px 8px #ffffff, 0px 7px 10px  rgba(0, 0, 0, 0.24);
 }
 
 .button:hover
