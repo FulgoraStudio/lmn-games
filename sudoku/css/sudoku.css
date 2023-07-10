@@ -1,17 +1,27 @@
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    font-size: 62.5%;
+    font-family : Encode Sans Semi Condensed;
+}
+
 body {
     font-family : Encode Sans Semi Condensed;
     text-align: center;
-    max-width: 1400px;
     margin: auto;
 }
 
 hr {
-    width: 500px;
+    width: 50rem;
 }
 
 h1 {
+    display: block;
+    margin: 0 auto;
+    font-size: 3.2rem;
     text-align: left;
-    padding: 0 0 0 440px;
+    max-width: 139.2rem;
 }
 
 #errors {
@@ -20,15 +30,17 @@ h1 {
 
 #game-container {
     /* border-radius: 21px; */
-    border-radius: 21px;
-    border-right: 1px solid greenyellow;
+    margin: 0 auto;
+    max-width: 139.2rem;
+    border: 0.1rem dotted red;
+    display: flex;
 }
 
 #display-container {
     display: flex;
     /* position: relative; */
-    width: 1280px;
-    height: 600px;
+    width: 128rem;
+    height: 60rem;
     margin: 0 auto;
 }
 
@@ -45,37 +57,35 @@ h1 {
 #board {
     display: flex;
     
-    width: 454px;
-    height: 454px;
+    width: 43.4rem;
+    height: 45.4rem;
     
-    border-radius: 21px;
+    border-radius: 2.1rem;
     margin: 0 auto;
     flex-wrap: wrap;
     
     position: relative;
-    top: 10px;
+    top: 1rem;
     z-index: 2;
-
-    border: 0px;
 }
 
 .box {
     background : #2F2F2F;
-    border-radius : 24px;
-    -moz-border-radius : 24px;
-    -webkit-border-radius : 24px;
-    box-shadow: 0px 8px #ffffff, 0px 7px 10px  rgba(0, 0, 0, 0.24);
+    border-radius : 2.4rem;
+    -moz-border-radius : 2.4rem;
+    -webkit-border-radius : 2.4rem;
+    box-shadow: 0px 0.8rem #ffffff, 0px 0.7rem 1rem  rgba(0, 0, 0, 0.24);
 }
 
 #controls-container {
-    margin: 15px 0;
+    margin: 1.5rem 0;
     position: relative;
-    top: 10px;
+    top: 1rem;
     z-index: 2;
 }
 
 #buttons-container {
-    margin: 10px 0;
+    margin: 1rem 0;
     text-align: left;
 }
 
@@ -99,19 +109,24 @@ h1 {
 #bg-image {
     width: 100%;
     height: 100%;
-    border-radius: 21px;
+    border-radius: 2.1rem;
     object-fit: cover;
 }
 
 .btn {
-    height: 30px;
-
     background : #C9C9C9;
-    border-radius : 21px;
-    -moz-border-radius : 21px;
-    -webkit-border-radius : 21px;
+    border-radius : 4rem;
+  
+    margin-top: 1rem;
+    margin-right: 2rem;
+  
     box-shadow: 0px 10px #ffffff;
     box-shadow: 0px 7px 10px  rgba(0, 0, 0, 0.24);
+  
+    font-size: 1.6rem;
+    font-weight: bold;
+  
+    padding: 1.2rem 2rem;
 }
 
 .btn:hover {
@@ -136,14 +151,14 @@ IN GAME
 */
 
 .tile {
-    width: 48px;
-    height: 48px;
-    border: 1px solid lightgray;
+    width: 4.8rem;
+    height: 4.8rem;
+    border: 0.1rem solid lightgray;
 
     color: white;
 
     /* Text */
-    font-size: 20px;
+    font-size: 2rem;
     font-weight: bold;
     display: flex;
     justify-content: center;
@@ -151,8 +166,8 @@ IN GAME
 }
 
 #digits {
-    width: 450px;
-    height: 50px;
+    width: 43.2rem;
+    height: 5rem;
 
     color: white;
 
@@ -163,29 +178,29 @@ IN GAME
 }
 
 .number {
-    width: 44px;
-    height: 44px;
-    border: 1px solid black;
-    margin: 2px;
+    width: 4.4rem;
+    height: 4.4rem;
+    border: 0.1rem solid black;
+    margin: 0.2rem;
 
     /* Text */
-    font-size: 20px;
+    font-size: 2rem;
     font-weight: bold;
     display: flex;
     justify-content: center;
     align-items: center;
 
     background : #2F2F2F;
-    box-shadow: 0px 10px #ffffff;
-    box-shadow: 0px 7px 10px  rgba(0, 0, 0, 0.24);
+    box-shadow: 0px 1rem #ffffff;
+    box-shadow: 0px 0.7rem 1rem  rgba(0, 0, 0, 0.24);
 }
 
 .number:first-child {
-    border-radius: 21px 0 0 21px;
+    border-radius: 2.1rem 0 0 2.1rem;
 }
 
 .number:last-child {
-    border-radius: 0 21px 21px 0;
+    border-radius: 0 2.1rem 2.1rem 0;
 }
 
 .number-selected {
@@ -199,31 +214,31 @@ IN GAME
 }
 
 .tile-lu {
-    border-radius: 21px 0 0 0;
+    border-radius: 2.1rem 0 0 0;
 }
 
 .tile-ru {
-    border-radius: 0 21px 0 0;
+    border-radius: 0 2.1rem 0 0;
 }
 
 .tile-rd {
-    border-radius: 0 0 21px 0;
+    border-radius: 0 0 2.1rem 0;
 }
 
 .tile-ld {
-    border-radius: 0 0 0 21px;
+    border-radius: 0 0 0 2.1rem;
 }
 
 .horizontal-line {
-    border-bottom: 3px solid red;
+    border-bottom: 0.2rem solid red;
 }
 
 .vertical-line {
-    border-right: 3px solid red;
+    border-right: 0.2rem solid red;
 }
 
 .letter {
-    font-size: 21px;
+    font-size: 2.1rem;
     font-weight: 800;
     font-weight: 800;
 }
