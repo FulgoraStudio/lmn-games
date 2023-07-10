@@ -1,6 +1,5 @@
 //Initial References
 const letterContainer = document.getElementById("letter-container");
-const optionsContainer = document.getElementById("options-container");
 const userInputSection = document.getElementById("user-input-section");
 const newGameButton = document.getElementById("new-game-button");
 //const canvas = document.getElementById("canvas");
@@ -970,12 +969,6 @@ let hints = [];
 const displayOptions = () => {
   generateWord("frutas");
     return;
-    optionsContainer.innerHTML += `<h3>Please Select An Option</h3>`;
-    let buttonCon = document.createElement("div");
-    for (let value in options) {
-        buttonCon.innerHTML += `<button class="options" onclick="generateWord('${value}')">${value}</button>`;
-    }
-    optionsContainer.appendChild(buttonCon);
 };
 
 //Block all the Buttons
@@ -1051,7 +1044,6 @@ const initializer = () => {
 
     //Initially erase all content and hide letteres and new game button
     userInputSection.innerHTML = "";
-    optionsContainer.innerHTML = "";
     letterContainer.classList.add("hide");
     hintButton.classList.add("hide");
     nohintsDisplay.classList.add("hide");

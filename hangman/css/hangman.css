@@ -12,50 +12,26 @@ body {
 
 h1 {
   font-size: 2.8rem;
+  margin: 3rem 0;
 }
 
 .container {
   font-size: 1.6rem;
   max-width: 1392px;
+  border: 1px dotted #fe5152;
+  margin: 0 auto;
   /* max-width: 34em; */
-  position: absolute;
+  /* position: absolute;
   transform: translate(-50%, -50%);
   top: 50%;
-  left: 50%;
+  left: 50%; */
 
 }
 
 #options-container {
-  text-align: center;
-}
-
-#options-container div {
-  width: 100%;
   display: flex;
-  justify-content: space-between;
-  margin: 1.2em 0 2.4em 0;
-}
-
-#options-container button {
-  padding: 0.6em 1.2em;
-  border: 0.3rem solid #000000;
-  background-color: #ffffff;
-  color: #000000;
-  border-radius: 0.3em;
-  text-transform: capitalize;
-  cursor: pointer;
-}
-
-#options-container button:disabled {
-  border: 0.3rem solid #808080;
-  color: #808080;
-  background-color: #efefef;
-}
-
-#options-container button.active {
-  /* background-color: #8c52ff; */
-  border: 0.3rem solid #000000;
-  color: #fff;
+  flex-direction: column;
+  margin: 3rem 0;
 }
 
 #hint-display {
@@ -120,22 +96,30 @@ h1 {
   box-shadow: 0px 7px 10px  rgba(0, 0, 0, 0.24);
 }
 
-.hint-btn {
-  position: relative;
-  top: -30px;
+#hint-button {
+  padding: 1.2rem 8rem;
+}
+
+#htp-button {
+  max-width: 50%;
 }
 
 .btn {
-  min-width: 15rem;
-  min-height: 3rem;
+  /* min-width: 15rem;
+  min-height: 3rem; */
   background : #C9C9C9;
-  border-radius : 2.1rem;
+  border-radius : 4rem;
+
+  margin-top: 3rem;
+  margin-right: 2rem;
 
   box-shadow: 0px 10px #ffffff;
   box-shadow: 0px 7px 10px  rgba(0, 0, 0, 0.24);
 
-  font-size: 2.1rem;
+  font-size: 1.6rem;
   font-weight: bold;
+
+  padding: 1.2rem 2rem;
 }
 
 .btn:hover {
@@ -162,9 +146,6 @@ h1 {
 }
 
 #user-input-section {
-  position: relative;
-  top: 8rem;
-  left: 0;
   max-width: fit-content;
   display: flex;
   /* justify-content: space-between; */
@@ -210,7 +191,7 @@ canvas {
 }
 
 #new-game-button {
-  
+  max-width: 50%;
 }
 
 .win-msg {
@@ -246,7 +227,7 @@ canvas {
 }
 
 #image-container {
-  width: 70%;
+  width: 100%;
 }
 
 #no-hints-display {
@@ -255,8 +236,6 @@ canvas {
 }
 
 #intents-display {
-  position: relative;
-  top: 9rem;
   color: #fe5152;
   font-size: 2.1rem;
   font-weight: bold;
