@@ -2,26 +2,27 @@
   padding: 0;
   margin: 0;
   box-sizing: border-box;
+  font-size: 62.5%;
   font-family : Encode Sans Semi Condensed;
 }
 
 body {
-  /* background-color: #8c52ff; */
-  background-color: #C9C9C9;
+
+}
+
+h1 {
+  font-size: 2.8rem;
 }
 
 .container {
-  font-size: 16px;
-  background-color: #ffffff;
-  width: 90vw;
+  font-size: 1.6rem;
+  max-width: 1392px;
   /* max-width: 34em; */
   position: absolute;
   transform: translate(-50%, -50%);
   top: 50%;
   left: 50%;
-  padding: 3em;
-  border-radius: 0.6em;
-  box-shadow: 0 1.2em 2.4em rgba(111, 85, 0, 0.25);
+
 }
 
 #options-container {
@@ -37,7 +38,7 @@ body {
 
 #options-container button {
   padding: 0.6em 1.2em;
-  border: 3px solid #000000;
+  border: 0.3rem solid #000000;
   background-color: #ffffff;
   color: #000000;
   border-radius: 0.3em;
@@ -46,27 +47,33 @@ body {
 }
 
 #options-container button:disabled {
-  border: 3px solid #808080;
+  border: 0.3rem solid #808080;
   color: #808080;
   background-color: #efefef;
 }
 
 #options-container button.active {
   /* background-color: #8c52ff; */
-  border: 3px solid #000000;
+  border: 0.3rem solid #000000;
   color: #fff;
 }
 
+#hint-display {
+  font-size: 1.8rem;
+  font-weight: 600;
+}
+
 .letter-container {
-  max-width: 323px;
+  max-width: 32.3rem;
+  min-width: 32.3rem;
   display: flex;
   flex-wrap: wrap;
   /* justify-content: center; */
 
   background : #2F2F2F;
-  border-radius : 24px;
-  -moz-border-radius : 24px;
-  -webkit-border-radius : 24px;
+  border-radius : 2.4rem;
+  -moz-border-radius : 2.4rem;
+  -webkit-border-radius : 2.4rem;
   /* box-shadow: 0px 10px #ffffff;
   box-shadow: 0px 7px 10px  rgba(0, 0, 0, 0.24); */
 }
@@ -75,54 +82,59 @@ body {
 #letter-container button {
   height: 2.1em;
   width: 2.1em;
-  margin: 1px;
+  margin: 0.1rem;
 
-  border: 1px dotted #919191;
+  border: 0.1rem dotted #919191;
 
   cursor: pointer;
 
   /*font*/
   color:#C9C9C9;
-  font-size: 21px;
+  font-size: 2.1rem;
   font-weight: bold;
 
-  background : #2F2F2F;
+  background : #2f2f2f00;
   /* box-shadow: 0px 10px #ffffff;
   box-shadow: 0px 7px 10px  rgba(0, 0, 0, 0.24); */
   
 }
 
 .letter-first {
-  border-radius : 21px 0 0 0;
+  border-radius : 2.1rem 0 0 0;
 }
 
 .letter-middle {
-  border-radius : 0 21px 0 0;
+  border-radius : 0 2.1rem 0 0;
 }
 
 .letter-last {
-  border-radius : 0 0 0 21px;
+  border-radius : 0 0 0 2.1rem;
 }
 
 .box {
   background : #2F2F2F;
-  border-radius : 24px;
-  -moz-border-radius : 24px;
-  -webkit-border-radius : 24px;
+  border-radius : 2.4rem;
+  -moz-border-radius : 2.4rem;
+  -webkit-border-radius : 2.4rem;
   box-shadow: 0px 10px #ffffff;
   box-shadow: 0px 7px 10px  rgba(0, 0, 0, 0.24);
 }
 
+.hint-btn {
+  position: relative;
+  top: -30px;
+}
+
 .btn {
-  min-width: 150px;
-  min-height: 30px;
+  min-width: 15rem;
+  min-height: 3rem;
   background : #C9C9C9;
-  border-radius : 21px;
+  border-radius : 2.1rem;
 
   box-shadow: 0px 10px #ffffff;
   box-shadow: 0px 7px 10px  rgba(0, 0, 0, 0.24);
 
-  font-size: 21px;
+  font-size: 2.1rem;
   font-weight: bold;
 }
 
@@ -151,24 +163,29 @@ body {
 
 #user-input-section {
   position: relative;
-  top: 0;
+  top: 8rem;
   left: 0;
   max-width: fit-content;
   display: flex;
   /* justify-content: space-between; */
-  font-size: 1.8em;
-  margin: 0.6em 0 1.2em 0;
-
+  /* font-size: 1.8em; */
+  font-size: 2.7rem;
+  /* margin: 0.6em 0 1.2em 0; */
+  height: 3rem;
   color: white;
 }
 
 .dashes {
-  display: block;
+  /* display: block; */
+  display: flex;
+  align-items: center;
+  justify-content: center;
   margin: 0;
   padding: 0;
-  border-right: 2px dotted #919191;
+  border-right: 0.2rem dotted #919191;
   text-align: center;
-  padding: 0 20px;
+  padding: 0 2rem;
+  /* height: 2.9rem; */
 }
 
 .dashes:last-child {
@@ -177,15 +194,15 @@ body {
 
 #result-text {
   text-align: center;
-  margin: 20px;
+  margin: 2rem;
   font-weight: 600;
 }
 
 canvas {
   display: block;
   margin: auto;
-  border: 10px solid #8c52ff;
-  border-radius: 10px;
+  border: 1rem solid #8c52ff;
+  border-radius: 1rem;
 }
 
 .hide {
@@ -208,7 +225,6 @@ canvas {
   width: 100%;
   margin: auto;
   /* border: 10px solid #000000; */
-  border-radius: 10px;
 }
 
 #game-container {
@@ -224,13 +240,13 @@ canvas {
   display: flex; 
   flex-direction: column;
   justify-content: center; 
-  align-items: center;
+  align-items: start;
   width: 100%;
   height: 100%;
 }
 
 #image-container {
-  width: 50%;
+  width: 70%;
 }
 
 #no-hints-display {
@@ -239,7 +255,9 @@ canvas {
 }
 
 #intents-display {
+  position: relative;
+  top: 9rem;
   color: #fe5152;
-  font-size: 21px;
+  font-size: 2.1rem;
   font-weight: bold;
 }
