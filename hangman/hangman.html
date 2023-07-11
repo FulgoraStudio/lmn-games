@@ -10,31 +10,34 @@
     <link rel="stylesheet" href="./css/hangman.css">
 </head>
 <body>
-    <div class="container">
-        <div id="game-container">
-            <div id="widget-container">
-                <div id="widget-content">
-                    <h1>Extinto</h1>
-                    <div id="options-container">
-                        <div id="user-input-section" class="box"></div>
-                        <span id="intents-display">¡Te quedan 6 vidas!</span><br>
-                    </div>
-                    <div id="result-text"></div>
-                    <div id="letter-container" class="letter-container hide"></div>
-                    <span id="hint-display" class="hide">PISTA!</span>
-                    <span id="no-hints-display" class="hide">No quedan mas pistas!</span>
-                    <button id="hint-button" type="button" class="hide btn">Pista</button>
-                    <div>
-                        <button id="new-game-button" class="btn">Jugar de nuevo</button>
-                        <button id="htp-button" class="btn">¿Cómo jugar?</button>
+    <main>
+
+        <div class="container">
+            <div id="game-container">
+                <div id="widget-container">
+                    <div id="widget-content">
+                        <h1>Extinto</h1>
+                        <div id="options-container">
+                            <div id="user-input-section" class="box"></div>
+                            <span id="intents-display">¡Te quedan 6 vidas!</span><br>
+                        </div>
+                        <div id="result-text"></div>
+                        <div id="letter-container" class="letter-container hide"></div>
+                        <span id="hint-display" class="hide">PISTA!</span>
+                        <span id="no-hints-display" class="hide">No quedan mas pistas!</span>
+                        <button id="hint-button" type="button" class="hide btn">Pista</button>
+                        <div>
+                            <button id="new-game-button" class="btn">Jugar de nuevo</button>
+                            <button id="htp-button" class="btn">¿Cómo jugar?</button>
+                        </div>
                     </div>
                 </div>
-            </div>
-            <div id="image-container">
-                <img src="./assets/img/A.png" alt="Image status" id="image-status">
+                <div id="image-container">
+                    <img src="./assets/img/A.png" alt="Image status" id="image-status">
+                </div>
             </div>
         </div>
-    </div>
+    </main>
 
     <!--Scripts-->
     <script src="./js/soundManager.js"></script>
