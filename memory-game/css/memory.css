@@ -1,19 +1,24 @@
 /* ONE PAGE */
-* {
+/* * {
     padding: 0;
     margin: 0;
     box-sizing: border-box;
     font-size: 62.5%;
     font-family : Encode Sans Semi Condensed;
-}
-
-body {
-    text-align: center;
-    background-image: url("./../assets/images/memoria-bg.png")
-}
+} */
 
 /* MAIN */
-/* main * {
+main {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    font-size: 62.5%;
+    font-family : Encode Sans Semi Condensed;
+    text-align: center;
+    background-image: url("./../assets/images/memoria-bg.png")
+}
+
+main, * {
     padding: 0;
     margin: 0;
     box-sizing: border-box;
@@ -22,7 +27,7 @@ body {
 
     text-align: center;
     background-image: url("./../assets/images/memoria-bg.png")
-} */
+}
 
 #container {
     max-width: 139.2rem;
