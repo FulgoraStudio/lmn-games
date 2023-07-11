@@ -153,3 +153,32 @@ p {
 .hide {
     display: none;
 }
+
+@media (max-width: 866px) {
+    #board-container {
+        width: 100%;
+    }
+    
+    #board {
+        align-content: flex-start;
+        height: min-content;
+    }
+
+    .card {
+        width: 20%;
+        height: 20%;
+        margin: 0;
+        padding: 0;
+    }
+
+    #leyend {
+        width: 100%;
+        text-align: justify;
+        margin: 3remrem;
+    }
+
+    #buttons-container {
+        text-align: center;
+        margin: 2rem 3rem;
+    }
+}
