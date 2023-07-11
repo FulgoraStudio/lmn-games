@@ -1,38 +1,76 @@
-body {
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    font-size: 62.5%;
     font-family : Encode Sans Semi Condensed;
+}
+
+body {
     text-align: center;
     background-image: url("./../assets/images/memoria-bg.png")
 }
 
+#container {
+    max-width: 139.2rem;
+    margin: 0 auto;
+}
+
+h2 {
+    display: block;
+    margin: 0 auto;
+    font-size: 2.8rem;
+    max-width: 100rem;
+}
+
+p {
+    display: block;
+    margin: 0 auto;
+    font-size: 1.6rem;
+    text-align: left;
+    max-width: 100rem;
+}
+
+#head {
+    text-align: left;
+    margin: 2rem 3rem;
+}
+
 #main-title {
-    width: 30%;
-    margin: 0 10% 1% 10%;
-    text-align: justify;
+    font-size: 3.2rem;
+    max-width: 100rem;
 }
 
 #leyend {
-    width: 30%;
-    margin: 0 10%;
-    text-align: justify;
+    width: 60%;
+    text-align: left;
+    margin: 3rem 0 auto 0;
+}
+
+#game-container {
+    max-width: 100rem;
+    margin: 0 auto;
+}
+
+#board-container {
+    width: 100%;
 }
 
 #board {
-    /* height: 700px; */
-    min-height: 300px;
-    width: 1000px;
-    margin: 0 auto;
+    min-height: 30rem;
+    width: 100%;
+    /* margin: 0 auto; */
     display: flex;
     flex-wrap: wrap;
-    /* background-color: green; */
-    /* border: 10px solid lightgrey; */
+
 }
 
 .box {
     background : #2F2F2F;
-    border-radius : 24px;
-    -moz-border-radius : 24px;
-    -webkit-border-radius : 24px;
-    box-shadow: 0px 8px #ffffff, 0px 7px 10px  rgba(0, 0, 0, 0.24);
+    border-radius : 2.4rem;
+    -moz-border-radius : 2.4rem;
+    -webkit-border-radius : 2.4rem;
+    box-shadow: 0rem 0.8rem #ffffff, 0rem 0.7rem 1rem  rgba(0, 0, 0, 0.24);
 }
 
 .card {
@@ -74,16 +112,19 @@ body {
 }
 
 .btn {
-    height: 30px;
-    
-    font-weight: bold;
-
     background : #C9C9C9;
-    border-radius : 21px;
-    -moz-border-radius : 21px;
-    -webkit-border-radius : 21px;
+    border-radius : 4rem;
+  
+    margin-top: 1rem;
+    margin-right: 2rem;
+  
     box-shadow: 0px 10px #ffffff;
     box-shadow: 0px 7px 10px  rgba(0, 0, 0, 0.24);
+  
+    font-size: 1.6rem;
+    font-weight: bold;
+  
+    padding: 1.2rem 2rem;
 }
 
 .btn:hover {
@@ -92,47 +133,10 @@ body {
 }
 
 #buttons-container {
-    position: relative;
-    top: auto;
-    left: -380px;
-    margin: 30px 0;
+    text-align: left;
+    margin: 2rem 3rem;
 }
 
 .hide {
     display: none;
-}
-
-.control-button {
-    background: rgb(190,9,35);
-    background: linear-gradient(
-        90deg, 
-        rgba(190,9,35,1) 0%, 
-        rgba(231,78,80,1) 100%);
-    border-radius: 8px;
-    border-style: none;
-    box-sizing: border-box;
-    color: #FFFFFF;
-    cursor: pointer;
-    font-family: "Haas Grot Text R Web", "Helvetica Neue", Helvetica, Arial, sans-serif;
-    font-size: 14px;
-    font-weight: 500;
-    height: 40px;
-    line-height: 20px;
-    list-style: none;
-    margin: 0;
-    outline: none;
-    padding: 10px 16px;
-    position: relative;
-    text-align: center;
-    text-decoration: none;
-    transition: color 100ms;
-    vertical-align: baseline;
-    user-select: none;
-    -webkit-user-select: none;
-    touch-action: manipulation;
-}
-
-.control-button:hover,
-.control-button:focus {
-  background-color: #F082AC;
 }
