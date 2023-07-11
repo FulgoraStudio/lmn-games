@@ -155,10 +155,6 @@ h1 {
   color: white;
 }
 
-h1 {
-  font-size: 1.6rem;
-}
-
 .dashes {
   /* display: block; */
   display: flex;
