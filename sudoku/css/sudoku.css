@@ -62,11 +62,6 @@ h1 {
     margin: 0 auto;
 }
 
-
-#wrapper-board {
-    /* border: 5px solid blue; */
-}
-
 #board-container {
     width: 30%;
     /* border: 5px solid red; */
@@ -150,14 +145,6 @@ h1 {
 .btn:hover {
     color: white;
     background : #6EA96E;
-}
-
-#htp-button {
-
-}
-
-#new-game-button {
-
 }
 
 /* 
