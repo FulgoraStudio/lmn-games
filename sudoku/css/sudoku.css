@@ -1,5 +1,5 @@
 /* ON PAGE */
-/* * {
+* {
     padding: 0;
     margin: 0;
     box-sizing: border-box;
@@ -17,10 +17,10 @@ body {
     box-sizing: border-box;
     font-size: 62.5%;
     font-family : Encode Sans Semi Condensed;
-} */
+}
 
 /* MAIN */
-main * {
+/* main * {
     padding: 0;
     margin: 0;
     box-sizing: border-box;
@@ -28,7 +28,7 @@ main * {
     font-family : Encode Sans Semi Condensed;
     text-align: center;
     box-sizing: border-box;
-}
+} */
 
 hr {
     width: 50rem;

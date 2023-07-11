@@ -1,5 +1,5 @@
 /* ONE PAGE */
-/* * {
+* {
     padding: 0;
     margin: 0;
     box-sizing: border-box;
@@ -10,10 +10,10 @@
 body {
     text-align: center;
     background-image: url("./../assets/images/memoria-bg.png")
-} */
+}
 
 /* MAIN */
-main * {
+/* main * {
     padding: 0;
     margin: 0;
     box-sizing: border-box;
@@ -22,7 +22,7 @@ main * {
 
     text-align: center;
     background-image: url("./../assets/images/memoria-bg.png")
-}
+} */
 
 #container {
     max-width: 139.2rem;
