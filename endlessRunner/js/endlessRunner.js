@@ -7,6 +7,7 @@ const borderColor = 'black';
 
 context.lineWidth = borderWidth;
 context.strokeStyle = borderColor;
+const BG_COLOR = "#587176";
 
 const startButton = document.getElementById('start-button');
 const resetButton = document.getElementById('reset-button');
@@ -41,9 +42,12 @@ let lives = PLAYER_LIVES;
 // Spawner settings
 const obstacleSpawnInterval = 500; // msec
 const collectableSpawnInterval = 600; // msec
+const leftEnvSpawnInterval = 600;
+const rightEnvSpawnInterval = 600;
 
 let obstacles = [];
 let collectables = [];
+let envElements = [];
 
 // Key's pressed
 const keys = {};
@@ -98,7 +102,11 @@ const updatePlayer = function(inputKeys){
 
 const drawPlayer = function(ctx){
     ctx.clearRect(this._x, this._y, this._width, this._height);
-    ctx.drawImage(this._image, this._x, this._y, this._width, this._height);
+    ctx.drawImage(this._image, 
+        this._x, 
+        this._y, 
+        this._width, 
+        this._height);
 }
 
 player.draw = drawPlayer;
@@ -151,7 +159,7 @@ const updateObstacle = function(){
 }
 
 const drawObstacle = function(ctx){
-    ctx.globalCompositeOperation = 'destination-over';
+    // ctx.globalCompositeOperation = 'destination-over';
     ctx.drawImage(this._image, this._x, this._y, this._width, this._height);
 }
 
@@ -168,7 +176,7 @@ const updateCollectable = function(){
 }
 
 const drawCollectable = function(ctx){
-    ctx.globalCompositeOperation = 'destination-over';
+    // ctx.globalCompositeOperation = 'destination-over';
     ctx.drawImage(this._image, this._x, this._y, this._width, this._height);
 }
 
@@ -176,6 +184,29 @@ originalCollectable.draw = drawCollectable;
 originalCollectable.update = updateCollectable;
 originalCollectable.image.src = './assets/img/collectables/dragonfly.png';
 originalCollectable.tag = TAGS.COLLECTABLE;
+
+
+/**
+ * 
+ * ENVIROMENT
+ * 
+ */
+const enviromentElemnt = new Actor(0, -100, 50, 50, 5, 0, 1.2, new Image());
+
+const updateEnviroment = function(){
+    this._y += this._speed;
+}
+
+const drawEnviroment = function(ctx){
+    // ctx.globalCompositeOperation = 'destination-over';
+    ctx.drawImage(this._image, this._x, this._y, this._width, this._height);
+}
+
+enviromentElemnt.draw = drawEnviroment;
+enviromentElemnt.update = updateEnviroment;
+// enviromentElemnt.image.src = './assets/img/blueBall.png';
+// leftEnviroment.tag = TAGS.Enviroment;
+
 
 // Add events
 document.addEventListener('keydown', function(event) {
@@ -216,8 +247,30 @@ function spawnCollectable() {
     const collectable = Object.assign(Object.create(Object.getPrototypeOf(originalCollectable)), originalCollectable);
     collectable.x = collectableX;
     collectable.y = collectableY;
+
+    console.log("####", collectable);
   
     collectables.push(collectable);
+}
+
+function spawnEnviromentElement() {
+    const isLeft = Math.random() > 0.5;
+
+    const enviromentX = isLeft ? 0 : (canvas.width - enviromentElemnt.width);
+    const enviromentY = -100;
+
+    const sprite = isLeft ? './assets/img/blueBall.png' : './assets/img/greenBall.png';
+    
+    const enviroment = Object.assign(Object.create(Object.getPrototypeOf(enviromentElemnt)), enviromentElemnt, {
+        _image: new Image(sprite)
+    });
+
+    console.log(enviroment);
+    enviroment.image.src = sprite;
+    enviroment.x = enviromentX;
+    enviroment.y = enviromentY;
+  
+    envElements.push(enviroment);
 }
 
 function updateObstacles(ctx) {
@@ -248,37 +301,57 @@ function updateCollectables(ctx) {
     }
 }
 
+function updateEnviromentElements(ctx) {
+    for (let i = 0; i < envElements.length; i++) {
+        const envElement = envElements[i];
+
+        envElement.update();
+        envElement.draw(ctx);
+        
+        if (envElement.y > canvas.height) {
+            envElements.splice(i, 1);
+            i--;
+        }
+    }
+}
+
 
 function gameLoop() {
 
     context.clearRect(0, 0, canvas.width, canvas.height);
-    checkBorders(player, canvas);
+    context.fillStyle = BG_COLOR;
+    context.fillRect(0, 0, canvas.width, canvas.height);
+    updateEnviromentElements(context);
+    if(isPlaying) {
+        checkBorders(player, canvas);
+        
+        //Player update
+        if(!isDead) {
+            player.update(keys);
+            player.draw(context);
+        
+            obstacles.forEach((obstacle, index) => {
+                if(checkCollision(player, obstacle))
+                {
+                    obstacles.splice(index, 1);
+                }
+            })
+        
+            collectables.forEach((collectable, index) => {
+                if(checkCollision(player, collectable))
+                {
+                    collectables.splice(index, 1);
+                }
+            })
     
-    //Player update
-    if(!isDead) {
-        player.update(keys);
-        player.draw(context);
+            addDistance();
+        }
     
-        obstacles.forEach((obstacle, index) => {
-            if(checkCollision(player, obstacle))
-            {
-                obstacles.splice(index, 1);
-            }
-        })
-    
-        collectables.forEach((collectable, index) => {
-            if(checkCollision(player, collectable))
-            {
-                collectables.splice(index, 1);
-            }
-        })
-
-        addDistance();
+        //Update Objects
+        updateObstacles(context);
+        updateCollectables(context);
+        
     }
-
-    //Update Objects
-    updateObstacles(context);
-    updateCollectables(context);
 
     //Request frames
     requestAnimationFrame(gameLoop);
@@ -324,8 +397,8 @@ function resizeCanvas() {
  * @returns 
  */
 function checkCollision(actorA, actorB) {
-    const actorALeft = actorA.x + Math.abs((actorA.width / 4));
-    const actorARight = actorA.x + (actorA.width - Math.abs((actorA.width / 4)));
+    const actorALeft = actorA.x;
+    const actorARight = actorA.x + actorA.width;
     const actorATop = actorA.y;
     const actorABottom = actorA.y + actorA.height;
   
@@ -369,9 +442,13 @@ function checkCollisionActorTag(tag){
 function startGame() {
     let spawnObstacleTimeOut = setInterval(spawnObstacle, obstacleSpawnInterval);
     let spawnCollectableTimeOut = setInterval(spawnCollectable, collectableSpawnInterval);
+    let spawnLeftEnv = setInterval(() => spawnEnviromentElement(true), leftEnvSpawnInterval);
+    let spawnRightEnv = setInterval(() => spawnEnviromentElement(false), rightEnvSpawnInterval);
 
     timeOuts.push(spawnObstacleTimeOut);
     timeOuts.push(spawnCollectableTimeOut);
+    timeOuts.push(spawnLeftEnv);
+    timeOuts.push(spawnRightEnv);
 
     player.x = 200;
     player.y = 550;
@@ -396,6 +473,7 @@ function resetGame() {
 
     obstacles = [];
     collectables = [];
+    envElements = [];
 
     startGame();
 }
@@ -413,7 +491,3 @@ resizeCanvas();
 gameLoop();
 
 // TODO:
-/*
-    Add art, add music
-    Add Saved score in local Storage
-*/
