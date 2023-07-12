@@ -152,7 +152,7 @@ player.tag = TAGS.PLAYER;
 
 
 // BASIC OBSTACLE
-const originalObstacle = new Actor(200, -100, 50, 50, 7, 0, 1.2, new Image());
+const originalObstacle = new Actor(200, -100, 100, 100, 7, 0, 1.2, new Image());
 
 const updateObstacle = function(){
     this._y += this._speed;
@@ -314,7 +314,6 @@ function updateEnviromentElements(ctx) {
         }
     }
 }
-
 
 function gameLoop() {
 
