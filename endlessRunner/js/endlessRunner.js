@@ -69,7 +69,7 @@ SoundManager.loadSounds(Object.values(gameSounds))
  */
 
 // PLAYER
-const player = new Actor(200, 550, 100, 100, 300, 0, 1.2, new Image());
+const player = new Actor(200, 550, 100, 100, 100, 0, 1, new Image());
 
 const updatePlayer = function(inputKeys){
     // Input: Update player velocity
@@ -157,7 +157,7 @@ const drawObstacle = function(ctx){
 
 originalObstacle.draw = drawObstacle;
 originalObstacle.update = updateObstacle;
-originalObstacle.image.src = './assets/img/blueBall.png';
+originalObstacle.image.src = './assets/img/obstacles/rock.png';
 originalObstacle.tag = TAGS.ENEMY;
 
 // BASIC COLLECTABLE
@@ -174,7 +174,7 @@ const drawCollectable = function(ctx){
 
 originalCollectable.draw = drawCollectable;
 originalCollectable.update = updateCollectable;
-originalCollectable.image.src = './assets/img/greenBall.png';
+originalCollectable.image.src = './assets/img/collectables/dragonfly.png';
 originalCollectable.tag = TAGS.COLLECTABLE;
 
 // Add events
@@ -324,15 +324,15 @@ function resizeCanvas() {
  * @returns 
  */
 function checkCollision(actorA, actorB) {
-    const actorALeft = actorA.x;
-    const actorARight = actorA.x + actorA.width;
+    const actorALeft = actorA.x + Math.abs((actorA.width / 4));
+    const actorARight = actorA.x + (actorA.width - Math.abs((actorA.width / 4)));
     const actorATop = actorA.y;
     const actorABottom = actorA.y + actorA.height;
   
     const actorBLeft = actorB.x;
     const actorBRight = actorB.x + actorB.width;
-    const actorBTop = actorB.y;
-    const actorBBottom = actorB.y + actorB.height;
+    const actorBTop = actorB.y + Math.abs((actorB.height / 4));
+    const actorBBottom = actorB.y + (actorB.height - Math.abs((actorB.height / 4)));
   
     // Comprobar si los bordes se superponen
     if (
