@@ -55,18 +55,21 @@ p {
 }
 
 #main-title {
+    display: block;
+    margin: 0 auto;
     font-size: 3.2rem;
-    max-width: 100rem;
+    text-align: left;
+    max-width: 139.2rem;
 }
 
 #leyend {
-    width: 60%;
+    width: 30%;
     text-align: left;
     margin: 3rem 0 auto 0;
 }
 
 #game-container {
-    max-width: 100rem;
+    max-width: 128rem;
     margin: 0 auto;
 }
 
@@ -152,7 +155,7 @@ p {
 
 #buttons-container {
     text-align: left;
-    margin: 2rem 3rem;
+    margin: 2rem 0;
 }
 
 .hide {
