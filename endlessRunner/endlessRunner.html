@@ -12,27 +12,31 @@
     </head>
 
     <body>
-        <h1 id="main-title">¡Trucha Ipu!</h1>
-        <div id="hud-container">
-            <div class="hud box">
-                <div class="hud-data">
-                    <label for="" id="points-label" class="label-hud">Puntos:</label>
-                    <label for="" id="points-text" class="label-hud right-hud-data">999</label>
+        <main>
+            <h1>¡Trucha Ipu!</h1>
+            <div id="game-container">
+                <div id="hud-container">
+                    <div class="hud box">
+                        <div class="hud-data">
+                            <label for="" id="points-label" class="label-hud">Puntos:</label>
+                            <label for="" id="points-text" class="label-hud right-hud-data">999</label>
+                        </div>
+                        <div class="hud-data">
+                            <label for="" id="distance-label" class="label-hud">Distancia:</label>
+                            <label for="" id="distance-text" class="label-hud right-hud-data">999m</label>
+                        </div>
+                    </div>
+                    <div id="buttons-container">
+                        <button id="start-button" class="button">Empezar</button>
+                        <button id="reset-button" class="button">Jugar de nuevo</button>
+                    </div>
                 </div>
-                <div class="hud-data">
-                    <label for="" id="distance-label" class="label-hud">Distancia:</label>
-                    <label for="" id="distance-text" class="label-hud right-hud-data">999m</label>
+                <div id="container">
+                    <canvas id="canvas"></canvas>
                 </div>
             </div>
-            <div id="buttons-container">
-                <button id="start-button" class="button">Empezar</button>
-                <button id="reset-button" class="button">Jugar de nuevo</button>
-            </div>
-        </div>
+        </main>
 
-        <div id="container">
-            <canvas id="canvas"></canvas>
-        </div>
         <script src="./js/soundManager.js"></script>
         <script src="./js/actor.js"></script>
         <script src="./js/endlessRunner.js"></script>
