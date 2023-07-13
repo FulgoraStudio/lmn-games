@@ -7,6 +7,7 @@
     font-family : Encode Sans Semi Condensed;
 } */
 
+
 /* MAIN */
 main {
     padding: 0;
@@ -15,7 +16,11 @@ main {
     font-size: 62.5%;
     font-family : Encode Sans Semi Condensed;
     text-align: center;
-    background-image: url("./../assets/images/memoria-bg.png")
+    background-image: url("./../assets/images/memoria-bg.png");
+    background-size: 100%;
+    background-repeat: no-repeat;
+    background-position: center top;
+    height:100%;
 }
 
 main, * {
@@ -24,15 +29,13 @@ main, * {
     box-sizing: border-box;
     font-size: 62.5%;
     font-family : Encode Sans Semi Condensed;
-
     text-align: center;
-    background-image: url("./../assets/images/memoria-bg.png")
 }
 
 #container {
     max-width: 139.2rem;
     margin: 0 auto;
-}
+    }
 
 h2 {
     display: block;
