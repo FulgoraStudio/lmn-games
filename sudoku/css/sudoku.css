@@ -69,8 +69,8 @@ h1 {
 #board {
     display: flex;
     
-    width: 43.4rem;
-    height: 45.4rem;
+    width: 43.2rem;
+    height: 43.2rem;
     
     border-radius: 2.1rem;
     margin: 0 auto;
@@ -157,7 +157,7 @@ IN GAME
 .tile {
     width: 4.8rem;
     height: 4.8rem;
-    border: 0.1rem solid lightgray;
+    border: 0.2rem dotted lightgray;
 
     color: white;
 
