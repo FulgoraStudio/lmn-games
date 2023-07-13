@@ -132,8 +132,7 @@ h1 {
     margin-top: 1rem;
     margin-right: 2rem;
   
-    box-shadow: 0px 10px #ffffff;
-    box-shadow: 0px 7px 10px  rgba(0, 0, 0, 0.24);
+    box-shadow: 0px 0.8rem #ffffff, 0px 0.7rem 1rem  rgba(0, 0, 0, 0.24);
   
     font-size: 1.6rem;
     font-weight: bold;
