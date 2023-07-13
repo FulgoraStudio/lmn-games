@@ -35,13 +35,13 @@ let timeOuts = [];
  */
 
 const gameSounds = {
-    GAME_MUSIC: './assets/audio/MUSICA_JUEGO_MEMORIA.mp3', 
-    WIN_GAME: './assets/audio/VICTORIA.mp3',
-    LOSE_GAME: './assets/audio/DERROTA.mp3',
-    ASSERT: './assets/audio/CORRECTO.mp3',
-    ERROR: './assets/audio/INCORRECTO.mp3',
-    SHOVEL: './assets/audio/PALA_1.mp3',
-    SHOVEL_2: './assets/audio/PALA_2.mp3',
+    GAME_MUSIC: './assets/audio/MEMORIA-MUSICA.mp3', 
+    WIN_GAME: './assets/audio/MEMORIA-VICTORIA.mp3',
+    LOSE_GAME: './assets/audio/MEMORIA-DERROTA.mp3',
+    ASSERT: './assets/audio/MEMORIA-CORRECTO.mp3',
+    ERROR: './assets/audio/MEMORIA-INCORRECTO.mp3',
+    SHOVEL: './assets/audio/MEMORIA-PALA-1.mp3',
+    SHOVEL_2: './assets/audio/MEMORIA-PALA-2.mp3',
 };
 
 SoundManager.loadSounds(Object.values(gameSounds))
