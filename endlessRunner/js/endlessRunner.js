@@ -30,6 +30,36 @@ const TAGS = Object.freeze({
     COLLECTABLE: 'COLLECTABLE',
 })
 
+const env_elements = {
+    "left": [
+        './assets/img/enviroment/left/ARB-I-1.png',
+        './assets/img/enviroment/left/ARB-I-2.png',
+        './assets/img/enviroment/left/ARB-I-3.png',
+        './assets/img/enviroment/left/ARB-I-4.png',
+        './assets/img/enviroment/left/ARB-I-5.png',
+        './assets/img/enviroment/left/T-I1.png',
+        './assets/img/enviroment/left/T-I2.png',
+        './assets/img/enviroment/left/T-I3.png',
+        './assets/img/enviroment/left/T-I4.png',
+    ],
+    "right": [
+        './assets/img/enviroment/right/ARB-D-1.png',
+        './assets/img/enviroment/right/ARB-D-2.png',
+        './assets/img/enviroment/right/ARB-D-3.png',
+        './assets/img/enviroment/right/ARB-D-4.png',
+        './assets/img/enviroment/right/ARB-D-5.png',
+        './assets/img/enviroment/right/ARB-D-6.png',
+        './assets/img/enviroment/right/T-D1.png',
+        './assets/img/enviroment/right/T-D2.png',
+        './assets/img/enviroment/right/T-D3.png',
+        './assets/img/enviroment/right/T-D4.png',
+    ],
+    "middle": [
+        './assets/img/enviroment/water/waves.png',
+        './assets/img/enviroment/water/reflexes.png'
+    ]
+}
+
 
 /**
  * GLOBAL VARIABLES
@@ -146,8 +176,6 @@ player.animations = {
     ]
 }
 
-// player.image.src = player.animations['left'][0];
-
 player.tag = TAGS.PLAYER;
 
 
@@ -191,7 +219,7 @@ originalCollectable.tag = TAGS.COLLECTABLE;
  * ENVIROMENT
  * 
  */
-const enviromentElemnt = new Actor(0, -100, 50, 50, 5, 0, 1.2, new Image());
+const enviromentElemnt = new Actor(0, -100, 75 , 75, 5, 0, 1.2, new Image());
 
 const updateEnviroment = function(){
     this._y += this._speed;
@@ -247,25 +275,34 @@ function spawnCollectable() {
     const collectable = Object.assign(Object.create(Object.getPrototypeOf(originalCollectable)), originalCollectable);
     collectable.x = collectableX;
     collectable.y = collectableY;
-
-    console.log("####", collectable);
   
     collectables.push(collectable);
 }
 
 function spawnEnviromentElement() {
-    const isLeft = Math.random() > 0.5;
+    if(Math.random() < 0.5) return;
+    const enviromentType = Math.random();
 
-    const enviromentX = isLeft ? 0 : (canvas.width - enviromentElemnt.width);
-    const enviromentY = -100;
-
-    const sprite = isLeft ? './assets/img/blueBall.png' : './assets/img/greenBall.png';
+    let enviromentX;
+    let enviromentY = -100;
+    let sprite;
+    console.log(canvas.width, enviromentElemnt.width)
+    if (enviromentType > 0.8) { //izquierda
+        enviromentX = 0;
+        sprite = env_elements['left'][Math.floor((Math.random() * env_elements['left'].length))];
+    } else if (enviromentType > 0.4) {
+        enviromentX = canvas.width - enviromentElemnt.width;
+        console.log("pasa")
+        sprite = env_elements['right'][Math.floor((Math.random() * env_elements['right'].length))]
+    } else {
+        enviromentX = (canvas.width / 2) - (enviromentElemnt.width /2);
+        sprite = env_elements['middle'][Math.floor((Math.random() * env_elements['middle'].length))]
+    }
     
+    console.log(sprite);
     const enviroment = Object.assign(Object.create(Object.getPrototypeOf(enviromentElemnt)), enviromentElemnt, {
         _image: new Image(sprite)
     });
-
-    console.log(enviroment);
     enviroment.image.src = sprite;
     enviroment.x = enviromentX;
     enviroment.y = enviromentY;
@@ -441,8 +478,8 @@ function checkCollisionActorTag(tag){
 function startGame() {
     let spawnObstacleTimeOut = setInterval(spawnObstacle, obstacleSpawnInterval);
     let spawnCollectableTimeOut = setInterval(spawnCollectable, collectableSpawnInterval);
-    let spawnLeftEnv = setInterval(() => spawnEnviromentElement(true), leftEnvSpawnInterval);
-    let spawnRightEnv = setInterval(() => spawnEnviromentElement(false), rightEnvSpawnInterval);
+    let spawnLeftEnv = setInterval(spawnEnviromentElement, leftEnvSpawnInterval);
+    let spawnRightEnv = setInterval(spawnEnviromentElement, rightEnvSpawnInterval);
 
     timeOuts.push(spawnObstacleTimeOut);
     timeOuts.push(spawnCollectableTimeOut);
