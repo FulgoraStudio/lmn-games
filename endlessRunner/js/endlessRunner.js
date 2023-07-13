@@ -433,13 +433,13 @@ function resizeCanvas() {
  * @returns 
  */
 function checkCollision(actorA, actorB) {
-    const actorALeft = actorA.x;
-    const actorARight = actorA.x + actorA.width;
+    const actorALeft = actorA.x + (actorA.width /3);//shrink box collision
+    const actorARight = actorA.x + (actorA.width - (actorA.width /3));
     const actorATop = actorA.y;
-    const actorABottom = actorA.y + actorA.height;
+    const actorABottom = actorA.y + (actorA.height - (actorA.height/3));
   
-    const actorBLeft = actorB.x;
-    const actorBRight = actorB.x + actorB.width;
+    const actorBLeft = actorB.x + (actorB.width /4);
+    const actorBRight = actorB.x + (actorB.width - (actorB.width /4));
     const actorBTop = actorB.y + Math.abs((actorB.height / 4));
     const actorBBottom = actorB.y + (actorB.height - Math.abs((actorB.height / 4)));
   
@@ -461,7 +461,7 @@ function checkCollision(actorA, actorB) {
 function checkCollisionActorTag(tag){
     if(tag == TAGS.ENEMY) {
         SoundManager.playSound(gameSounds.ENEMY);
-        lives--;
+        // lives--;
         if(lives <= 0) {
             isDead = true;
             isPlaying = false;
