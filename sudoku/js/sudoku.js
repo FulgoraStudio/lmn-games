@@ -294,3 +294,5 @@ function boardResolved(boardArr, solutionArr) {
 function openModal(){
     alert("Bro.... es un sudoku")
 }
+
+window.onload=setGame
