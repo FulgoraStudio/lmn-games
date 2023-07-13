@@ -74,6 +74,11 @@ h1 {
   
 }
 
+#letter-container button:disabled {
+  /* color: #fe5152; */
+  background-color: #fe5152;
+}
+
 .letter-first {
   border-radius : 2.1rem 0 0 0;
 }

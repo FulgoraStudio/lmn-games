@@ -16,11 +16,12 @@ const intentsDisplay = document.getElementById("intents-display");
  */
 
 const gameSounds = {
-    CORRECT_SOUND: './assets/audio/CORRECTO.mp3', 
-    INCORRECT_SOUND: './assets/audio/INCORRECTO.mp3',
-    WIN_SOUND: './assets/audio/VICTORIA.mp3',
-    LOSE_SOUND: './assets/audio/DERROTA.mp3',
-    NOT_HINTS: './assets/audio/CLICK_DENY_6.wav'
+    CORRECT_SOUND: './assets/audio/EXTINTO-CORRECTO.mp3', 
+    INCORRECT_SOUND: './assets/audio/EXTINTO-INCORRECTO.mp3',
+    WIN_SOUND: './assets/audio/EXTINTO-VICTORIA.mp3',
+    LOSE_SOUND: './assets/audio/EXTINTO-DERROTA.mp3',
+    NOT_HINTS: './assets/audio/EXTINTO-INCORRECTO.mp3',
+    GAME_MUSIC: './assets/audio/EXTINTO-MUSICA.mp3'
 };
 
 SoundManager.loadSounds(Object.values(gameSounds))
@@ -1034,10 +1035,14 @@ const generateWord = (optionValue) => {
 const initializer = () => {
     resultText.classList.add("hide");
 
+    SoundManager.stopMusic(gameSounds.GAME_MUSIC)
     gameOver = false;
     winCount = 0;
     intents = 0;
     currentImgIndex = 0;
+
+    SoundManager.playMusic(gameSounds.GAME_MUSIC, true);
+
     imageStatus.src = imgSequencePath[currentImgIndex];
 
     intentsDisplay.innerText = `¡Te quedan ${TRYES - intents} vidas!`;
@@ -1082,12 +1087,13 @@ const initializer = () => {
                         dashes[index].innerText = char;
                         //increment counter
                         winCount += 1;
-                        SoundManager.play(gameSounds.CORRECT_SOUND);
+                        SoundManager.playSound(gameSounds.CORRECT_SOUND);
                         //if winCount equals word lenfth
                         if (winCount == charArray.length) {
                             resultText.innerHTML = `<h2 class='win-msg'>You Win!!</h2><p>The word was <span>${chosenWord}</span></p>`;
                             imageStatus.src = winImagePath;
-                            SoundManager.play(gameSounds.WIN_SOUND);
+                            SoundManager.stopMusic(gameSounds.GAME_MUSIC)
+                            SoundManager.playSound(gameSounds.WIN_SOUND);
                             //block all buttons
                             blocker();
                         }
@@ -1096,14 +1102,15 @@ const initializer = () => {
             } else {
                 //lose intents
                 intents += 1;
-                SoundManager.play(gameSounds.INCORRECT_SOUND);
+                SoundManager.playSound(gameSounds.INCORRECT_SOUND);
                 updateImage(intents);
 
                 if (intents >= TRYES) {
                     gameOver = true;
                     resultText.innerHTML = `<h2 class='lose-msg'>You Lose!!</h2><p>The word was <span>${chosenWord}</span></p>`;
                     imageStatus.src = loseImagePath;
-                    SoundManager.play(gameSounds.LOSE_SOUND);
+                    SoundManager.stopMusic(gameSounds.GAME_MUSIC)
+                    SoundManager.playSound(gameSounds.LOSE_SOUND);
                     blocker();
                 }
             }
@@ -1136,7 +1143,7 @@ function getHint() {
     if(hints.length <= 0) {
         nohintsDisplay.classList.remove("hide");
         setTimeout(() => nohintsDisplay.classList.add("hide"), 1500);
-        SoundManager.play(gameSounds.NOT_HINTS);
+        SoundManager.playSound(gameSounds.NOT_HINTS);
         return;
     }
     
@@ -1144,7 +1151,7 @@ function getHint() {
     const selectedHint = hints[index];
     hintDisplay.innerText = selectedHint;
     
-    SoundManager.play(gameSounds.INCORRECT_SOUND);
+    SoundManager.playSound(gameSounds.INCORRECT_SOUND);
     intents++;
 
     intentsDisplay.innerText = `¡Te quedan ${TRYES - intents} vidas!`;
