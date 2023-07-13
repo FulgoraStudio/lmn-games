@@ -157,7 +157,9 @@ IN GAME
 .tile {
     width: 4.8rem;
     height: 4.8rem;
-    border: 0.2rem dotted lightgray;
+
+    border-right: 0.2rem dotted lightgray;
+    border-bottom: 0.2rem dotted lightgray;
 
     color: white;
 
@@ -168,6 +170,7 @@ IN GAME
     justify-content: center;
     align-items: center;
 }
+
 
 #digits {
     width: 43.2rem;
