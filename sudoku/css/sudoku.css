@@ -113,7 +113,7 @@ h1 {
 
     /* align-self: flex-end; */
 
-    top: 0;
+    top: -3rem;
     right: 0;
     z-index: 1;
 }
