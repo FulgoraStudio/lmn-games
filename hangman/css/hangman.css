@@ -62,7 +62,9 @@ h1 {
   box-shadow: 0px 0.8rem #ffffff, 0px 0.7rem 1rem  rgba(0, 0, 0, 0.24);
 }
 
-
+#hint-container {
+  display: flex;
+}
 /* LETTERS */
 #letter-container button {
   height: 4.8rem;
@@ -86,10 +88,6 @@ h1 {
   
 }
 
-#letter-container button:disabled {
-  /* color: #fe5152; */
-  background-color: #fe5152;
-}
 
 .letter-first {
   border-radius : 2.4rem 0 0 0;
@@ -101,6 +99,14 @@ h1 {
 
 .letter-last {
   border-radius : 0 0 0 2.4rem;
+}
+
+#letter-container .success, button:disabled {
+  background-color: #fe5152;
+}
+
+#letter-container .fail, button:disabled {
+  background-color: grey;
 }
 
 .box {
@@ -191,7 +197,7 @@ h1 {
 
 #result-text {
   text-align: center;
-  margin: 2rem;
+  margin: 2rem auto;
   font-weight: 600;
 }
 
@@ -257,6 +263,20 @@ canvas {
   margin: 1.8rem auto 3rem auto;
 }
 
+#finish-message {
+  font-size: 1.8rem;
+  font-weight: 300;
+  margin: auto;
+  text-align: center;
+}
+
+#finish-message span{
+  color: #fe5152;
+  font-size: 2.1rem;
+  font-weight: bold;
+  /* margin: 1.8rem auto 3rem auto; */
+}
+
 
 /*
 
@@ -307,6 +327,14 @@ MOBILE
 
   .btn {
     margin: 0 0.5rem;
+  }
+
+  #hint-display {
+    width: 50%;
+  }
+
+  #intents-display {
+    margin: 1.8rem auto 1.2rem auto;
   }
 
 }
