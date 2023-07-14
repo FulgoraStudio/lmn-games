@@ -36,6 +36,15 @@ main, * {
     margin: 0 auto;
     }
 
+h1 {
+    display: block;
+    margin: 0 auto;
+    font-size: 5rem;
+    font-weight: 600;
+    text-align: left;
+    max-width: 139.2rem;
+}
+
 h2 {
     display: block;
     margin: 0 auto;
@@ -54,14 +63,6 @@ p {
 #head {
     text-align: left;
     margin: 2rem 3rem;
-}
-
-#main-title {
-    display: block;
-    margin: 0 auto;
-    font-size: 3.2rem;
-    text-align: left;
-    max-width: 139.2rem;
 }
 
 #leyend {

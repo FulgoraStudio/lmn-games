@@ -27,7 +27,6 @@ main, * {
     font-size: 62.5%;
     font-family : Encode Sans Semi Condensed;
     text-align: center;
-    box-sizing: border-box;
 }
 
 hr {
@@ -37,7 +36,8 @@ hr {
 h1 {
     display: block;
     margin: 0 auto;
-    font-size: 3.2rem;
+    font-size: 5rem;
+    font-weight: 600;
     text-align: left;
     max-width: 139.2rem;
 }
@@ -47,10 +47,8 @@ h1 {
 }
 
 #game-container {
-    /* border-radius: 21px; */
     margin: 0 auto;
     max-width: 139.2rem;
-    border: 0.1rem dotted red;
     display: flex;
 }
 
@@ -63,7 +61,6 @@ h1 {
 
 #board-container {
     width: 30%;
-    /* border: 5px solid red; */
 }
 
 #board {
@@ -73,7 +70,7 @@ h1 {
     height: 43.2rem;
     
     border-radius: 2.1rem;
-    margin: 0 auto;
+    margin: 1.8rem auto 3rem auto;
     flex-wrap: wrap;
     
     position: relative;
@@ -90,14 +87,14 @@ h1 {
 }
 
 #controls-container {
-    margin: 1.5rem 0;
     position: relative;
     top: 1rem;
     z-index: 2;
 }
 
 #buttons-container {
-    margin: 1rem 0;
+    width: 43.2rem;
+    margin: 1.8rem auto 3rem auto;
     text-align: left;
 }
 
@@ -130,8 +127,7 @@ h1 {
     border-radius : 4rem;
     border-width: 0;
   
-    margin-top: 1rem;
-    margin-right: 2rem;
+    margin: 0 2.4rem 0 0;
   
     box-shadow: 0px 0.8rem #ffffff, 0px 0.7rem 1rem  rgba(0, 0, 0, 0.24);
   
@@ -155,8 +151,8 @@ IN GAME
 */
 
 .tile {
-    width: 4.8rem;
-    height: 4.8rem;
+    width: 11.11%;
+    height: 11.11%;
 
     border-right: 0.2rem dashed #aba4a4;
     border-bottom: 0.2rem dashed #aba4a4;
@@ -179,14 +175,14 @@ IN GAME
     color: white;
 
     /* background-color: yellow; */
-    margin: 0 auto;
+    margin: 1.8rem auto 3rem auto;
     display: flex;
     flex-wrap: wrap;
 }
 
 .number {
-    width: 4.8rem;
-    height: 4.8rem;
+    width: 11.11%;
+    height: 5rem;
     border-right: 0.2rem dashed #aba4a4;
 
     /* Text */
@@ -237,11 +233,11 @@ IN GAME
 }
 
 .horizontal-line {
-    border-bottom: 0.2rem solid red;
+    border-bottom: 0.2rem solid #aba4a4;
 }
 
 .vertical-line {
-    border-right: 0.2rem solid red;
+    border-right: 0.2rem solid #aba4a4;
 }
 
 .letter {
@@ -250,7 +246,17 @@ IN GAME
     font-weight: 800;
 }
 
-@media (max-width: 437px) {
+
+
+/*
+
+MOBILE
+
+*/
+
+
+
+@media (max-width: 600px) {
     #display-container {
         width: 100%;
         margin: 0 auto;
@@ -262,6 +268,7 @@ IN GAME
     
     #board {
         width: 100%;
+        height: 36rem;
     }
 
     .tile {
@@ -283,7 +290,6 @@ IN GAME
     }
 
     #controls-container {
-        margin: 1.5rem 0;
         position: relative;
         top: 1rem;
         z-index: 2;
@@ -300,20 +306,26 @@ IN GAME
 
     
     #digits {
-        width: 90%;
-        height: 5rem;
+        width: 100%;
+        height: 4rem;
     }
     
     .number {
-        width: 9.9%;
+        width: 11.11%;
+        height: 4rem;
         font-size: 2rem;
     }
 
     #buttons-container {
+        width: 100%;
         text-align: center;
     }
 
+    .btn {
+        margin: 0 0.5rem;
+    }
+
     #bg-image {
-        opacity: 0.4;
+        opacity: 0%;
     }
 }

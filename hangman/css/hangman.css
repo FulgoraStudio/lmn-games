@@ -1,45 +1,51 @@
-/* ON PAGE */
-/* * {
-  padding: 0;
-  margin: 0;
-  box-sizing: border-box;
-  font-size: 62.5%;
-  font-family : Encode Sans Semi Condensed;
-} */
-
-/* MAAIN */
+/* MAIN */
 main, * {
   padding: 0;
   margin: 0;
   box-sizing: border-box;
   font-size: 62.5%;
   font-family : Encode Sans Semi Condensed;
+  text-align: center;
 }
 
 h1 {
-    display: block;
-    margin: 0 auto;
-    font-size: 3.2rem;
-    text-align: left;
-    max-width: 139.2rem;
+  display: block;
+  margin: 0 auto;
+  font-size: 5rem;
+  font-weight: 600;
+  text-align: left;
+  max-width: 139.2rem;
 }
 
 .container {
-  font-size: 1.6rem;
-  max-width: 1392px;
-  border: 1px dotted #fe5152;
+  max-width: 139.2rem;
   margin: 0 auto;
 }
 
 #options-container {
   display: flex;
   flex-direction: column;
-  margin: 3rem 0;
+  margin: 1.8rem auto 3rem auto;
 }
+
+  #buttons-container {
+    width: 100%;
+    text-align: center;
+    margin-top: 3rem;
+  }
 
 #hint-display {
   font-size: 1.8rem;
-  font-weight: 600;
+  font-weight: 300;
+  width: 80%;
+  margin: auto;
+  text-align: left;
+}
+
+#no-hints-display {
+  color: #fe5152;
+  font-size: 1.5rem;
+  font-weight: 700;
 }
 
 .letter-container {
@@ -56,7 +62,8 @@ h1 {
   box-shadow: 0px 0.8rem #ffffff, 0px 0.7rem 1rem  rgba(0, 0, 0, 0.24);
 }
 
-/* Letters */
+
+/* LETTERS */
 #letter-container button {
   height: 4.8rem;
   width: 4.8rem;
@@ -105,7 +112,8 @@ h1 {
 }
 
 #hint-button {
-  padding: 1rem 2rem 1.2rem 2rem;
+  width: 16rem;
+  margin: 1.8rem auto 3rem auto;
 }
 
 #htp-button {
@@ -117,14 +125,13 @@ h1 {
     border-radius : 4rem;
     border-width: 0;
   
-    margin-top: 1rem;
-    margin-right: 2rem;
+    margin: 0 2.4rem 0 0;
   
     box-shadow: 0px 0.8rem #ffffff, 0px 0.7rem 1rem  rgba(0, 0, 0, 0.24);
   
     font-size: 1.6rem;
     font-weight: bold;
-  
+
     padding: 1rem 2rem 1.2rem 2rem;
 }
 
@@ -165,6 +172,8 @@ h1 {
   /* display: block; */
   height: 4.8rem;
   width: 4.8rem;
+  font-weight: 2.1rem;
+  font-weight: 800;
   margin: 0;
   display: flex;
   align-items: center;
@@ -238,30 +247,66 @@ canvas {
   margin: auto;
   position: relative;
   top: -4rem;
-}
-
-#no-hints-display {
-  color: red;
-  font-weight: bold;
+  z-index: -1;
 }
 
 #intents-display {
   color: #fe5152;
   font-size: 2.1rem;
   font-weight: bold;
+  margin: 1.8rem auto 3rem auto;
 }
 
-@media (max-width: 1080px) {
+
+/*
+
+MOBILE
+
+*/
+
+
+@media (max-width: 600px) {
 
   #game-container {
     flex-direction: column-reverse;
   }
 
+  #options-container {
+    margin: -1.8rem auto 3rem auto;
+  }
+
   #widget-container {
     width: 100%;
+    position: relative;
+    top: -6rem;
   }
   
   #image-container{
     height: fit-content;
   }
+
+  .letter-container {
+    margin: 0 auto;
+  }
+
+  #buttons-container {
+    width: 100%;
+    text-align: center;
+  }
+
+  #user-input-section {
+    max-width: fit-content;
+    margin: 0 auto;
+  }
+
+  .dashes {
+    height: 4.8rem;
+    width: 2.4rem;
+    font-size: 2rem;
+  }
+
+  .btn {
+    margin: 0 0.5rem;
+  }
+
 }
