@@ -1,8 +1,15 @@
 const startButton = document.getElementById("start-button");
-const restartButton = document.getElementById("restart-button");
+const htpButton = document.getElementById("htp-button");
 
 startButton.addEventListener('click', start);
-restartButton.addEventListener('click', restartGame);
+
+htpButton.addEventListener("click", () => {
+    document.getElementById("modal-container").style.display = "block";
+})
+  
+document.getElementById("close-modal-btn").addEventListener("click", function() {
+    document.getElementById("modal-container").style.display = "none";
+});
 
 let errors = 0;
 let cardList = [
@@ -65,8 +72,9 @@ function shuffleCards() {
 }
 
 function start(){
-    startButton.classList.add("hide");
-    restartButton.classList.remove("hide");
+    console.log("START")
+    startButton.removeEventListener('click', start);
+    startButton.addEventListener('click', restartGame);
     startGame();
 }
 
@@ -162,8 +170,6 @@ function update() {
         pairs--;
         if(pairs <= 0 && !gameOver) {
             gameOver = true;
-            restartButton.classList.remove("hide");
-
             SoundManager.playSound(gameSounds.WIN_GAME);
         } else {
             SoundManager.playSound(gameSounds.ASSERT);
@@ -189,8 +195,6 @@ function cleanBoard() {
 }
 
 function restartGame() {
-    //restartButton.classList.add("hide");
-
     cleanBoard();
     clearAllTimeouts();
     SoundManager.stopMusic();
