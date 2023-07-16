@@ -11,9 +11,18 @@ const BG_COLOR = "#587176";
 
 const startButton = document.getElementById('start-button');
 const resetButton = document.getElementById('reset-button');
+const htpButton = document.getElementById("htp-button");
 
 const pointsLabel = document.getElementById('points-text');
 const distanceLabel = document.getElementById('distance-text');
+
+htpButton.addEventListener("click", () => {
+    document.getElementById("modal-container").style.display = "block";
+})
+  
+document.getElementById("close-modal-btn").addEventListener("click", function() {
+    document.getElementById("modal-container").style.display = "none";
+});
 
 startButton.onclick = () => {
     startButton.classList.add('hide');
