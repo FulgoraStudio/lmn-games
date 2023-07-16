@@ -1,7 +1,7 @@
 const board = document.getElementById("board");
 const digitspanel = document.getElementById("digits");
 const newGameButton = document.getElementById("new-game-button");
-const howtToButton = document.getElementById("htp-button");
+const htpButton = document.getElementById("htp-button");
 
 let numSelected = null;
 let tileSelected = null;
@@ -14,7 +14,14 @@ let isPlaying = false;
 let winGame = false;
 
 newGameButton.addEventListener('click', setGame);
-howtToButton.addEventListener('click', openModal);
+
+htpButton.addEventListener("click", () => {
+    document.getElementById("modal-container").style.display = "block";
+})
+  
+document.getElementById("close-modal-btn").addEventListener("click", function() {
+    document.getElementById("modal-container").style.display = "none";
+});
 
 function resetGame() {
     while (board.firstChild) {
@@ -289,10 +296,6 @@ function boardResolved(boardArr, solutionArr) {
     }
     
     return true;
-}
-
-function openModal(){
-    alert("Bro.... es un sudoku")
 }
 
 window.onload=setGame

@@ -2,9 +2,10 @@ const sliderImage = document.getElementById('bg-image');
 
 const imagePaths = [];
 
-for(let i=1;i<34;i++) {
-  imagePaths.push(`/assets/img/image${i}.jpg`)
+for(let i=1;i<34;i++){
+  imagePaths.push(`assets/img/image${i}.jpg`)
 }
+
 let currentIndex = 0;
 
 function showNextImage() {
