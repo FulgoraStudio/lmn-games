@@ -2,6 +2,7 @@
 const letterContainer = document.getElementById("letter-container");
 const userInputSection = document.getElementById("user-input-section");
 const newGameButton = document.getElementById("new-game-button");
+const htpButton = document.getElementById("htp-button");
 //const canvas = document.getElementById("canvas");
 const imageStatus = document.getElementById("image-status");
 const resultText = document.getElementById("result-text");
@@ -1166,5 +1167,12 @@ function getHint() {
 //New Game
 newGameButton.addEventListener("click", initializer);
 hintButton.addEventListener("click", getHint)
+htpButton.addEventListener("click", () => {
+  document.getElementById("myModal").style.display = "block";
+})
+
+document.getElementById("closeModalBtn").addEventListener("click", function() {
+  document.getElementById("myModal").style.display = "none";
+});
 
 window.onload = initializer;
