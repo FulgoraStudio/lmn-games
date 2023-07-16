@@ -1168,11 +1168,11 @@ function getHint() {
 newGameButton.addEventListener("click", initializer);
 hintButton.addEventListener("click", getHint)
 htpButton.addEventListener("click", () => {
-  document.getElementById("myModal").style.display = "block";
+  document.getElementById("modal-container").style.display = "block";
 })
 
-document.getElementById("closeModalBtn").addEventListener("click", function() {
-  document.getElementById("myModal").style.display = "none";
+document.getElementById("close-modal-btn").addEventListener("click", function() {
+  document.getElementById("modal-container").style.display = "none";
 });
 
 window.onload = initializer;
