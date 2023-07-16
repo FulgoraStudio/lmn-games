@@ -41,6 +41,10 @@ function setGame() {
     isPlaying = true;
 
     newGameButton.innerText = "Jugar de vuelta";
+
+    document.getElementById("board").innerHTML = "";
+    document.getElementById("digits").innerHTML = "";
+
     //Set Board Game
     setBoard();
     
@@ -149,7 +153,7 @@ function selectTile() {
         else
         {
             errors += 1;
-            document.getElementById("errors").innerText = errors;
+            // document.getElementById("errors").innerText = errors;
         }
     }
 }
