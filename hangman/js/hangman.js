@@ -2,6 +2,7 @@
 const letterContainer = document.getElementById("letter-container");
 const userInputSection = document.getElementById("user-input-section");
 const newGameButton = document.getElementById("new-game-button");
+const htpButton = document.getElementById("htp-button");
 //const canvas = document.getElementById("canvas");
 const imageStatus = document.getElementById("image-status");
 const resultText = document.getElementById("result-text");
@@ -1088,9 +1089,12 @@ const initializer = () => {
                         //increment counter
                         winCount += 1;
                         SoundManager.playSound(gameSounds.CORRECT_SOUND);
+
+                        button.classList.add('success');
+                        
                         //if winCount equals word lenfth
                         if (winCount == charArray.length) {
-                            resultText.innerHTML = `<h2 class='win-msg'>You Win!!</h2><p>The word was <span>${chosenWord}</span></p>`;
+                            resultText.innerHTML = `<p id="finish-message">La palabra era: <span>${chosenWord}</span></p>`;
                             imageStatus.src = winImagePath;
                             SoundManager.stopMusic(gameSounds.GAME_MUSIC)
                             SoundManager.playSound(gameSounds.WIN_SOUND);
@@ -1103,11 +1107,13 @@ const initializer = () => {
                 //lose intents
                 intents += 1;
                 SoundManager.playSound(gameSounds.INCORRECT_SOUND);
+
+                button.classList.add('fail');
                 updateImage(intents);
 
                 if (intents >= TRYES) {
                     gameOver = true;
-                    resultText.innerHTML = `<h2 class='lose-msg'>You Lose!!</h2><p>The word was <span>${chosenWord}</span></p>`;
+                    resultText.innerHTML = `<p id="finish-message">La palabra era: <span>${chosenWord}</span></p>`;
                     imageStatus.src = loseImagePath;
                     SoundManager.stopMusic(gameSounds.GAME_MUSIC)
                     SoundManager.playSound(gameSounds.LOSE_SOUND);
@@ -1161,5 +1167,12 @@ function getHint() {
 //New Game
 newGameButton.addEventListener("click", initializer);
 hintButton.addEventListener("click", getHint)
+htpButton.addEventListener("click", () => {
+  document.getElementById("modal-container").style.display = "block";
+})
+
+document.getElementById("close-modal-btn").addEventListener("click", function() {
+  document.getElementById("modal-container").style.display = "none";
+});
 
 window.onload = initializer;
