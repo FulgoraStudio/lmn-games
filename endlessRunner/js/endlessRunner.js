@@ -175,7 +175,7 @@ player.animations = {
         (new Image()).src='./assets/img/player/idle/idle05.png',
         (new Image()).src='./assets/img/player/idle/idle06.png',
         (new Image()).src='./assets/img/player/idle/idle07.png',
-        (new Image()).src='./assets/img/player/idle/idle08.png'
+        // (new Image()).src='./assets/img/player/idle/idle08.png'
     ],
     "left": [
         (new Image()).src='./assets/img/player/moveL/moveleft01.png',
