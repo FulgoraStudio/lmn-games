@@ -3,6 +3,7 @@
     var soundBuffers = new Map();
     var currentSource;
     var currentMusic;
+    var isMusicMuted = false;
 
     function loadSound(url) {
         return fetch(url)
@@ -76,6 +77,17 @@
         }
     }
 
+    function isMuted(muted){
+        isMusicMuted = muted;
+
+        if(isMusicMuted) {
+            currentMusic.volume = 0;
+            currentSource.stop();
+        } else {
+
+        }
+    }
+
     window.SoundManager = {
         loadSounds: function (soundUrls) {
             var promises = soundUrls.map(function (url) {
@@ -110,6 +122,10 @@
       
         restartSound: function() {
             restartSound();
-        }
+        },
+
+        changeVolume: function(muted){
+            isMuted(muted);
+        },
     };
 })();

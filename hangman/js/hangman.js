@@ -3,6 +3,7 @@ const letterContainer = document.getElementById("letter-container");
 const userInputSection = document.getElementById("user-input-section");
 const newGameButton = document.getElementById("new-game-button");
 const htpButton = document.getElementById("htp-button");
+const soundButton = document.getElementById("sound-button");
 //const canvas = document.getElementById("canvas");
 const imageStatus = document.getElementById("image-status");
 const resultText = document.getElementById("result-text");
@@ -964,6 +965,7 @@ const TRYES = 6;
 let winCount = 0;
 let intents = 0;
 let gameOver = false;
+let isMuted = false;
 
 let chosenWord = "";
 let sWord = "";
@@ -1048,7 +1050,6 @@ const initializer = () => {
     intents = 0;
     currentImgIndex = 0;
 
-    
     imageStatus.src = imgSequencePath[currentImgIndex];
     
     intentsDisplay.innerText = `¡Te quedan ${TRYES - intents} vidas!`;
@@ -1185,4 +1186,14 @@ document.getElementById("close-modal-btn").addEventListener("click", function() 
   document.getElementById("modal-container").style.display = "none";
 });
 
+
+soundButton.addEventListener("click", () => {
+  isMuted = !isMuted;
+  if(isMuted) {
+    soundButton.innerText = '🔇';
+  } else {
+    soundButton.innerText = '🔊';
+  }
+  SoundManager.changeVolume(isMuted);
+})
 // window.onload = initializer;
