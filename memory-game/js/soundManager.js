@@ -3,6 +3,7 @@
     var soundBuffers = new Map();
     var currentSource;
     var currentMusic;
+    var currentMusicPath;
     var isMusicMuted = false;
 
     function loadSound(url) {
@@ -17,6 +18,9 @@
     }
 
     function playMusic(soundUrl, loop) {
+        if(isMusicMuted) return;
+        currentMusicPath = soundUrl;
+
         var soundBuffer = soundBuffers.get(soundUrl);
 
         if (soundBuffer) {
@@ -38,6 +42,7 @@
     }
 
     function playSound(soundUrl, loop) {
+        if(isMusicMuted) return;
         var soundBuffer = soundBuffers.get(soundUrl);
 
         if (soundBuffer) {
@@ -51,6 +56,7 @@
     }
 
     function playOneShoot(soundUrl) {
+        if(isMusicMuted) return;
         var soundBuffer = soundBuffers.get(soundUrl);
 
         if (soundBuffer) {
@@ -71,6 +77,7 @@
     }
     
     function restartSound() {
+        if(isMusicMuted) return;
         if (currentSource) {
             currentSource.stop(); // Detener el sonido actual
             currentSource.start(0); // Reiniciar el sonido desde el principio
@@ -81,10 +88,10 @@
         isMusicMuted = muted;
 
         if(isMusicMuted) {
-            currentMusic.volume = 0;
+            currentMusic.stop();
             currentSource.stop();
         } else {
-
+            playMusic(currentMusicPath, true);
         }
     }
 
