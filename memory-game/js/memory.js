@@ -1,5 +1,6 @@
 const startButton = document.getElementById("start-button");
 const htpButton = document.getElementById("htp-button");
+const soundButton = document.getElementById("sound-button");
 
 startButton.addEventListener('click', start);
 
@@ -10,6 +11,16 @@ htpButton.addEventListener("click", () => {
 document.getElementById("close-modal-btn").addEventListener("click", function() {
     document.getElementById("modal-container").style.display = "none";
 });
+
+soundButton.addEventListener("click", () => {
+    isMuted = !isMuted;
+    if(isMuted) {
+      soundButton.innerText = '🔇';
+    } else {
+      soundButton.innerText = '🔊';
+    }
+    SoundManager.changeVolume(isMuted);
+  })
 
 let errors = 0;
 let cardList = [
@@ -34,6 +45,7 @@ let columns = 5;
 
 let pairs = (rows * columns) / 2;
 let gameOver = false;
+let isMuted = false;
 
 let timeOuts = [];
 
