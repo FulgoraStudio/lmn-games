@@ -233,9 +233,21 @@ const drawCollectable = function(ctx){
 
 originalCollectable.draw = drawCollectable;
 originalCollectable.update = updateCollectable;
-originalCollectable.image.src = './assets/img/collectables/dragonfly.png';
+originalCollectable.image.src = './assets/img/collectables/idle00.png';
 originalCollectable.tag = TAGS.COLLECTABLE;
-originalCollectable.animations;
+originalCollectable.idleImage = './assets/img/collectables/idle00.png';
+originalCollectable.animations = {
+    "idle": [
+        (new Image()).src='./assets/img/collectables/idle00.png',
+        (new Image()).src='./assets/img/collectables/idle01.png',
+        (new Image()).src='./assets/img/collectables/idle02.png',
+        (new Image()).src='./assets/img/collectables/idle03.png',
+        (new Image()).src='./assets/img/collectables/idle04.png',
+        (new Image()).src='./assets/img/collectables/idle05.png',
+        (new Image()).src='./assets/img/collectables/idle06.png',
+        (new Image()).src='./assets/img/collectables/idle07.png',
+    ]
+};
 
 
 /**
@@ -299,6 +311,8 @@ function spawnCollectable() {
     const collectable = Object.assign(Object.create(Object.getPrototypeOf(originalCollectable)), originalCollectable);
     collectable.x = collectableX;
     collectable.y = collectableY;
+
+    collectable.playAnimation('idle', true);
   
     collectables.push(collectable);
 }
