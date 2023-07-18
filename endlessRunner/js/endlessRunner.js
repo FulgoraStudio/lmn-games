@@ -46,7 +46,9 @@ let timeOuts = []
 
 const TAGS = Object.freeze({
     PLAYER: 'PLAYER',
-    ENEMY: 'ENEMY',
+    ENEMY_BOTTLE: 'ENEMY_BOTTLE',
+    ENEMY_ROCK: 'ENEMY_ROCK',
+    ENEMY_CAN: 'ENEM_CAN',
     COLLECTABLE: 'COLLECTABLE',
 })
 
@@ -112,7 +114,10 @@ let isMuted = false;
 const gameSounds = {
     MUSIC: './assets/audio/ENDLESS-RUNNER-MUSICA.mp3',
     COLLECTABLE: './assets/audio/ENDLESS-RUNNER-COMER-LIBELULA.mp3',
-    ENEMY: './assets/audio/ENDLESS-RUNNER-IMPACTO-PIEDRA.mp3',
+    ENEMY_ROCK: './assets/audio/ENDLESS-RUNNER-IMPACTO-PIEDRA.mp3',
+    ENEMY_BOTTLE: './assets/audio/ENDLESS-RUNNER-IMPACTO-BOTELLA-1.mp3',
+    ENEMY_CAN: './assets/audio/ENDLESS-RUNNER-IMPACTO-LATA-1-.mp3',
+    LOSE_GAME: './assets/audio/ENDLESS-RUNNER-DERROTA.mp3',
 };
 
 SoundManager.loadSounds(Object.values(gameSounds))
@@ -219,7 +224,7 @@ const drawObstacle = function(ctx){
 originalObstacle.draw = drawObstacle;
 originalObstacle.update = updateObstacle;
 originalObstacle.image.src = './assets/img/obstacles/rock.png';
-originalObstacle.tag = TAGS.ENEMY;
+originalObstacle.tag = TAGS.ENEMY_ROCK;
 originalObstacle.idleImage = './assets/img/obstacles/rock.png';
 originalObstacle.animations = {
     "bottle": [
@@ -300,7 +305,6 @@ document.addEventListener('keydown', function(event) {
 
 document.addEventListener('keyup', function(event) {
     player.stopAnimation();
-    // player.playAnimation("idle", true);
     keys[event.code] = false;
 });
 
@@ -311,8 +315,8 @@ function spawnObstacle() {
     const obstacleX = Math.random() * (canvas.width - originalObstacle.width);
     const obstacleY = -100;
 
-    // const obstacle = Object.assign(Object.create(Object.getPrototypeOf(originalObstacle)), originalObstacle);
     const obstacle = Object.assign(Object.create(Object.getPrototypeOf(originalObstacle)), originalObstacle, {
+        _tag: '',
         _image: new Image()
     });
 
@@ -321,6 +325,15 @@ function spawnObstacle() {
 
     const obstacleType = obstacleTypes[Math.floor(Math.random() * 3)];
 
+    if(obstacleType == 'bottle') {
+        obstacle.tag = TAGS.ENEMY_BOTTLE;
+    } else if (obstacleType == 'rock') {
+        obstacle.tag = TAGS.ENEMY_ROCK;
+    }else if (obstacleType == 'can'){
+        obstacle.tag = TAGS.ENEMY_CAN;
+    } else {
+        obstacle.tag = TAGS.ENEMY_ROCK;
+    }
     obstacle.type = obstacleType;
     obstacle.playAnimation(obstacleType, true);
   
@@ -519,19 +532,42 @@ function checkCollision(actorA, actorB) {
 }
 
 function checkCollisionActorTag(tag){
-    if(tag == TAGS.ENEMY) {
-        SoundManager.playSound(gameSounds.ENEMY);
-        // lives--;
-        if(lives <= 0) {
-            isDead = true;
-            isPlaying = false;
-        }
-    }
-
+    console.log(tag);
     if(tag == TAGS.COLLECTABLE) {
         points++;
         SoundManager.playSound(gameSounds.COLLECTABLE);
         pointsLabel.innerText = `${points}`;
+        return
+    }
+
+    if(tag == TAGS.ENEMY_BOTTLE) {
+        SoundManager.playSound(gameSounds.ENEMY_BOTTLE);
+        checkGameOver();
+        return;
+    }
+
+    if(tag == TAGS.ENEMY_CAN) {
+        SoundManager.playSound(gameSounds.ENEMY_CAN);
+        checkGameOver();
+        return;
+    }
+
+    if(tag == TAGS.ENEMY_ROCK) {
+        SoundManager.playSound(gameSounds.ENEMY_ROCK);
+        checkGameOver();
+        return;
+    }
+
+   
+}
+
+function checkGameOver() {
+    lives--;
+    if(lives <= 0) {
+        isDead = true;
+        isPlaying = false;
+        SoundManager.stopMusic();
+        SoundManager.playSound(gameSounds.LOSE_GAME);
     }
 }
 
