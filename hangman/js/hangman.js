@@ -16,6 +16,8 @@ const intentsDisplay = document.getElementById("intents-display");
  *  SETTINGS
  */
 
+intentsDisplay.classList.add('hide');
+
 const gameSounds = {
     CORRECT_SOUND: './assets/audio/EXTINTO-CORRECTO.mp3', 
     INCORRECT_SOUND: './assets/audio/EXTINTO-INCORRECTO.mp3',
@@ -969,7 +971,9 @@ let hints = [];
 
 //Display option buttons
 const displayOptions = () => {
-  generateWord("frutas");
+  const categories = ['frutas', 'cosas', 'plantas', 'paises', 'lagos', 'herramientas'];
+  const categoryselected = categories[Math.floor(Math.random() * categories.length)]
+  generateWord(categoryselected);
     return;
 };
 
@@ -1035,19 +1039,21 @@ const generateWord = (optionValue) => {
 //Initial Function (Called when page loads/user presses new game)
 const initializer = () => {
     resultText.classList.add("hide");
-
+    intentsDisplay.classList.remove('hide');
+    newGameButton.innerText = "Jugar de vuelta";
     SoundManager.stopMusic(gameSounds.GAME_MUSIC)
+
     gameOver = false;
     winCount = 0;
     intents = 0;
     currentImgIndex = 0;
 
-    SoundManager.playMusic(gameSounds.GAME_MUSIC, true);
-
+    
     imageStatus.src = imgSequencePath[currentImgIndex];
-
+    
     intentsDisplay.innerText = `¡Te quedan ${TRYES - intents} vidas!`;
-
+    
+    SoundManager.playMusic(gameSounds.GAME_MUSIC, true);
     //Initially erase all content and hide letteres and new game button
     userInputSection.innerHTML = "";
     letterContainer.classList.add("hide");
@@ -1105,20 +1111,9 @@ const initializer = () => {
                 });
             } else {
                 //lose intents
-                intents += 1;
-                SoundManager.playSound(gameSounds.INCORRECT_SOUND);
-
                 button.classList.add('fail');
-                updateImage(intents);
 
-                if (intents >= TRYES) {
-                    gameOver = true;
-                    resultText.innerHTML = `<p id="finish-message">La palabra era: <span>${chosenWord}</span></p>`;
-                    imageStatus.src = loseImagePath;
-                    SoundManager.stopMusic(gameSounds.GAME_MUSIC)
-                    SoundManager.playSound(gameSounds.LOSE_SOUND);
-                    blocker();
-                }
+                failIntent();
             }
 
             //disable clicked button
@@ -1157,11 +1152,26 @@ function getHint() {
     const selectedHint = hints[index];
     hintDisplay.innerText = selectedHint;
     
-    SoundManager.playSound(gameSounds.INCORRECT_SOUND);
-    intents++;
+    failIntent();
 
     intentsDisplay.innerText = `¡Te quedan ${TRYES - intents} vidas!`;
     hints.splice(index, 1);
+}
+
+function failIntent() {
+  intents += 1;
+  SoundManager.playSound(gameSounds.INCORRECT_SOUND);
+
+  updateImage(intents);
+
+  if (intents >= TRYES) {
+      gameOver = true;
+      resultText.innerHTML = `<p id="finish-message">La palabra era: <span>${chosenWord}</span></p>`;
+      imageStatus.src = loseImagePath;
+      SoundManager.stopMusic(gameSounds.GAME_MUSIC)
+      SoundManager.playSound(gameSounds.LOSE_SOUND);
+      blocker();
+  }
 }
 
 //New Game
@@ -1175,4 +1185,4 @@ document.getElementById("close-modal-btn").addEventListener("click", function() 
   document.getElementById("modal-container").style.display = "none";
 });
 
-window.onload = initializer;
+// window.onload = initializer;
