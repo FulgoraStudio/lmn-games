@@ -50,6 +50,8 @@ const TAGS = Object.freeze({
     COLLECTABLE: 'COLLECTABLE',
 })
 
+const obstacleTypes = ['bottle', 'rock', 'can'];
+
 const env_elements = {
     "left": [
         './assets/img/enviroment/left/ARB-I-1.png',
@@ -218,6 +220,18 @@ originalObstacle.draw = drawObstacle;
 originalObstacle.update = updateObstacle;
 originalObstacle.image.src = './assets/img/obstacles/rock.png';
 originalObstacle.tag = TAGS.ENEMY;
+originalObstacle.idleImage = './assets/img/obstacles/rock.png';
+originalObstacle.animations = {
+    "bottle": [
+        (new Image()).src = './assets/img/obstacles/bottle.png'
+    ],
+    "rock": [
+        (new Image()).src = './assets/img/obstacles/rock.png'
+    ],
+    "can": [
+        (new Image()).src = './assets/img/obstacles/can.png'
+    ]
+}
 
 // BASIC COLLECTABLE
 const originalCollectable = new Actor(200, -100, 50, 50, 5, 0, 1.2, new Image());
@@ -297,9 +311,18 @@ function spawnObstacle() {
     const obstacleX = Math.random() * (canvas.width - originalObstacle.width);
     const obstacleY = -100;
 
-    const obstacle = Object.assign(Object.create(Object.getPrototypeOf(originalObstacle)), originalObstacle);
+    // const obstacle = Object.assign(Object.create(Object.getPrototypeOf(originalObstacle)), originalObstacle);
+    const obstacle = Object.assign(Object.create(Object.getPrototypeOf(originalObstacle)), originalObstacle, {
+        _image: new Image()
+    });
+
     obstacle.x = obstacleX;
     obstacle.y = obstacleY;
+
+    const obstacleType = obstacleTypes[Math.floor(Math.random() * 3)];
+
+    obstacle.type = obstacleType;
+    obstacle.playAnimation(obstacleType, true);
   
     obstacles.push(obstacle);
 }
@@ -324,7 +347,7 @@ function spawnEnviromentElement() {
     let enviromentX;
     let enviromentY = -100;
     let sprite;
-    console.log(canvas.width, enviromentElemnt.width)
+
     if (enviromentType > 0.8) { //izquierda
         enviromentX = 0;
         sprite = env_elements['left'][Math.floor((Math.random() * env_elements['left'].length))];
@@ -337,7 +360,6 @@ function spawnEnviromentElement() {
         sprite = env_elements['middle'][Math.floor((Math.random() * env_elements['middle'].length))]
     }
     
-    console.log(sprite);
     const enviroment = Object.assign(Object.create(Object.getPrototypeOf(enviromentElemnt)), enviromentElemnt, {
         _image: new Image(sprite)
     });
