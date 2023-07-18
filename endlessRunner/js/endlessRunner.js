@@ -108,9 +108,9 @@ let isMuted = false;
 
 // Audio
 const gameSounds = {
-    MUSIC: './assets/audio/RUNNER.mp3',
-    COLLECTABLE: './assets/audio/CONFIRM_1.wav', 
-    ENEMY: './assets/audio/CLICK_DENY_6.wav',
+    MUSIC: './assets/audio/ENDLESS-RUNNER-MUSICA.mp3',
+    COLLECTABLE: './assets/audio/ENDLESS-RUNNER-COMER-LIBELULA.mp3',
+    ENEMY: './assets/audio/ENDLESS-RUNNER-IMPACTO-PIEDRA.mp3',
 };
 
 SoundManager.loadSounds(Object.values(gameSounds))
