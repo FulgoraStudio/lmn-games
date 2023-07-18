@@ -12,6 +12,7 @@ const BG_COLOR = "#587176";
 const startButton = document.getElementById('start-button');
 const resetButton = document.getElementById('reset-button');
 const htpButton = document.getElementById("htp-button");
+const soundButton = document.getElementById("sound-button");
 
 const pointsLabel = document.getElementById('points-text');
 const distanceLabel = document.getElementById('distance-text');
@@ -30,6 +31,16 @@ startButton.onclick = () => {
     startGame()
 };
 resetButton.onclick = () => resetGame();
+
+soundButton.addEventListener("click", () => {
+    isMuted = !isMuted;
+    if(isMuted) {
+      soundButton.innerText = '🔇';
+    } else {
+      soundButton.innerText = '🔊';
+    }
+    SoundManager.changeVolume(isMuted);
+})
 
 let timeOuts = []
 
@@ -93,6 +104,7 @@ const keys = {};
 let lastKeyPressed;
 let isDead = false;
 let isPlaying = false;
+let isMuted = false;
 
 // Audio
 const gameSounds = {
