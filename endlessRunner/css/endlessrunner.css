@@ -21,20 +21,31 @@ h1 {
     /* border-radius: 21px; */
     margin: 0 auto;
     max-width: 139.2rem;
-    border: 0.1rem dotted red;
     display: flex;
+    background-image: url("./../assets/img/trucha-bg.png");
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
 }
 
 #container {
     display: flex;
-    width: 40rem;
+    width: 42rem;
     height: 70rem;
-    margin: 0 auto;
+    margin: 0;
     position: relative;
+    top: -5rem;
 }
 
 #canvas {
-    border: 1px solid black;
+    border-radius : 2.4rem;
+    -moz-border-radius : 2.4rem;
+    -webkit-border-radius : 2.4rem;
+    box-shadow: 0rem 0.8rem #ffffff, 0rem 0.7rem 1rem  rgba(0, 0, 0, 0.24);
+}
+
+#hud-container {
+    width: 49rem;
 }
 
 .hud {
@@ -51,10 +62,8 @@ h1 {
 }
 
 #buttons-container {
-    margin: 10px;
-    width: max-content;
-    padding: 0 0 20px 0;
-    text-align: center;
+    text-align: left;
+    margin: 2rem 0;
 }
 
 .label-hud {
