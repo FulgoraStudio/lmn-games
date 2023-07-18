@@ -8,7 +8,13 @@
 } */
 
 
-/* MAIN */
+/* 
+
+MAIN
+
+*/
+
+
 main {
     padding: 0;
     margin: 0;
@@ -17,9 +23,9 @@ main {
     font-family : Encode Sans Semi Condensed;
     text-align: center;
     background-image: url("./../assets/images/memoria-bg.png");
-    background-size: 100%;
+    background-size: cover;
     background-repeat: no-repeat;
-    background-position: center top;
+    background-position: center;
 }
 
 main, * {
@@ -142,8 +148,7 @@ p {
     border-radius : 4rem;
     border-width: 0;
   
-    margin-top: 1rem;
-    margin-right: 2rem;
+    margin: 1rem 2rem 0 0;
   
     box-shadow: 0px 0.8rem #ffffff, 0px 0.7rem 1rem  rgba(0, 0, 0, 0.24);
   
@@ -167,39 +172,27 @@ p {
     display: none;
 }
 
-@media (max-width: 866px) {
-    #board-container {
-        width: 100%;
-    }
-    
-    #board {
-        align-content: flex-start;
-        height: min-content;
-    }
-
-    .card {
-        width: 20%;
-        height: 20%;
-        margin: 0;
-        padding: 0;
-    }
-
-    #leyend {
-        width: 90%;
-        margin: 1.8rem auto 3rem auto;
-    }
-
-    #buttons-container {
-        text-align: center;
-        margin: 2rem 3rem;
-    }
+#intents-display {
+    color: black;
+    font-size: 2.1rem;
+    font-weight: 600;
+    text-align: left;
+    margin: 1.8rem auto 3rem 3rem;
 }
+
+#errors {
+    color: #fe5152;
+    font-size: 2.1rem;
+    font-weight: 600;
+}
+
 
 /*
 
 MODAL
 
 */
+
 
 h4 {
     font-size: 3rem;
@@ -236,4 +229,67 @@ h4 {
     font-weight: 300;
     text-align: left;
     margin-bottom: 3rem;
+}
+
+
+/*
+
+MOBILE
+
+*/
+
+
+@media (max-width: 866px) {
+    #board-container {
+        width: 100%;
+    }
+    
+    #board {
+        align-content: flex-start;
+        height: min-content;
+    }
+
+    .card {
+        width: 20%;
+        height: 20%;
+        margin: 0;
+        padding: 0;
+    }
+
+    #leyend {
+        width: 90%;
+        margin: 1.8rem auto 3rem auto;
+    }
+
+    #buttons-container {
+        margin: 2rem 3rem;
+    }
+
+    .modal-content {
+    width: 66%;
+    }
+}
+
+@media (max-width: 600px) {
+    #intents-display {
+    margin-left: 0;
+    }
+
+    .modal-content {
+    width: 88%;
+    }
+
+    #intents-display {
+    text-align: center;
+    }
+
+    #buttons-container {
+     text-align: center;
+    }
+
+    .btn {
+    margin: 1rem 1rem 0 1rem;
+    }
+
+
 }

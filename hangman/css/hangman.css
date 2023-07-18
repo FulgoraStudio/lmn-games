@@ -25,7 +25,7 @@ h1 {
 #options-container {
   display: flex;
   flex-direction: column;
-  margin: 1.8rem auto 3rem auto;
+  margin: 1.8rem auto 3rem 0;
 }
 
   #buttons-container {
@@ -39,6 +39,7 @@ h1 {
   font-weight: 300;
   width: 80%;
   margin: auto;
+  padding-left: 1rem;
   text-align: left;
 }
 
@@ -260,7 +261,7 @@ canvas {
   color: #fe5152;
   font-size: 2.1rem;
   font-weight: bold;
-  margin: 1.8rem auto 3rem auto;
+  margin: 1.8rem auto 3rem 1rem;
 }
 
 #finish-message {
@@ -326,6 +327,12 @@ MOBILE
 
 */
 
+@media (max-width: 866px) {
+
+  #widget-container {
+    width: 43%;
+  }
+}
 
 @media (max-width: 600px) {
 
@@ -377,6 +384,10 @@ MOBILE
 
   #intents-display {
     margin: 1.8rem auto 1.2rem auto;
+  }
+
+  .modal-content {
+  width: 88%;
   }
 
 }

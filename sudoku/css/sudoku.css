@@ -375,4 +375,8 @@ MOBILE
     #bg-image {
         opacity: 0%;
     }
+
+    .modal-content {
+    width: 88%;
+    }
 }
