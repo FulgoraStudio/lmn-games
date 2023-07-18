@@ -153,6 +153,8 @@ const updatePlayer = function(inputKeys){
 
 const drawPlayer = function(ctx){
     ctx.clearRect(this._x, this._y, this._width, this._height);
+    ctx.fillStyle = BG_COLOR;
+    ctx.fillRect(this._x-1, this._y, this._width+2, this._height);
     ctx.drawImage(this._image, 
         this._x, 
         this._y, 
@@ -233,6 +235,7 @@ originalCollectable.draw = drawCollectable;
 originalCollectable.update = updateCollectable;
 originalCollectable.image.src = './assets/img/collectables/dragonfly.png';
 originalCollectable.tag = TAGS.COLLECTABLE;
+originalCollectable.animations;
 
 
 /**
