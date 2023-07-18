@@ -46,9 +46,13 @@ let timeOuts = []
 
 const TAGS = Object.freeze({
     PLAYER: 'PLAYER',
-    ENEMY: 'ENEMY',
+    ENEMY_BOTTLE: 'ENEMY_BOTTLE',
+    ENEMY_ROCK: 'ENEMY_ROCK',
+    ENEMY_CAN: 'ENEM_CAN',
     COLLECTABLE: 'COLLECTABLE',
 })
+
+const obstacleTypes = ['bottle', 'rock', 'can'];
 
 const env_elements = {
     "left": [
@@ -108,9 +112,12 @@ let isMuted = false;
 
 // Audio
 const gameSounds = {
-    MUSIC: './assets/audio/RUNNER.mp3',
-    COLLECTABLE: './assets/audio/CONFIRM_1.wav', 
-    ENEMY: './assets/audio/CLICK_DENY_6.wav',
+    MUSIC: './assets/audio/ENDLESS-RUNNER-MUSICA.mp3',
+    COLLECTABLE: './assets/audio/ENDLESS-RUNNER-COMER-LIBELULA.mp3',
+    ENEMY_ROCK: './assets/audio/ENDLESS-RUNNER-IMPACTO-PIEDRA.mp3',
+    ENEMY_BOTTLE: './assets/audio/ENDLESS-RUNNER-IMPACTO-BOTELLA-1.mp3',
+    ENEMY_CAN: './assets/audio/ENDLESS-RUNNER-IMPACTO-LATA-1-.mp3',
+    LOSE_GAME: './assets/audio/ENDLESS-RUNNER-DERROTA.mp3',
 };
 
 SoundManager.loadSounds(Object.values(gameSounds))
@@ -153,6 +160,8 @@ const updatePlayer = function(inputKeys){
 
 const drawPlayer = function(ctx){
     ctx.clearRect(this._x, this._y, this._width, this._height);
+    ctx.fillStyle = BG_COLOR;
+    ctx.fillRect(this._x-1, this._y, this._width+2, this._height);
     ctx.drawImage(this._image, 
         this._x, 
         this._y, 
@@ -215,7 +224,19 @@ const drawObstacle = function(ctx){
 originalObstacle.draw = drawObstacle;
 originalObstacle.update = updateObstacle;
 originalObstacle.image.src = './assets/img/obstacles/rock.png';
-originalObstacle.tag = TAGS.ENEMY;
+originalObstacle.tag = TAGS.ENEMY_ROCK;
+originalObstacle.idleImage = './assets/img/obstacles/rock.png';
+originalObstacle.animations = {
+    "bottle": [
+        (new Image()).src = './assets/img/obstacles/bottle.png'
+    ],
+    "rock": [
+        (new Image()).src = './assets/img/obstacles/rock.png'
+    ],
+    "can": [
+        (new Image()).src = './assets/img/obstacles/can.png'
+    ]
+}
 
 // BASIC COLLECTABLE
 const originalCollectable = new Actor(200, -100, 50, 50, 5, 0, 1.2, new Image());
@@ -231,8 +252,21 @@ const drawCollectable = function(ctx){
 
 originalCollectable.draw = drawCollectable;
 originalCollectable.update = updateCollectable;
-originalCollectable.image.src = './assets/img/collectables/dragonfly.png';
+originalCollectable.image.src = './assets/img/collectables/idle00.png';
 originalCollectable.tag = TAGS.COLLECTABLE;
+originalCollectable.idleImage = './assets/img/collectables/idle00.png';
+originalCollectable.animations = {
+    "idle": [
+        (new Image()).src='./assets/img/collectables/idle00.png',
+        (new Image()).src='./assets/img/collectables/idle01.png',
+        (new Image()).src='./assets/img/collectables/idle02.png',
+        (new Image()).src='./assets/img/collectables/idle03.png',
+        (new Image()).src='./assets/img/collectables/idle04.png',
+        (new Image()).src='./assets/img/collectables/idle05.png',
+        (new Image()).src='./assets/img/collectables/idle06.png',
+        (new Image()).src='./assets/img/collectables/idle07.png',
+    ]
+};
 
 
 /**
@@ -271,7 +305,6 @@ document.addEventListener('keydown', function(event) {
 
 document.addEventListener('keyup', function(event) {
     player.stopAnimation();
-    // player.playAnimation("idle", true);
     keys[event.code] = false;
 });
 
@@ -282,9 +315,27 @@ function spawnObstacle() {
     const obstacleX = Math.random() * (canvas.width - originalObstacle.width);
     const obstacleY = -100;
 
-    const obstacle = Object.assign(Object.create(Object.getPrototypeOf(originalObstacle)), originalObstacle);
+    const obstacle = Object.assign(Object.create(Object.getPrototypeOf(originalObstacle)), originalObstacle, {
+        _tag: '',
+        _image: new Image()
+    });
+
     obstacle.x = obstacleX;
     obstacle.y = obstacleY;
+
+    const obstacleType = obstacleTypes[Math.floor(Math.random() * 3)];
+
+    if(obstacleType == 'bottle') {
+        obstacle.tag = TAGS.ENEMY_BOTTLE;
+    } else if (obstacleType == 'rock') {
+        obstacle.tag = TAGS.ENEMY_ROCK;
+    }else if (obstacleType == 'can'){
+        obstacle.tag = TAGS.ENEMY_CAN;
+    } else {
+        obstacle.tag = TAGS.ENEMY_ROCK;
+    }
+    obstacle.type = obstacleType;
+    obstacle.playAnimation(obstacleType, true);
   
     obstacles.push(obstacle);
 }
@@ -296,6 +347,8 @@ function spawnCollectable() {
     const collectable = Object.assign(Object.create(Object.getPrototypeOf(originalCollectable)), originalCollectable);
     collectable.x = collectableX;
     collectable.y = collectableY;
+
+    collectable.playAnimation('idle', true);
   
     collectables.push(collectable);
 }
@@ -307,7 +360,7 @@ function spawnEnviromentElement() {
     let enviromentX;
     let enviromentY = -100;
     let sprite;
-    console.log(canvas.width, enviromentElemnt.width)
+
     if (enviromentType > 0.8) { //izquierda
         enviromentX = 0;
         sprite = env_elements['left'][Math.floor((Math.random() * env_elements['left'].length))];
@@ -320,7 +373,6 @@ function spawnEnviromentElement() {
         sprite = env_elements['middle'][Math.floor((Math.random() * env_elements['middle'].length))]
     }
     
-    console.log(sprite);
     const enviroment = Object.assign(Object.create(Object.getPrototypeOf(enviromentElemnt)), enviromentElemnt, {
         _image: new Image(sprite)
     });
@@ -480,19 +532,42 @@ function checkCollision(actorA, actorB) {
 }
 
 function checkCollisionActorTag(tag){
-    if(tag == TAGS.ENEMY) {
-        SoundManager.playSound(gameSounds.ENEMY);
-        // lives--;
-        if(lives <= 0) {
-            isDead = true;
-            isPlaying = false;
-        }
-    }
-
+    console.log(tag);
     if(tag == TAGS.COLLECTABLE) {
         points++;
         SoundManager.playSound(gameSounds.COLLECTABLE);
         pointsLabel.innerText = `${points}`;
+        return
+    }
+
+    if(tag == TAGS.ENEMY_BOTTLE) {
+        SoundManager.playSound(gameSounds.ENEMY_BOTTLE);
+        checkGameOver();
+        return;
+    }
+
+    if(tag == TAGS.ENEMY_CAN) {
+        SoundManager.playSound(gameSounds.ENEMY_CAN);
+        checkGameOver();
+        return;
+    }
+
+    if(tag == TAGS.ENEMY_ROCK) {
+        SoundManager.playSound(gameSounds.ENEMY_ROCK);
+        checkGameOver();
+        return;
+    }
+
+   
+}
+
+function checkGameOver() {
+    lives--;
+    if(lives <= 0) {
+        isDead = true;
+        isPlaying = false;
+        SoundManager.stopMusic();
+        SoundManager.playSound(gameSounds.LOSE_GAME);
     }
 }
 
