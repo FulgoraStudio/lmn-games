@@ -14,16 +14,24 @@ const resetButton = document.getElementById('reset-button');
 const htpButton = document.getElementById("htp-button");
 const soundButton = document.getElementById("sound-button");
 
+const modal = document.getElementById("modal-container");
+
 const pointsLabel = document.getElementById('points-text');
 const distanceLabel = document.getElementById('distance-text');
 
 htpButton.addEventListener("click", () => {
-    document.getElementById("modal-container").style.display = "block";
+    modal.innerHTML = `<div class="modal-content">
+    <h4>Instrucciones</h4>
+    <p>Controla a la famosa Trucha Ipu mientras avanza por el río. Deberás comer todos los insectos posibles y esquivar los obstáculos como piedras. Con las flechas Izquierda y Derecha del teclado, la trucha cambia de carril para atrapar o esquivar. Que tengas una buena carrera!</p>
+    <button id="close-modal-btn" class="button">Volver</button>
+</div>`
+
+    document.getElementById("close-modal-btn").addEventListener("click", function() {
+        modal.style.display = "none";
+    });
+
+    modal.style.display = "block";
 })
-  
-document.getElementById("close-modal-btn").addEventListener("click", function() {
-    document.getElementById("modal-container").style.display = "none";
-});
 
 startButton.onclick = () => {
     startButton.classList.add('hide');
@@ -113,7 +121,9 @@ const env_elements = {
  * GLOBAL VARIABLES
  */
 let points = 0;
+let scorePoints = 0;
 let distance = 0;
+let scoreDistance = 0;
 const PLAYER_LIVES = 5;
 let lives = PLAYER_LIVES;
 
@@ -624,6 +634,7 @@ function checkGameOver() {
         isPlaying = false;
         SoundManager.stopMusic();
         SoundManager.playSound(gameSounds.LOSE_GAME);
+        showEndGame();
     }
 }
 
@@ -673,9 +684,67 @@ function clearAllTimeouts() {
   
     timeOuts = [];
 }
-
+loadPlayerData();
 resizeCanvas();
 // Game loop
 gameLoop();
 
-// TODO:
+function showEndGame(){
+    if(checkNewScore()){
+        modal.innerHTML = `<div class="modal-content">
+                                <h4>¡Nuevo record!</h4>
+                                <p>Antiguo record: ${scorePoints}</p>
+                                <p>Tus puntos: ${points}</p>
+                                <button id="close-modal-btn" class="button">Volver</button>
+                            </div>`;
+
+        document.getElementById("close-modal-btn").addEventListener("click", function() {
+            modal.style.display = "none";
+        });
+
+        modal.style.display = "block";
+
+        loadPlayerData();
+    } else {
+        modal.innerHTML = `<div class="modal-content">
+                                <h4>Perdiste</h4>
+                                <p>Record actual: ${scorePoints}</p>
+                                <p>Tus puntos: ${points}</p>
+                                <button id="close-modal-btn" class="button">Volver</button>
+                            </div>`;
+
+        document.getElementById("close-modal-btn").addEventListener("click", function() {
+            modal.style.display = "none";
+        });
+
+        modal.style.display = "block";
+    }
+}
+
+function checkNewScore(){
+    const newScore = points > scorePoints;
+    if(newScore) {
+        savePlayerData(points, distance);
+    }
+
+    return newScore;
+}
+
+function loadPlayerData(){
+    const dataStr = localStorage.getItem('playerData');
+    
+    if(!dataStr) {
+        savePlayerData(0, 0);
+        return;
+    }
+
+    const dataObj = JSON.parse(dataStr);
+
+    scorePoints = dataObj.points;
+    scoreDistance = dataObj.distance;
+}
+
+function savePlayerData(points, distance){
+    const data = {points, distance};
+    localStorage.setItem('playerData', JSON.stringify(data));
+}
