@@ -277,6 +277,7 @@ const drawCollectable = function(ctx){
 
 originalCollectable.draw = drawCollectable;
 originalCollectable.update = updateCollectable;
+originalCollectable.fps = 10;
 originalCollectable.image.src = './assets/img/collectables/idle00.png';
 originalCollectable.tag = TAGS.COLLECTABLE;
 originalCollectable.idleImage = './assets/img/collectables/idle00.png';
@@ -418,6 +419,7 @@ function spawnEnviromentElement() {
     const enviroment = Object.assign(Object.create(Object.getPrototypeOf(enviromentElemnt)), enviromentElemnt, {
         _image: new Image(sprite)
     });
+
     enviroment.image.src = sprite;
     enviroment.x = enviromentX;
     enviroment.y = enviromentY;
