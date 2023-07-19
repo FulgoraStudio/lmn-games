@@ -9,7 +9,6 @@ context.lineWidth = borderWidth;
 context.strokeStyle = borderColor;
 const BG_COLOR = "#587176";
 
-const startButton = document.getElementById('start-button');
 const resetButton = document.getElementById('reset-button');
 const htpButton = document.getElementById("htp-button");
 const soundButton = document.getElementById("sound-button");
@@ -33,11 +32,6 @@ htpButton.addEventListener("click", () => {
     modal.style.display = "block";
 })
 
-startButton.onclick = () => {
-    startButton.classList.add('hide');
-    resetButton.classList.remove('hide');
-    startGame()
-};
 resetButton.onclick = () => resetGame();
 
 soundButton.addEventListener("click", () => {
@@ -667,6 +661,7 @@ function startGame() {
 }
 
 function resetGame() {
+    resetButton.innerText = "Jugar de vuelta";
     SoundManager.stopMusic();
     clearAllTimeouts();
 
