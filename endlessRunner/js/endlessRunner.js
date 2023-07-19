@@ -9,7 +9,6 @@ context.lineWidth = borderWidth;
 context.strokeStyle = borderColor;
 const BG_COLOR = "#587176";
 
-const startButton = document.getElementById('start-button');
 const resetButton = document.getElementById('reset-button');
 const htpButton = document.getElementById("htp-button");
 const soundButton = document.getElementById("sound-button");
@@ -33,11 +32,6 @@ htpButton.addEventListener("click", () => {
     modal.style.display = "block";
 })
 
-startButton.onclick = () => {
-    startButton.classList.add('hide');
-    resetButton.classList.remove('hide');
-    startGame()
-};
 resetButton.onclick = () => resetGame();
 
 soundButton.addEventListener("click", () => {
@@ -148,7 +142,7 @@ let isMuted = false;
 // Audio
 const gameSounds = {
     MUSIC: './assets/audio/ENDLESS-RUNNER-MUSICA.mp3',
-    COLLECTABLE: './assets/audio/ENDLESS-RUNNER-COMER-LIBELULA.mp3',
+    COLLECTABLE: './assets/audio/ENDLESS-RUNNER-COMER-LIBELULA-1-MORDIDA.mp3',
     ENEMY_ROCK: './assets/audio/ENDLESS-RUNNER-IMPACTO-PIEDRA.mp3',
     ENEMY_BOTTLE: './assets/audio/ENDLESS-RUNNER-IMPACTO-BOTELLA-1.mp3',
     ENEMY_CAN: './assets/audio/ENDLESS-RUNNER-IMPACTO-LATA-1-.mp3',
@@ -305,7 +299,7 @@ originalCollectable.animations = {
  * ENVIROMENT
  * 
  */
-const enviromentElemnt = new Actor(0, -100, 75 , 75, 5, 0, 1.2, new Image());
+const enviromentElemnt = new Actor(0, -100, 150 , 150, 5, 0, 1.2, new Image());
 
 const updateEnviroment = function(){
     this._y += this._speed;
@@ -492,7 +486,7 @@ function gameLoop() {
     context.clearRect(0, 0, canvas.width, canvas.height);
     context.fillStyle = BG_COLOR;
     context.fillRect(0, 0, canvas.width, canvas.height);
-    updateEnviromentElements(context);
+    
     if(isPlaying) {
         checkBorders(player, canvas);
         
@@ -517,7 +511,7 @@ function gameLoop() {
     
             addDistance();
         }
-    
+        updateEnviromentElements(context);
         //Update Objects
         updateObstacles(context);
         updateCollectables(context);
@@ -667,6 +661,7 @@ function startGame() {
 }
 
 function resetGame() {
+    resetButton.innerText = "Jugar de vuelta";
     SoundManager.stopMusic();
     clearAllTimeouts();
 
