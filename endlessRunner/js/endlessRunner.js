@@ -300,7 +300,7 @@ originalCollectable.animations = {
  * ENVIROMENT
  * 
  */
-const enviromentElemnt = new Actor(0, -100, 150 , 150, 5, 0, 1.2, new Image());
+const enviromentElemnt = new Actor(0, -100, 233, 233, 5, 0, 1.2, new Image());
 
 const updateEnviroment = function(){
     this._y += this._speed;
@@ -402,7 +402,7 @@ function spawnEnviromentElement() {
     const enviromentType = Math.random();
 
     let enviromentX;
-    let enviromentY = -100;
+    let enviromentY = -500;
     let sprite;
 
     if (enviromentType > 0.8) { //izquierda
