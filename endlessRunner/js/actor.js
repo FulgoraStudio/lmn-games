@@ -29,6 +29,7 @@ class Actor {
         this._animations = {};
         this._lastFrameTime = 0;
         this._fps = 15;
+        this._expire = false;
     }
 
     get fps(){
@@ -136,6 +137,14 @@ class Actor {
     get draw() {
         return this._draw;
     }
+
+    set expire(newExpire) {
+        this._expire = newExpire;
+    }
+
+    get expire() {
+        return this._expire;
+    }
     
     set draw(callback) {
         if (typeof callback === 'function') {
@@ -187,6 +196,8 @@ class Actor {
             this._currentSpriteIndex += 1;
         } else if (looped) {
             this._currentSpriteIndex = 0;
+        } else {
+            this._expire = true;
         }
     }
 

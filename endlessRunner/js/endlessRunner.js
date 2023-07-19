@@ -50,9 +50,33 @@ const TAGS = Object.freeze({
     ENEMY_ROCK: 'ENEMY_ROCK',
     ENEMY_CAN: 'ENEM_CAN',
     COLLECTABLE: 'COLLECTABLE',
+    FX: 'FX'
 })
 
 const obstacleTypes = ['bottle', 'rock', 'can'];
+
+const fx_sprites = {
+    "collect": [
+        './assets/img/fx/collect/collectable00.png',
+        './assets/img/fx/collect/collectable01.png',
+        './assets/img/fx/collect/collectable02.png',
+        './assets/img/fx/collect/collectable03.png',
+        './assets/img/fx/collect/collectable04.png',
+        './assets/img/fx/collect/collectable05.png',
+        './assets/img/fx/collect/collectable06.png',
+        './assets/img/fx/collect/collectable07.png',
+    ],
+    "collision": [
+        './assets/img/fx/collision/collision00.png',
+        './assets/img/fx/collision/collision01.png',
+        './assets/img/fx/collision/collision02.png',
+        './assets/img/fx/collision/collision03.png',
+        './assets/img/fx/collision/collision04.png',
+        './assets/img/fx/collision/collision05.png',
+        './assets/img/fx/collision/collision06.png',
+        './assets/img/fx/collision/collision07.png',
+    ]
+}
 
 const env_elements = {
     "left": [
@@ -102,6 +126,7 @@ const rightEnvSpawnInterval = 600;
 let obstacles = [];
 let collectables = [];
 let envElements = [];
+let fxElements = [];
 
 // Key's pressed
 const keys = {};
@@ -311,6 +336,24 @@ document.addEventListener('keyup', function(event) {
 /**
  * FUNCTIONS
  */
+
+function spawnFX(fxName, xPos, yPos) {
+    const fx = Object.assign(Object.create(Object.getPrototypeOf(originalObstacle)), originalObstacle, {
+        _tag: TAGS.FX,
+        _image: new Image(),
+        _animations: fx_sprites
+    });
+
+    fx.x = xPos;
+    fx.y = yPos;
+    fx.velocity = 0;
+    fx.speed = 0;
+    fx.acceleration = 0;
+    fx.playAnimation(fxName);
+  
+    fxElements.push(fx);
+}
+
 function spawnObstacle() {
     const obstacleX = Math.random() * (canvas.width - originalObstacle.width);
     const obstacleY = -100;
@@ -366,7 +409,6 @@ function spawnEnviromentElement() {
         sprite = env_elements['left'][Math.floor((Math.random() * env_elements['left'].length))];
     } else if (enviromentType > 0.4) {
         enviromentX = canvas.width - enviromentElemnt.width;
-        console.log("pasa")
         sprite = env_elements['right'][Math.floor((Math.random() * env_elements['right'].length))]
     } else {
         enviromentX = (canvas.width / 2) - (enviromentElemnt.width /2);
@@ -425,6 +467,20 @@ function updateEnviromentElements(ctx) {
     }
 }
 
+function updateFX(ctx) {
+    for (let i = 0; i < fxElements.length; i++) {
+        const fx = fxElements[i];
+
+        fx.update();
+        fx.draw(ctx);
+        
+        if (fx.expire) {
+            fxElements.splice(i, 1);
+            i--;
+        }
+    }
+}
+
 function gameLoop() {
 
     context.clearRect(0, 0, canvas.width, canvas.height);
@@ -459,6 +515,7 @@ function gameLoop() {
         //Update Objects
         updateObstacles(context);
         updateCollectables(context);
+        updateFX(context);
         
     }
 
@@ -532,28 +589,31 @@ function checkCollision(actorA, actorB) {
 }
 
 function checkCollisionActorTag(tag){
-    console.log(tag);
     if(tag == TAGS.COLLECTABLE) {
         points++;
         SoundManager.playSound(gameSounds.COLLECTABLE);
+        spawnFX('collect', player.x, player.y);
         pointsLabel.innerText = `${points}`;
         return
     }
 
     if(tag == TAGS.ENEMY_BOTTLE) {
         SoundManager.playSound(gameSounds.ENEMY_BOTTLE);
+        spawnFX('collision', player.x, player.y);
         checkGameOver();
         return;
     }
 
     if(tag == TAGS.ENEMY_CAN) {
         SoundManager.playSound(gameSounds.ENEMY_CAN);
+        spawnFX('collision', player.x, player.y);
         checkGameOver();
         return;
     }
 
     if(tag == TAGS.ENEMY_ROCK) {
         SoundManager.playSound(gameSounds.ENEMY_ROCK);
+        spawnFX('collision', player.x, player.y);
         checkGameOver();
         return;
     }
