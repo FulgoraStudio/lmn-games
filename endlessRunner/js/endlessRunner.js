@@ -681,10 +681,10 @@ function clearAllTimeouts() {
   
     timeOuts = [];
 }
-loadPlayerData();
-resizeCanvas();
-// Game loop
-gameLoop();
+// loadPlayerData();
+// resizeCanvas();
+// // Game loop
+// gameLoop();
 
 function showEndGame(){
     if(checkNewScore()){
@@ -744,4 +744,12 @@ function loadPlayerData(){
 function savePlayerData(points, distance){
     const data = {points, distance};
     localStorage.setItem('playerData', JSON.stringify(data));
+}
+
+
+window.onload = () => {
+    loadPlayerData();
+    resizeCanvas();
+    // Game loop
+    gameLoop();
 }
