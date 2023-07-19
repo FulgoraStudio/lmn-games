@@ -184,9 +184,6 @@ const updatePlayer = function(inputKeys){
 }
 
 const drawPlayer = function(ctx){
-    ctx.clearRect(this._x, this._y, this._width, this._height);
-    ctx.fillStyle = BG_COLOR;
-    ctx.fillRect(this._x-1, this._y, this._width+2, this._height);
     ctx.drawImage(this._image, 
         this._x, 
         this._y, 
@@ -242,7 +239,6 @@ const updateObstacle = function(){
 }
 
 const drawObstacle = function(ctx){
-    // ctx.globalCompositeOperation = 'destination-over';
     ctx.drawImage(this._image, this._x, this._y, this._width, this._height);
 }
 
