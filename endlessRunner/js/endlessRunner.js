@@ -690,8 +690,8 @@ function showEndGame(){
     if(checkNewScore()){
         modal.innerHTML = `<div class="modal-content">
                                 <h4>¡Nuevo record!</h4>
-                                <p>Antiguo record: ${scorePoints}</p>
-                                <p>Tus puntos: ${points}</p>
+                                <p class="results">Antiguo record: ${scorePoints}</p>
+                                <p class="results">Tus puntos: ${points}</p>
                                 <button id="close-modal-btn" class="button">Volver</button>
                             </div>`;
 
@@ -705,8 +705,8 @@ function showEndGame(){
     } else {
         modal.innerHTML = `<div class="modal-content">
                                 <h4>Perdiste</h4>
-                                <p>Record actual: ${scorePoints}</p>
-                                <p>Tus puntos: ${points}</p>
+                                <p class="results">Record actual: ${scorePoints}</p>
+                                <p class="results">Tus puntos: ${points}</p>
                                 <button id="close-modal-btn" class="button">Volver</button>
                             </div>`;
 
