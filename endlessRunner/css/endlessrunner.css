@@ -128,11 +128,13 @@ h1 {
     box-shadow: 0px 0.8rem #ffffff, 0px 0.7rem 1rem  rgba(0, 0, 0, 0.24);
 }
 
+
 /*
 
 MODAL
 
 */
+
 
 h4 {
     font-size: 3rem;
@@ -177,4 +179,25 @@ h4 {
     color: #cb4a3e;
     text-align: left;
     margin-bottom: 3rem;
+}
+
+
+
+/*
+
+MOBILE
+
+*/
+
+
+@media (max-width: 600px) {
+    #container {
+        display: flex;
+        width: 42rem;
+        height: 70rem;
+        margin: 0;
+        position: relative;
+        top: 0;
+    }
+
 }
