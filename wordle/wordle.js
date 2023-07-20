@@ -45,11 +45,6 @@ const guessList = wordList;
 
 let word = wordList[Math.floor(Math.random() * wordList.length)].toUpperCase();
 
-//LOGS
-console.log('%cHacer trampa es MUY MALO', 'color: red; font-size: 21px; margin: 4px;');
-console.log('%cPero aqui hay una pista....', 'color: red; font-size: 12px;');
-console.log(word);
-
 window.onload = function() {
     initialize();
 }

@@ -104,7 +104,6 @@ function shuffleCards() {
 
 function selectBackCard() {
     currentBackCard = backCardImgs[Math.floor(Math.random() * backCardImgs.length)];
-    console.log(currentBackCard);
 }
 
 function shuffleCardImage(){
@@ -146,11 +145,6 @@ function startGame() {
         }
         board.push(row);
     }
-
-    /** LOGS */
-    console.log('%cHacer trampa es MUY MALO', 'color: red; font-size: 86px; margin: 4px;');
-    console.log('%cPero aqui hay una pista....', 'color: red; font-size: 12px;');
-    console.log(board);
 
     SoundManager.playMusic(gameSounds.GAME_MUSIC, true);
 

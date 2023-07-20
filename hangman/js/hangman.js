@@ -1025,12 +1025,7 @@ const generateWord = (optionValue) => {
     hints = [...sWord.hints];
     //choose random word
     chosenWord = sWord.word;
-    console.log('%cHacer trampa es MUY MALO', 'color: red; font-size: 86px; margin: 4px;');
-    console.log('%cPero aqui hay una pista....', 'color: red; font-size: 12px;');
-    console.log(chosenWord);
     chosenWord = chosenWord.toUpperCase();
-
-
     //replace every letter with span containing dash
     let displayItem = chosenWord.replace(/./g, '<div class="dashes">&nbsp</div>');
 

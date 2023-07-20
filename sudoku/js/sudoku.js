@@ -105,14 +105,7 @@ function setBoard() {
         gameBoard = createBoard();
         boardsolution = JSON.parse(JSON.stringify(gameBoard));
         isResolved(boardsolution);
-        console.log("Try");
     } while (!isResolved(boardsolution));
-    
-    //TODO: Pistas
-    console.log('%cHacer trampa es MUY MALO', 'color: red; font-size: 21px; margin: 4px;');
-    console.log('%cPero aqui hay una pista....', 'color: red; font-size: 12px;');
-    console.log("Board: ", gameBoard);
-    console.log("Solution: ", boardsolution);
 }
 
 function selectNumber() {
@@ -136,24 +129,17 @@ function selectTile() {
 
         if(boardsolution[r][c] == numSelected.id) {
             this.innerText = numSelected.id;
-            // console.log("Logg")
-            // console.log(gameBoard);
-            // console.log(numSelected.id);
+
             gameBoard[r][c] = Number(numSelected.id);
-            // console.log(gameBoard);
-            // console.log(boardsolution);
+
             if(boardResolved(gameBoard, boardsolution)) {
                 isPlaying = false;
                 winGame = true;
-                console.log("WIN GAME");
-            }else{
-                console.log("No win yet");
             }
         }
         else
         {
             errors += 1;
-            // document.getElementById("errors").innerText = errors;
         }
     }
 }
