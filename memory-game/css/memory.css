@@ -40,7 +40,7 @@ main, * {
 #container {
     max-width: 139.2rem;
     margin: 0 auto;
-    }
+}
 
 h1 {
     display: block;
@@ -80,7 +80,7 @@ p {
 }
 
 #game-container {
-    max-width: 128rem;
+    max-width: 85rem;
     margin: 0 auto;
 }
 
@@ -107,6 +107,7 @@ p {
 
 .card {
     width: 20%;
+    height: 15%;
 }
 
 .card-selected{
