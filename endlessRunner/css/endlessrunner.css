@@ -73,6 +73,18 @@ h1 {
     width: 14rem;
 }
 
+#life-label {
+    border-right: 0.2rem dashed #aba4a4;
+    border-bottom: 0.2rem dashed #aba4a4;
+    padding: 1rem 2rem 1.2rem 2rem;
+
+}
+
+#life-text {
+    border-bottom: 0.2rem dashed #aba4a4;
+    padding: 1rem 2rem 1.2rem 2rem;
+}
+
 #points-label {
     border-right: 0.2rem dashed #aba4a4;
     border-bottom: 0.2rem dashed #aba4a4;
@@ -128,6 +140,14 @@ h1 {
     box-shadow: 0px 0.8rem #ffffff, 0px 0.7rem 1rem  rgba(0, 0, 0, 0.24);
 }
 
+#leyend {
+    width: 30%;
+    font-size: 1.8rem;
+    font-weight: 300;
+    text-align: left;
+    margin: 4.8rem 0 auto 0;
+}
+
 
 /*
 
@@ -166,12 +186,12 @@ h4 {
     box-shadow: 0px 0.8rem #ffffff, 0px 0.7rem 1rem  rgba(0, 0, 0, 0.24);
 }
 
-/*.modal-content p {
+.modal-content p {
     font-size: 1.8rem;
     font-weight: 300;
     text-align: left;
     margin-bottom: 3rem;
-}*/
+}
 
 .results {
     font-size: 2.1rem;
