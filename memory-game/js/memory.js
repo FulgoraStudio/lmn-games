@@ -34,13 +34,30 @@ let cardList = [
     "card08",
     "card09",
     "card10",
+    "card10",
+    "card11",
+    "card12",
+    "card13",
+    "card14",
+    "card15",
+    "card16",
 ]
+
+let backCardImgs = [
+    "assets/images/back00.png",
+    "assets/images/back01.png",
+    "assets/images/back02.png",
+    "assets/images/back03.png",
+    "assets/images/back04.png",
+    "assets/images/back05.png",
+]
+
 let card1Selected;
 let card2Selected;
 
 let cardSet;
 let board = [];
-let rows = 2;
+let rows = 4;
 let columns = 5;
 
 let pairs = (rows * columns) / 2;
@@ -48,6 +65,7 @@ let gameOver = false;
 let isMuted = false;
 
 let timeOuts = [];
+let currentBackCard;
 
 /**
  * SETTINGS
@@ -69,7 +87,7 @@ SoundManager.loadSounds(Object.values(gameSounds))
 });
 
 function shuffleCards() {
-    cardQuantity = cardList.slice(0, 5)
+    cardQuantity = cardList.slice(0, 10)
     cardSet = cardQuantity.concat(cardQuantity) //two of each card
 
     //shuffle
@@ -83,8 +101,13 @@ function shuffleCards() {
 
 }
 
+function selectBackCard() {
+    currentBackCard = backCardImgs[Math.floor(Math.random() * backCardImgs.length)];
+}
+
 function start(){
     console.log("START")
+    selectBackCard()
     startButton.removeEventListener('click', start);
     startButton.addEventListener('click', restartGame);
     startGame();
@@ -126,7 +149,7 @@ function hideCards() {
     for (let r = 0; r < rows; r++) {
         for (let c = 0; c < columns; c++) {
             let card = document.getElementById(r.toString() + "-" + c.toString());
-            card.src = "assets/images/back.png"
+            card.src = currentBackCard;
         }
     }
 }
@@ -168,8 +191,8 @@ function selectCard() {
 
 function update() {
     if(card1Selected.src != card2Selected.src) {
-        card1Selected.src = "assets/images/back.png";
-        card2Selected.src = "assets/images/back.png";
+        card1Selected.src = currentBackCard;
+        card2Selected.src = currentBackCard;
         
         errors += 1;
         
