@@ -48,14 +48,14 @@ let timeOuts = []
 
 const TAGS = Object.freeze({
     PLAYER: 'PLAYER',
-    ENEMY_BOTTLE: 'ENEMY_BOTTLE',
-    ENEMY_ROCK: 'ENEMY_ROCK',
-    ENEMY_CAN: 'ENEM_CAN',
+    ENEMY_FROG: 'ENEMY_FROG',
+    ENEMY_STONE: 'ENEMY_STONE',
+    ENEMY_WOOD: 'ENEM_WOOD',
     COLLECTABLE: 'COLLECTABLE',
     FX: 'FX'
 })
 
-const obstacleTypes = ['bottle', 'rock', 'can'];
+const obstacleTypes = ['frog', 'stone', 'wood'];
 
 const fx_sprites = {
     "collect": [
@@ -143,9 +143,9 @@ let isMuted = false;
 const gameSounds = {
     MUSIC: './assets/audio/ENDLESS-RUNNER-MUSICA.mp3',
     COLLECTABLE: './assets/audio/ENDLESS-RUNNER-COMER-LIBELULA-1-MORDIDA.mp3',
-    ENEMY_ROCK: './assets/audio/ENDLESS-RUNNER-IMPACTO-PIEDRA.mp3',
-    ENEMY_BOTTLE: './assets/audio/ENDLESS-RUNNER-IMPACTO-BOTELLA-1.mp3',
-    ENEMY_CAN: './assets/audio/ENDLESS-RUNNER-IMPACTO-LATA-1-.mp3',
+    ENEMY_STONE: './assets/audio/ENDLESS-RUNNER-IMPACTO-PIEDRA.mp3',
+    ENEMY_FROG: './assets/audio/ENDLESS-RUNNER-RANA-1.mp3',
+    ENEMY_WOOD: './assets/audio/ENDLESS-RUNNER-IMPACTO-MADERA.wav',
     LOSE_GAME: './assets/audio/ENDLESS-RUNNER-DERROTA.mp3',
 };
 
@@ -248,18 +248,39 @@ const drawObstacle = function(ctx){
 
 originalObstacle.draw = drawObstacle;
 originalObstacle.update = updateObstacle;
-originalObstacle.image.src = './assets/img/obstacles/rock.png';
-originalObstacle.tag = TAGS.ENEMY_ROCK;
-originalObstacle.idleImage = './assets/img/obstacles/rock.png';
+originalObstacle.image.src = './assets/img/obstacles/frog/00.png';
+originalObstacle.tag = TAGS.ENEMY_STONE;
+originalObstacle.idleImage = './assets/img/obstacles/frog/00.png';
 originalObstacle.animations = {
-    "bottle": [
-        (new Image()).src = './assets/img/obstacles/bottle.png'
+    "frog": [
+        (new Image()).src = './assets/img/obstacles/frog/00.png',
+        (new Image()).src = './assets/img/obstacles/frog/01.png',
+        (new Image()).src = './assets/img/obstacles/frog/02.png',
+        (new Image()).src = './assets/img/obstacles/frog/03.png',
+        (new Image()).src = './assets/img/obstacles/frog/04.png',
+        (new Image()).src = './assets/img/obstacles/frog/05.png',
+        (new Image()).src = './assets/img/obstacles/frog/06.png',
+        (new Image()).src = './assets/img/obstacles/frog/07.png'
     ],
-    "rock": [
-        (new Image()).src = './assets/img/obstacles/rock.png'
+    "stone": [
+        (new Image()).src = './assets/img/obstacles/stone/00.png',
+        (new Image()).src = './assets/img/obstacles/stone/01.png',
+        (new Image()).src = './assets/img/obstacles/stone/02.png',
+        (new Image()).src = './assets/img/obstacles/stone/03.png',
+        (new Image()).src = './assets/img/obstacles/stone/04.png',
+        (new Image()).src = './assets/img/obstacles/stone/05.png',
+        (new Image()).src = './assets/img/obstacles/stone/06.png',
+        (new Image()).src = './assets/img/obstacles/stone/07.png'
     ],
-    "can": [
-        (new Image()).src = './assets/img/obstacles/can.png'
+    "wood": [
+        (new Image()).src = './assets/img/obstacles/wood/00.png',
+        (new Image()).src = './assets/img/obstacles/wood/01.png',
+        (new Image()).src = './assets/img/obstacles/wood/02.png',
+        (new Image()).src = './assets/img/obstacles/wood/03.png',
+        (new Image()).src = './assets/img/obstacles/wood/04.png',
+        (new Image()).src = './assets/img/obstacles/wood/05.png',
+        (new Image()).src = './assets/img/obstacles/wood/06.png',
+        (new Image()).src = './assets/img/obstacles/wood/07.png'
     ]
 }
 
@@ -369,16 +390,17 @@ function spawnObstacle() {
 
     const obstacleType = obstacleTypes[Math.floor(Math.random() * 3)];
 
-    if(obstacleType == 'bottle') {
-        obstacle.tag = TAGS.ENEMY_BOTTLE;
-    } else if (obstacleType == 'rock') {
-        obstacle.tag = TAGS.ENEMY_ROCK;
-    }else if (obstacleType == 'can'){
-        obstacle.tag = TAGS.ENEMY_CAN;
+    if(obstacleType == 'frog') {
+        obstacle.tag = TAGS.ENEMY_FROG;
+    } else if (obstacleType == 'stone') {
+        obstacle.tag = TAGS.ENEMY_STONE;
+    }else if (obstacleType == 'wood'){
+        obstacle.tag = TAGS.ENEMY_WOOD;
     } else {
-        obstacle.tag = TAGS.ENEMY_ROCK;
+        obstacle.tag = TAGS.ENEMY_STONE;
     }
     obstacle.type = obstacleType;
+
     obstacle.playAnimation(obstacleType, true);
   
     obstacles.push(obstacle);
@@ -599,22 +621,22 @@ function checkCollisionActorTag(tag){
         return
     }
 
-    if(tag == TAGS.ENEMY_BOTTLE) {
-        SoundManager.playSound(gameSounds.ENEMY_BOTTLE);
+    if(tag == TAGS.ENEMY_FROG) {
+        SoundManager.playSound(gameSounds.ENEMY_FROG);
         spawnFX('collision', player.x, player.y);
         checkGameOver();
         return;
     }
 
-    if(tag == TAGS.ENEMY_CAN) {
-        SoundManager.playSound(gameSounds.ENEMY_CAN);
+    if(tag == TAGS.ENEMY_WOOD) {
+        SoundManager.playSound(gameSounds.ENEMY_WOOD);
         spawnFX('collision', player.x, player.y);
         checkGameOver();
         return;
     }
 
-    if(tag == TAGS.ENEMY_ROCK) {
-        SoundManager.playSound(gameSounds.ENEMY_ROCK);
+    if(tag == TAGS.ENEMY_STONE) {
+        SoundManager.playSound(gameSounds.ENEMY_STONE);
         spawnFX('collision', player.x, player.y);
         checkGameOver();
         return;
