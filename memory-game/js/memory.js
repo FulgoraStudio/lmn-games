@@ -50,6 +50,7 @@ let backCardImgs = [
     "assets/images/back03.png",
     "assets/images/back04.png",
     "assets/images/back05.png",
+    "assets/images/back06.png"
 ]
 
 let card1Selected;
@@ -103,17 +104,29 @@ function shuffleCards() {
 
 function selectBackCard() {
     currentBackCard = backCardImgs[Math.floor(Math.random() * backCardImgs.length)];
+    console.log(currentBackCard);
+}
+
+function shuffleCardImage(){
+    for (let i = cardList.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [cardList[i], cardList[j]] = [cardList[j], cardList[i]];
+    }
 }
 
 function start(){
-    console.log("START")
-    selectBackCard()
     startButton.removeEventListener('click', start);
     startButton.addEventListener('click', restartGame);
+
     startGame();
 }
 
 function startGame() {
+
+    selectBackCard();
+    shuffleCardImage();
+    
+    shuffleCards();
 
     for (let r = 0; r < rows; r++) {
         let row = []
@@ -233,8 +246,6 @@ function restartGame() {
     cleanBoard();
     clearAllTimeouts();
     SoundManager.stopMusic();
-    
-    shuffleCards();
     startGame();
 }
 
