@@ -12,6 +12,7 @@ const BG_COLOR = "#587176";
 const resetButton = document.getElementById('reset-button');
 const htpButton = document.getElementById("htp-button");
 const soundButton = document.getElementById("sound-button");
+const textLife = document.getElementById('life-text');
 
 const modal = document.getElementById("modal-container");
 
@@ -647,6 +648,9 @@ function checkCollisionActorTag(tag){
 
 function checkGameOver() {
     lives--;
+
+    textLife.innerText = "❤️".repeat(lives);
+
     if(lives <= 0) {
         isDead = true;
         isPlaying = false;
@@ -686,6 +690,7 @@ function startGame() {
 
 function resetGame() {
     resetButton.innerText = "Jugar de vuelta";
+    textLife.innerText = "❤️❤️❤️❤️❤️"
     SoundManager.stopMusic();
     clearAllTimeouts();
 
