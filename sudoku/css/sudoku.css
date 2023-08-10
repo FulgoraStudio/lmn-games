@@ -293,6 +293,23 @@ h4 {
     margin-bottom: 3rem;
 }
 
+@keyframes errorAnim {
+    0% {
+        background: gainsboro;
+    }
+    
+    100% {
+        background: #2F2F2F;
+    }
+}
+
+.error-anim{
+    animation-name: errorAnim;
+    animation-duration: 1s;
+    animation-fill-mode: forwards;
+}
+
+
 
 
 /*

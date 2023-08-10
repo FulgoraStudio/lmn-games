@@ -93,6 +93,14 @@ function setGame() {
                 tile.classList.add("vertical-line");
             }
             tile.addEventListener("click", selectTile);
+
+            tile.addEventListener('animationend', () => {
+                tile.classList.remove('error-anim');
+              
+                // Restablecer el fondo a negro
+                // body.style.backgroundColor = 'black';
+              });
+
             tile.classList.add("tile");
             tile.classList.add("letter");
             document.getElementById("board").append(tile);
@@ -139,6 +147,7 @@ function selectTile() {
         }
         else
         {
+            this.classList.add("error-anim");
             errors += 1;
         }
     }
