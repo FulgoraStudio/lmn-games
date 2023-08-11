@@ -947,16 +947,16 @@ let options = {
 
 //Images in secuence
 const imgSequencePath = [
-    "./assets/img/A.png",
-    "./assets/img/B.png",
-    "./assets/img/C.png",
-    "./assets/img/D.png",
-    "./assets/img/E.png",
-    "./assets/img/F.png",
+    "./assets/img/A.webp",
+    "./assets/img/B.webp",
+    "./assets/img/C.webp",
+    "./assets/img/D.webp",
+    "./assets/img/E.webp",
+    "./assets/img/F.webp",
 ]
 
-const winImagePath = "./assets/img/WIN.png";
-const loseImagePath = "./assets/img/LOSE.png";
+const winImagePath = "./assets/img/WIN.webp";
+const loseImagePath = "./assets/img/LOSE.webp";
 
 let currentImgIndex = 0;
 const TRYES = 6;

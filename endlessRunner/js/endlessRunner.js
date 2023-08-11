@@ -60,54 +60,54 @@ const obstacleTypes = ['frog', 'stone', 'wood'];
 
 const fx_sprites = {
     "collect": [
-        './assets/img/fx/collect/collectable00.png',
-        './assets/img/fx/collect/collectable01.png',
-        './assets/img/fx/collect/collectable02.png',
-        './assets/img/fx/collect/collectable03.png',
-        './assets/img/fx/collect/collectable04.png',
-        './assets/img/fx/collect/collectable05.png',
-        './assets/img/fx/collect/collectable06.png',
-        './assets/img/fx/collect/collectable07.png',
+        './assets/img/fx/collect/collectable00.webp',
+        './assets/img/fx/collect/collectable01.webp',
+        './assets/img/fx/collect/collectable02.webp',
+        './assets/img/fx/collect/collectable03.webp',
+        './assets/img/fx/collect/collectable04.webp',
+        './assets/img/fx/collect/collectable05.webp',
+        './assets/img/fx/collect/collectable06.webp',
+        './assets/img/fx/collect/collectable07.webp',
     ],
     "collision": [
-        './assets/img/fx/collision/collision00.png',
-        './assets/img/fx/collision/collision01.png',
-        './assets/img/fx/collision/collision02.png',
-        './assets/img/fx/collision/collision03.png',
-        './assets/img/fx/collision/collision04.png',
-        './assets/img/fx/collision/collision05.png',
-        './assets/img/fx/collision/collision06.png',
-        './assets/img/fx/collision/collision07.png',
+        './assets/img/fx/collision/collision00.webp',
+        './assets/img/fx/collision/collision01.webp',
+        './assets/img/fx/collision/collision02.webp',
+        './assets/img/fx/collision/collision03.webp',
+        './assets/img/fx/collision/collision04.webp',
+        './assets/img/fx/collision/collision05.webp',
+        './assets/img/fx/collision/collision06.webp',
+        './assets/img/fx/collision/collision07.webp',
     ]
 }
 
 const env_elements = {
     "left": [
-        './assets/img/enviroment/left/ARB-I-1.png',
-        './assets/img/enviroment/left/ARB-I-2.png',
-        './assets/img/enviroment/left/ARB-I-3.png',
-        './assets/img/enviroment/left/ARB-I-4.png',
-        './assets/img/enviroment/left/ARB-I-5.png',
-        './assets/img/enviroment/left/T-I1.png',
-        './assets/img/enviroment/left/T-I2.png',
-        './assets/img/enviroment/left/T-I3.png',
-        './assets/img/enviroment/left/T-I4.png',
+        './assets/img/enviroment/left/ARB-I-1.webp',
+        './assets/img/enviroment/left/ARB-I-2.webp',
+        './assets/img/enviroment/left/ARB-I-3.webp',
+        './assets/img/enviroment/left/ARB-I-4.webp',
+        './assets/img/enviroment/left/ARB-I-5.webp',
+        './assets/img/enviroment/left/T-I1.webp',
+        './assets/img/enviroment/left/T-I2.webp',
+        './assets/img/enviroment/left/T-I3.webp',
+        './assets/img/enviroment/left/T-I4.webp',
     ],
     "right": [
-        './assets/img/enviroment/right/ARB-D-1.png',
-        './assets/img/enviroment/right/ARB-D-2.png',
-        './assets/img/enviroment/right/ARB-D-3.png',
-        './assets/img/enviroment/right/ARB-D-4.png',
-        './assets/img/enviroment/right/ARB-D-5.png',
-        './assets/img/enviroment/right/ARB-D-6.png',
-        './assets/img/enviroment/right/T-D1.png',
-        './assets/img/enviroment/right/T-D2.png',
-        './assets/img/enviroment/right/T-D3.png',
-        './assets/img/enviroment/right/T-D4.png',
+        './assets/img/enviroment/right/ARB-D-1.webp',
+        './assets/img/enviroment/right/ARB-D-2.webp',
+        './assets/img/enviroment/right/ARB-D-3.webp',
+        './assets/img/enviroment/right/ARB-D-4.webp',
+        './assets/img/enviroment/right/ARB-D-5.webp',
+        './assets/img/enviroment/right/ARB-D-6.webp',
+        './assets/img/enviroment/right/T-D1.webp',
+        './assets/img/enviroment/right/T-D2.webp',
+        './assets/img/enviroment/right/T-D3.webp',
+        './assets/img/enviroment/right/T-D4.webp',
     ],
     "middle": [
-        './assets/img/enviroment/water/waves.png',
-        './assets/img/enviroment/water/reflexes.png'
+        './assets/img/enviroment/water/waves.webp',
+        './assets/img/enviroment/water/reflexes.webp'
     ]
 }
 
@@ -198,38 +198,38 @@ const drawPlayer = function(ctx){
 
 player.draw = drawPlayer;
 player.update = updatePlayer;
-player.image.src = './assets/img/player/idle/idle00.png';
-player.idleImage = './assets/img/player/idle/idle00.png';
+player.image.src = './assets/img/player/idle/idle00.webp';
+player.idleImage = './assets/img/player/idle/idle00.webp';
 
 player.animations = {
     "idle": [
-        (new Image()).src='./assets/img/player/idle/idle00.png',
-        (new Image()).src='./assets/img/player/idle/idle01.png',
-        (new Image()).src='./assets/img/player/idle/idle02.png',
-        (new Image()).src='./assets/img/player/idle/idle03.png',
-        (new Image()).src='./assets/img/player/idle/idle04.png',
-        (new Image()).src='./assets/img/player/idle/idle05.png',
-        (new Image()).src='./assets/img/player/idle/idle06.png',
-        (new Image()).src='./assets/img/player/idle/idle07.png',
-        // (new Image()).src='./assets/img/player/idle/idle08.png'
+        (new Image()).src='./assets/img/player/idle/idle00.webp',
+        (new Image()).src='./assets/img/player/idle/idle01.webp',
+        (new Image()).src='./assets/img/player/idle/idle02.webp',
+        (new Image()).src='./assets/img/player/idle/idle03.webp',
+        (new Image()).src='./assets/img/player/idle/idle04.webp',
+        (new Image()).src='./assets/img/player/idle/idle05.webp',
+        (new Image()).src='./assets/img/player/idle/idle06.webp',
+        (new Image()).src='./assets/img/player/idle/idle07.webp',
+        // (new Image()).src='./assets/img/player/idle/idle08.webp'
     ],
     "left": [
-        (new Image()).src='./assets/img/player/moveL/moveleft01.png',
-        (new Image()).src='./assets/img/player/moveL/moveleft02.png',
-        (new Image()).src='./assets/img/player/moveL/moveleft03.png',
-        (new Image()).src='./assets/img/player/moveL/moveleft04.png',
-        (new Image()).src='./assets/img/player/moveL/moveleft05.png',
-        (new Image()).src='./assets/img/player/moveL/moveleft06.png',
-        (new Image()).src='./assets/img/player/moveL/moveleft07.png'
+        (new Image()).src='./assets/img/player/moveL/moveleft01.webp',
+        (new Image()).src='./assets/img/player/moveL/moveleft02.webp',
+        (new Image()).src='./assets/img/player/moveL/moveleft03.webp',
+        (new Image()).src='./assets/img/player/moveL/moveleft04.webp',
+        (new Image()).src='./assets/img/player/moveL/moveleft05.webp',
+        (new Image()).src='./assets/img/player/moveL/moveleft06.webp',
+        (new Image()).src='./assets/img/player/moveL/moveleft07.webp'
     ],
     "right": [
-        (new Image()).src='./assets/img/player/moveR/moveright01.png',
-        (new Image()).src='./assets/img/player/moveR/moveright02.png',
-        (new Image()).src='./assets/img/player/moveR/moveright03.png',
-        (new Image()).src='./assets/img/player/moveR/moveright04.png',
-        (new Image()).src='./assets/img/player/moveR/moveright05.png',
-        (new Image()).src='./assets/img/player/moveR/moveright06.png',
-        (new Image()).src='./assets/img/player/moveR/moveright07.png'
+        (new Image()).src='./assets/img/player/moveR/moveright01.webp',
+        (new Image()).src='./assets/img/player/moveR/moveright02.webp',
+        (new Image()).src='./assets/img/player/moveR/moveright03.webp',
+        (new Image()).src='./assets/img/player/moveR/moveright04.webp',
+        (new Image()).src='./assets/img/player/moveR/moveright05.webp',
+        (new Image()).src='./assets/img/player/moveR/moveright06.webp',
+        (new Image()).src='./assets/img/player/moveR/moveright07.webp'
     ]
 }
 
@@ -249,39 +249,39 @@ const drawObstacle = function(ctx){
 
 originalObstacle.draw = drawObstacle;
 originalObstacle.update = updateObstacle;
-originalObstacle.image.src = './assets/img/obstacles/frog/00.png';
+originalObstacle.image.src = './assets/img/obstacles/frog/00.webp';
 originalObstacle.tag = TAGS.ENEMY_STONE;
-originalObstacle.idleImage = './assets/img/obstacles/frog/00.png';
+originalObstacle.idleImage = './assets/img/obstacles/frog/00.webp';
 originalObstacle.animations = {
     "frog": [
-        (new Image()).src = './assets/img/obstacles/frog/00.png',
-        (new Image()).src = './assets/img/obstacles/frog/01.png',
-        (new Image()).src = './assets/img/obstacles/frog/02.png',
-        (new Image()).src = './assets/img/obstacles/frog/03.png',
-        (new Image()).src = './assets/img/obstacles/frog/04.png',
-        (new Image()).src = './assets/img/obstacles/frog/05.png',
-        (new Image()).src = './assets/img/obstacles/frog/06.png',
-        (new Image()).src = './assets/img/obstacles/frog/07.png'
+        (new Image()).src = './assets/img/obstacles/frog/00.webp',
+        (new Image()).src = './assets/img/obstacles/frog/01.webp',
+        (new Image()).src = './assets/img/obstacles/frog/02.webp',
+        (new Image()).src = './assets/img/obstacles/frog/03.webp',
+        (new Image()).src = './assets/img/obstacles/frog/04.webp',
+        (new Image()).src = './assets/img/obstacles/frog/05.webp',
+        (new Image()).src = './assets/img/obstacles/frog/06.webp',
+        (new Image()).src = './assets/img/obstacles/frog/07.webp'
     ],
     "stone": [
-        (new Image()).src = './assets/img/obstacles/stone/00.png',
-        (new Image()).src = './assets/img/obstacles/stone/01.png',
-        (new Image()).src = './assets/img/obstacles/stone/02.png',
-        (new Image()).src = './assets/img/obstacles/stone/03.png',
-        (new Image()).src = './assets/img/obstacles/stone/04.png',
-        (new Image()).src = './assets/img/obstacles/stone/05.png',
-        (new Image()).src = './assets/img/obstacles/stone/06.png',
-        (new Image()).src = './assets/img/obstacles/stone/07.png'
+        (new Image()).src = './assets/img/obstacles/stone/00.webp',
+        (new Image()).src = './assets/img/obstacles/stone/01.webp',
+        (new Image()).src = './assets/img/obstacles/stone/02.webp',
+        (new Image()).src = './assets/img/obstacles/stone/03.webp',
+        (new Image()).src = './assets/img/obstacles/stone/04.webp',
+        (new Image()).src = './assets/img/obstacles/stone/05.webp',
+        (new Image()).src = './assets/img/obstacles/stone/06.webp',
+        (new Image()).src = './assets/img/obstacles/stone/07.webp'
     ],
     "wood": [
-        (new Image()).src = './assets/img/obstacles/wood/00.png',
-        (new Image()).src = './assets/img/obstacles/wood/01.png',
-        (new Image()).src = './assets/img/obstacles/wood/02.png',
-        (new Image()).src = './assets/img/obstacles/wood/03.png',
-        (new Image()).src = './assets/img/obstacles/wood/04.png',
-        (new Image()).src = './assets/img/obstacles/wood/05.png',
-        (new Image()).src = './assets/img/obstacles/wood/06.png',
-        (new Image()).src = './assets/img/obstacles/wood/07.png'
+        (new Image()).src = './assets/img/obstacles/wood/00.webp',
+        (new Image()).src = './assets/img/obstacles/wood/01.webp',
+        (new Image()).src = './assets/img/obstacles/wood/02.webp',
+        (new Image()).src = './assets/img/obstacles/wood/03.webp',
+        (new Image()).src = './assets/img/obstacles/wood/04.webp',
+        (new Image()).src = './assets/img/obstacles/wood/05.webp',
+        (new Image()).src = './assets/img/obstacles/wood/06.webp',
+        (new Image()).src = './assets/img/obstacles/wood/07.webp'
     ]
 }
 
@@ -300,19 +300,19 @@ const drawCollectable = function(ctx){
 originalCollectable.draw = drawCollectable;
 originalCollectable.update = updateCollectable;
 originalCollectable.fps = 10;
-originalCollectable.image.src = './assets/img/collectables/idle00.png';
+originalCollectable.image.src = './assets/img/collectables/idle00.webp';
 originalCollectable.tag = TAGS.COLLECTABLE;
-originalCollectable.idleImage = './assets/img/collectables/idle00.png';
+originalCollectable.idleImage = './assets/img/collectables/idle00.webp';
 originalCollectable.animations = {
     "idle": [
-        (new Image()).src='./assets/img/collectables/idle00.png',
-        (new Image()).src='./assets/img/collectables/idle01.png',
-        (new Image()).src='./assets/img/collectables/idle02.png',
-        (new Image()).src='./assets/img/collectables/idle03.png',
-        (new Image()).src='./assets/img/collectables/idle04.png',
-        (new Image()).src='./assets/img/collectables/idle05.png',
-        (new Image()).src='./assets/img/collectables/idle06.png',
-        (new Image()).src='./assets/img/collectables/idle07.png',
+        (new Image()).src='./assets/img/collectables/idle00.webp',
+        (new Image()).src='./assets/img/collectables/idle01.webp',
+        (new Image()).src='./assets/img/collectables/idle02.webp',
+        (new Image()).src='./assets/img/collectables/idle03.webp',
+        (new Image()).src='./assets/img/collectables/idle04.webp',
+        (new Image()).src='./assets/img/collectables/idle05.webp',
+        (new Image()).src='./assets/img/collectables/idle06.webp',
+        (new Image()).src='./assets/img/collectables/idle07.webp',
     ]
 };
 
@@ -335,7 +335,7 @@ const drawEnviroment = function(ctx){
 
 enviromentElemnt.draw = drawEnviroment;
 enviromentElemnt.update = updateEnviroment;
-// enviromentElemnt.image.src = './assets/img/blueBall.png';
+// enviromentElemnt.image.src = './assets/img/blueBall.webp';
 // leftEnviroment.tag = TAGS.Enviroment;
 
 

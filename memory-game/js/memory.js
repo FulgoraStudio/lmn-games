@@ -44,13 +44,13 @@ let cardList = [
 ]
 
 let backCardImgs = [
-    "assets/images/back00.png",
-    "assets/images/back01.png",
-    "assets/images/back02.png",
-    "assets/images/back03.png",
-    "assets/images/back04.png",
-    "assets/images/back05.png",
-    "assets/images/back06.png"
+    "assets/images/back00.webp",
+    "assets/images/back01.webp",
+    "assets/images/back02.webp",
+    "assets/images/back03.webp",
+    "assets/images/back04.webp",
+    "assets/images/back05.webp",
+    "assets/images/back06.webp"
 ]
 
 let card1Selected;
@@ -136,7 +136,7 @@ function startGame() {
             //Create card in document
             let card = document.createElement("img");
             card.id = r.toString() + "-" + c.toString();
-            card.src = "assets/images/" + cardImg + ".png";
+            card.src = "assets/images/" + cardImg + ".webp";
             card.classList.add("card");
             card.addEventListener("click", selectCard);
             card.addEventListener('mouseenter', hoverCard);
@@ -173,7 +173,7 @@ function selectCard() {
             let r = parseInt(coords[0]);
             let c = parseInt(coords[1]);
 
-            card1Selected.src = "assets/images/" + board[r][c] + ".png";
+            card1Selected.src = "assets/images/" + board[r][c] + ".webp";
 
             SoundManager.playSound(gameSounds.SHOVEL);
         } else if (!card2Selected && this != card1Selected) {
@@ -186,7 +186,7 @@ function selectCard() {
             let r = parseInt(coords[0]);
             let c = parseInt(coords[1]);
             
-            card2Selected.src = "assets/images/" + board[r][c] + ".png";
+            card2Selected.src = "assets/images/" + board[r][c] + ".webp";
 
             SoundManager.playSound(gameSounds.SHOVEL_2);
 

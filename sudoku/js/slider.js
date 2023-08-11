@@ -3,7 +3,7 @@ const sliderImage = document.getElementById('bg-image');
 const imagePaths = [];
 
 for(let i=1;i<34;i++){
-  imagePaths.push(`assets/img/image${i}.jpg`)
+  imagePaths.push(`assets/img/image${i}.webp`)
 }
 
 let currentIndex = 0;
