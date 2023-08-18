@@ -293,6 +293,16 @@ h4 {
     margin-bottom: 3rem;
 }
 
+
+/* EPIGRAPH */
+#epigraph-text {
+    text-align: right;
+    font-size: 1.8rem;
+    font-weight: 300;
+    margin: 1.8rem 0 auto 0;
+    padding: auto 2rem;
+}
+
 @keyframes errorAnim {
     0% {
         background: gainsboro;
