@@ -1,61 +1,136 @@
 const sliderImage = document.getElementById('bg-image');
 const epigraph = document.getElementById('epigraph-text');
 
-const imagePaths = [];
-const TOTAL_IMAGES = 33;
-
-const epigraphs = [
-  'Neuquén Capital. Material fotográfico LM Neuquén',
-  'Otoño en Neuquén Capital. Material fotográfico LM Neuquén',
-  'Neuquén Capital. Material fotográfico LM Neuquén',
-  'Neuquén Capital. Material fotográfico LM Neuquén',
-  'Arroyo Durán, Neuquén Capital. Material fotográfico LM Neuquén',
-  'Arroyo Durán, Neuquén Capital. Material fotográfico LM Neuquén',
-  'Río Limay, Neuquén Capital. Material fotográfico LM Neuquén',
-  'Alto Valle. Material fotográfico LM Neuquén',
-  'Río Neuquén. Material fotográfico LM Neuquén',
-  'Río Correntoso, Villa la Angostura. Gentileza: Ministerio de turismo del Neuquén',
-  'Río Agrio. Material fotográfico LM Neuquén',
-  'Paseo de la Costa, Neuquén Capital. Material fotográfico LM Neuquén',
-  'Paseo de la Costa, Neuquén Capital. Material fotográfico LM Neuquén',
-  'Norte neuquino. Material fotográfico LM Neuquén',
-  'Mutisia, flor de la provincia del Neuquén. Material fotográfico LM Neuquén',
-  'Cascada La Fragua, Neuquén. Material fotográfico LM Neuquén',
-  'Cascada La Fragua, Neuquén. Material fotográfico LM Neuquén',
-  'Lago Quillen, Neuquén. Material fotográfico LM Neuquén',
-  'Junín de los Andes. Material fotográfico LM Neuquén',
-  'Cerro Chapelco, San Martín de los Andes. Gentileza: Ministerio de turismo del Neuquén',
-  'Atardecer en Neuquén Capital. Material fotográfico LM Neuquén',
-  'Fauna autóctona de Neuquén.  Gentileza: Ministerio de turismo del Neuquén',
-  'Neuquén Capital. Material fotográfico LM Neuquén ',
-  'Copahue, Neuquén. Gentileza: Ministerio de turismo del Neuquén',
-  'Araucaria en Copahue. Material fotográfico LM Neuquén',
-  'Área natural protegida El Tromen. Material fotográfico LM Neuquén',
-  'Área natural protegida El Tromen. Material fotográfico LM Neuquén',
-  'Ave Cauquén. Material fotográfico LM Neuquén',
-  'Bodega Familia Schroeder. Material fotográfico LM Neuquén',
-  'Atardecer en el norte neuquino. Gentileza: Ministerio de turismo del Neuquén',
-  'Caviahue, Neuquén. Gentileza: Ministerio de turismo del Neuquén',
-  'Fauna autóctona de Neuquén.  Gentileza: Ministerio de turismo del Neuquén',
-  '',
-]
-
-//Initialize vars
-epigraph.innerText = epigraphs[0];
-sliderImage.src = 'assets/img/image0.webp';
-
-//Load images
-if(epigraphs.length == TOTAL_IMAGES) {
-  for(let i=0;i<TOTAL_IMAGES;i++){
-    imagePaths.push({ 
-      imagePath: `assets/img/image${i}.webp`, 
-      epigraph: epigraphs[i] 
-    });
+const imagePaths = [
+  {
+    imageName: 'SFP_VistasdeNeuquen',
+    epigraph: 'Neuquén Capital. Material fotográfico LM Neuquén'
+  },
+  {
+    imageName: 'SFP_Otoñoplazasprogreso',
+    epigraph: 'Otoño en Neuquén Capital. Material fotográfico LM Neuquén'
+  },
+  {
+    imageName: 'SFP_FamiliadePatoscanalV',
+    epigraph: 'Neuquén Capital. Material fotográfico LM Neuquén'
+  },
+  {
+    imageName: 'SFP_Epasquemangomas-Paralados',
+    epigraph: 'Neuquén Capital. Material fotográfico LM Neuquén'
+  },
+  {
+    imageName: 'SFP_ArroyoDuranRecorrida',
+    epigraph: 'Arroyo Durán, Neuquén Capital. Material fotográfico LM Neuquén'
+  },
+  {
+    imageName: 'SFP_ArroyoDuran',
+    epigraph: 'Arroyo Durán, Neuquén Capital. Material fotográfico LM Neuquén'
+  },
+  {
+    imageName: 'SFP_RegataRosa',
+    epigraph: 'Río Limay, Neuquén Capital. Material fotográfico LM Neuquén'
+  },
+  {
+    imageName: 'SFPMasAereas',
+    epigraph: 'Alto Valle. Material fotográfico LM Neuquén'
+  },
+  {
+    imageName: 'SFPCrecidadeRioNeuquen',
+    epigraph: 'Río Neuquén. Material fotográfico LM Neuquén'
+  },
+  {
+    imageName: 'RíoCorrentosoVillaLaAngostura',
+    epigraph: 'Río Correntoso, Villa la Angostura. Gentileza: Ministerio de turismo del Neuquén'
+  },
+  {
+    imageName: 'RioAgrio',
+    epigraph: 'Río Agrio. Material fotográfico LM Neuquén'
+  },
+  {
+    imageName: 'PaseodelaCosta',
+    epigraph: 'Paseo de la Costa, Neuquén Capital. Material fotográfico LM Neuquén'
+  },
+  {
+    imageName: 'PaseodelaCosta2',
+    epigraph: 'Paseo de la Costa, Neuquén Capital. Material fotográfico LM Neuquén'
+  },
+  {
+    imageName: 'NorteNeuquino',
+    epigraph: 'Norte neuquino. Material fotográfico LM Neuquén'
+  },
+  {
+    imageName: 'Muticias',
+    epigraph: 'Mutisia, flor de la provincia del Neuquén. Material fotográfico LM Neuquén'
+  },
+  {
+    imageName: 'ManzanoAmargoCascadaLaFragua0503',
+    epigraph: 'Cascada La Fragua, Neuquén. Material fotográfico LM Neuquén'
+  },
+  {
+    imageName: 'ManzanoAmargoCascadaLaFragua0506',
+    epigraph: 'Cascada La Fragua, Neuquén. Material fotográfico LM Neuquén'
+  },
+  {
+    imageName: 'LagoQuillenVolcanLanin',
+    epigraph: 'Lago Quillen, Neuquén. Material fotográfico LM Neuquén '
+  },
+  {
+    imageName: 'JAndes2018-otoño-BDelloro-RP61(20)',
+    epigraph: 'Junín de los Andes. Material fotográfico LM Neuquén'
+  },
+  {
+    imageName: 'IM_2013_056_0859',
+    epigraph: 'Cerro Chapelco, San Martín de los Andes. Gentileza: Ministerio de turismo del Neuquén'
+  },
+  {
+    imageName: 'DSC_5180',
+    epigraph: 'Atardecer en Neuquén Capital. Material fotográfico LM Neuquén'
+  },
+  {
+    imageName: 'DSC_0190',
+    epigraph: 'Fauna autóctona de Neuquén.  Gentileza: Ministerio de turismo del Neuquén'
+  },
+  {
+    imageName: 'DJI_0023',
+    epigraph: 'Neuquén Capital. Material fotográfico LM Neuquén'
+  },
+  {
+    imageName: 'CopahueDiegoT',
+    epigraph: 'Copahue, Neuquén. Gentileza: Ministerio de turismo del Neuquén'
+  },
+  {
+    imageName: 'CopahueAraucarias(2)',
+    epigraph: 'Araucaria en Copahue. Material fotográfico LM Neuquén'
+  },
+  {
+    imageName: 'ChosMalalAreaNaturalProtegidaElTromen0287',
+    epigraph: 'Área natural protegida El Tromen. Material fotográfico LM Neuquén'
+  },
+  {
+    imageName: 'ChosMalalAreaNaturalProtegidaElTromen0336',
+    epigraph: 'Área natural protegida El Tromen. Material fotográfico LM Neuquén'
+  },
+  {
+    imageName: 'Cauquen',
+    epigraph: 'Ave Cauquén. Material fotográfico LM Neuquén'
+  },
+  {
+    imageName: 'Bodegadenoche11',
+    epigraph: 'Bodega Familia Schroeder. Material fotográfico LM Neuquén'
+  },
+  {
+    imageName: '551',
+    epigraph: ' Atardecer en el norte neuquino. Gentileza: Ministerio de turismo del Neuquén'
+  },
+  {
+    imageName: '054',
+    epigraph: 'Caviahue, Neuquén. Gentileza: Ministerio de turismo del Neuquén'
+  },
+  {
+    imageName: '005',
+    epigraph: 'Fauna autóctona de Neuquén.  Gentileza: Ministerio de turismo del Neuquén'
   }
-} else {
-  console.log('El numero de imagenes y epigrafes no coincide');
-  console.log(`Epigrafes: ${epigraphs.length}, Imagenes: ${TOTAL_IMAGES}`);
-}
+]
 
 shuffleArray(imagePaths);
 
@@ -73,9 +148,10 @@ function showNextImage() {
   if (currentIndex >= imagePaths.length) {
     currentIndex = 0;
   }
-  sliderImage.src = imagePaths[currentIndex].imagePath;
+  sliderImage.src = `assets/img/${imagePaths[currentIndex].imageName}.webp`;
   epigraph.innerText = imagePaths[currentIndex].epigraph;
 }
 
-sliderImage.src = imagePaths[currentIndex].imagePath;
+epigraph.innerText = imagePaths[currentIndex].epigraph;
+sliderImage.src = `assets/img/${imagePaths[currentIndex].imageName}.webp`;
 setInterval(showNextImage, 10000);
