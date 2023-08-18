@@ -155,3 +155,5 @@ function showNextImage() {
 epigraph.innerText = imagePaths[currentIndex].epigraph;
 sliderImage.src = `assets/img/${imagePaths[currentIndex].imageName}.webp`;
 setInterval(showNextImage, 10000);
+
+//TODO
