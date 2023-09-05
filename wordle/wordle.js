@@ -7,51 +7,105 @@ let column = 0; //current letter
 let gameOver = false;
 
 const wordList = [
-"Amigo",
-"Arena",
-"Barco",
-"Campo",
-"Canto",
-"Joyas",
-"Casas",
-"Cielo",
-"Color",
-"Danza",
-"Dulce",
-"Estar",
-"Feliz",
-"Fuego",
-"Gente",
-"Hogar",
-"Hotel",
-"Joven",
-"Largo",
-"Manos",
-"Miedo",
-"Nubes",
 "Perro",
-"Plaza",
-"Risas",
-"Salsa",
-"Tabla",
-"Tarde",
-"Usado",
-"Vacas",
-"Yogur",
-"Zorro"
+// "Amigo",
+// "Arena",
+// "Barco",
+// "Campo",
+// "Canto",
+// "Joyas",
+// "Casas",
+// "Cielo",
+// "Color",
+// "Danza",
+// "Dulce",
+// "Estar",
+// "Feliz",
+// "Fuego",
+// "Gente",
+// "Hogar",
+// "Hotel",
+// "Joven",
+// "Largo",
+// "Manos",
+// "Miedo",
+// "Nubes",
+// "Perro",
+// "Plaza",
+// "Risas",
+// "Salsa",
+// "Tabla",
+// "Tarde",
+// "Usado",
+// "Vacas",
+// "Yogur",
+// "Zorro"
 ]
 
-const guessList = wordList;
+let word = '';
 
-let word = wordList[Math.floor(Math.random() * wordList.length)].toUpperCase();
 
 window.onload = function() {
+    selectNewWord();
     initialize();
+
+    const resetButton = document.getElementById('btn-reset');
+    resetButton.addEventListener('click', () => reset());
+}
+
+function reset(){
+    selectNewWord();
+
+    const tiles = document.getElementsByClassName('tile');
+    const tilesArray = [...tiles]
+
+    const keyTiles = document.getElementsByClassName('key-tile');
+    const keyTilesArray = [...keyTiles];
+
+    tilesArray.forEach(tile => {
+        tile.innerText = "";
+
+        tile.classList.forEach(function() {
+            if(tile.classList.contains('correct')){
+                tile.classList.remove('correct')
+            }
+            if(tile.classList.contains('absent')){
+                tile.classList.remove('absent')
+            }
+            if(tile.classList.contains('present')){
+                tile.classList.remove('present')
+            }
+        });
+    });
+
+    keyTilesArray.forEach(keyTile => {
+        keyTile.classList.forEach(function() {
+            if(keyTile.classList.contains('correct')){
+                keyTile.classList.remove('correct')
+            }
+            if(keyTile.classList.contains('absent')){
+                keyTile.classList.remove('absent')
+            }
+            if(keyTile.classList.contains('present')){
+                keyTile.classList.remove('present')
+            }
+        })
+    });
+
+    gameOver = false;
+    row = 0;
+    column = 0;
+}
+
+function selectNewWord(){
+    word = wordList[Math.floor(Math.random() * wordList.length)].toUpperCase();
 }
 
 function initialize() {
-    //Create game board
+    //Clear game board
 
+    gameOver = false;
+    //Create game board
     //Create Tiles
     for(let r = 0; r < height ; r++) {
         for (let c = 0; c < width; c++) {
@@ -99,7 +153,7 @@ function initialize() {
 
             keyboardRow.appendChild(keyTile);
         }
-        document.body.appendChild(keyboardRow);
+        document.getElementById('keyboard-container').appendChild(keyboardRow);
     }
 
     //Listener (Key press)
@@ -115,47 +169,50 @@ function proccesInput(e) {
     if(gameOver) return;
 
     if("KeyA" <= e.code && e.code <= "KeyZ") {
-        if(column < width) {
-            let currentTile = document.getElementById(row.toString() + "-" + column.toString());
-            if(currentTile.innerText == "") {
-                currentTile.innerText = e.code[3];
-                column += 1;
-            }
-        }
+        checkLetter(e.code[3]);//the letter of event
     } else if (e.code == "Backspace") {
-        if(0 < column && column <= width) {
-            column -= 1;
-        }
-        let currentTile = document.getElementById(row.toString() + "-" + column.toString());
-        currentTile.innerText = "";
+        eraseLetter();
     } else if (e.code == "Enter") {
         update();
     }
 
+    //game over
     if(!gameOver && row == height) {
         gameOver = true;
+        showGameOver(false);
+    }
+}
+
+function checkLetter(letter){
+    if(column < width) {
+        let currentTile = document.getElementById(row.toString() + "-" + column.toString());
+        if(currentTile.innerText == "") {
+            currentTile.innerText = letter;
+            column += 1;
+        }
+    }
+}
+
+function eraseLetter(){
+    if(0 < column && column <= width) {
+        column -= 1;
+    }
+    let currentTile = document.getElementById(row.toString() + "-" + column.toString());
+    currentTile.innerText = "";
+}
+
+function showGameOver(isWin){
+    if(isWin)
+    {
+        document.getElementById("answer").innerText = `Felicidades, la palabra era ${word}`;
+    } else {
         document.getElementById("answer").innerText = word;
     }
 }
 
 function update() {
-    let guess = "";
+
     document.getElementById("answer").innerText = "";
-
-    //TODO: Implementar sistema de intentos
-    // //guess word
-    // for (let c = 0; c < width; c++) {
-    //     let currentTile = document.getElementById(row.toString() + "-" + c.toString());
-    //     let letter = currentTile.innerText;
-    //     guess += letter;
-    // }
-
-    // guess = guess.toLowerCase();
-
-    // if(!guessList.includes(guess)) {
-    //     document.getElementById("answer").innerText = "No existe en la lista de palabras";
-    //     return
-    // }
 
     let correct = 0;
     let letterCount = {};
@@ -187,6 +244,7 @@ function update() {
 
         if(correct == width) {
             gameOver = true;
+            showGameOver(true);
         }
     }
 
