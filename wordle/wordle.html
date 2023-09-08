@@ -12,13 +12,29 @@
     <h1 id="title">Wordle</h1>
     <hr>
     <br>
-    <div id="board">
-
-    </div>
-
+    <!-- GAME-->
+    <div id="board"></div>
     <br>
     <h3 id="answer"></h3>
     <div id="keyboard-container"></div>
-    <button id="btn-reset">Reset</button>
+    <div id="controls-container">
+        <div id="digits" class="box"></div>
+    </div>
+
+    <!-- BUTOONS -->
+    <div id="buttons-container">
+        <button id="htp-button" class="btn">¿Cómo jugar?</button>
+        <button id="new-game-button" class="btn">Jugar de vuelta</button>
+    </div>
+
+    <!-- MODAL -->
+    <div id="modal-container" class="modal">
+        <div class="modal-content">
+            <h4>Instrucciones</h4>
+            <p>Juego del wordle</p>
+            <p>Un wordle</p>
+            <button id="close-modal-btn" class="btn">Volver</button>
+        </div>
+    </div>
 </body>
 </html>

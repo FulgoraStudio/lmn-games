@@ -45,12 +45,22 @@ const wordList = [
 let word = '';
 
 
+
 window.onload = function() {
     selectNewWord();
     initialize();
 
-    const resetButton = document.getElementById('btn-reset');
-    resetButton.addEventListener('click', () => reset());
+    const newGameButton = document.getElementById('new-game-button');
+    newGameButton.addEventListener('click', () => reset());
+
+    const htpButton = document.getElementById("htp-button");
+    htpButton.addEventListener("click", () => {
+        document.getElementById("modal-container").style.display = "block";
+    });
+
+    document.getElementById("close-modal-btn").addEventListener("click", function() {
+        document.getElementById("modal-container").style.display = "none";
+    });
 }
 
 function reset(){
