@@ -173,6 +173,7 @@ function proccesInput(e) {
     } else if (e.code == "Backspace") {
         eraseLetter();
     } else if (e.code == "Enter") {
+        if(column != width) return; //all tiles
         update();
     }
 
@@ -211,7 +212,6 @@ function showGameOver(isWin){
 }
 
 function update() {
-
     document.getElementById("answer").innerText = "";
 
     let correct = 0;
