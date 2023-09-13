@@ -42,6 +42,21 @@ const wordList = [
 // "Zorro"
 ]
 
+const gameSounds = {
+    LOSE: './assets/audio/DERROTA.wav',
+    YELLOW_KEY: './assets/audio/PALABRA_AMARILLA.WAV',
+    GREY_KEY: './assets/audio/PALABRA_GRIS.wav',
+    GREEN_KEY: './assets/audio/PALABRA_VERDE.wav',
+    SELECTION: './assets/audio/SELECCIONAR.wav',
+    VICTORY: './assets/audio/VICTORIA.wav',
+    ERASE: './assets/audio/BORRAR.wav',
+};
+
+SoundManager.loadSounds(Object.values(gameSounds))
+  .catch(function(error) {
+    console.error('Error al cargar los sonidos:', error);
+});
+
 let word = '';
 
 
@@ -180,8 +195,10 @@ function proccesInput(e) {
 
     if("KeyA" <= e.code && e.code <= "KeyZ") {
         checkLetter(e.code[3]);//the letter of event
+        SoundManager.playSound(gameSounds.SELECTION);
     } else if (e.code == "Backspace") {
         eraseLetter();
+        SoundManager.playSound(gameSounds.ERASE);
     } else if (e.code == "Enter") {
         if(column != width) return; //all tiles
         update();
@@ -216,16 +233,21 @@ function showGameOver(isWin){
     if(isWin)
     {
         document.getElementById("answer").innerText = `Felicidades, la palabra era ${word}`;
+        SoundManager.playOneShoot(gameSounds.VICTORY);
     } else {
         document.getElementById("answer").innerText = word;
+        SoundManager.playOneShoot(gameSounds.LOSE);
     }
 }
+
 
 function update() {
     document.getElementById("answer").innerText = "";
 
     let correct = 0;
     let letterCount = {};
+    let hasCorrect = false;
+    let hasPresent = false;
 
     //Check letter count
     for(let i=0; i< word.length ; i++){
@@ -249,6 +271,8 @@ function update() {
             keyTile.classList.remove("present");
             keyTile.classList.add("correct");
             correct += 1;
+
+            hasCorrect = true;
             letterCount[letter] -= 1;
         }
 
@@ -272,11 +296,20 @@ function update() {
 
                 }
                 letterCount[letter] -= 1;
+                hasPresent = true;
             }
             else {
                 currentTile.classList.add("absent");
             }
         }
+    }
+
+    if(hasCorrect){
+        SoundManager.playSound(gameSounds.GREEN_KEY);
+    } else if(hasPresent){
+        SoundManager.playSound(gameSounds.YELLOW_KEY);
+    } else {
+        SoundManager.playSound(gameSounds.GREY_KEY);
     }
 
     row += 1; // new row
