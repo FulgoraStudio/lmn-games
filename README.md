@@ -15,6 +15,7 @@ Todos los archivos de cada juego se encuentran dentro de su carpeta.
 - Extinto -> hangman
 - Memoria -> memory-game
 - Sud ocu -> sudoku
+- Wordle -> wordle
 
 ### El HTML de los juegos.
 Todo el contenido que se encuentra dentro de las etiquetas BODY debe ser insertado en la web. En el caso de que la etiqueta <main> ya esté siendo utilizada se deberá sustituir por una etiqueta <div> con un nuevo id. Dicho id debe ser referenciado en los estilos de la hoja de estilos, sustituyendo "main" por "#ID_COLOCADO".
