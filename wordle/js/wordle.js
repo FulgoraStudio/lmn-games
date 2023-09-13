@@ -67,11 +67,15 @@ window.onload = function() {
     initialize();
 
     const newGameButton = document.getElementById('new-game-button');
-    newGameButton.addEventListener('click', () => reset());
+    newGameButton.addEventListener('click', function(){
+        reset();
+        this.blur();// remove focus
+    });
 
     const htpButton = document.getElementById("htp-button");
-    htpButton.addEventListener("click", () => {
+    htpButton.addEventListener("click", function(){
         document.getElementById("modal-container").style.display = "block";
+        this.blur();// remove focus
     });
 
     document.getElementById("close-modal-btn").addEventListener("click", function() {
@@ -79,7 +83,7 @@ window.onload = function() {
     });
 
     const soundButton = document.getElementById("sound-button");
-    soundButton.addEventListener("click", () => {
+    soundButton.addEventListener("click", function(){
         isMuted = !isMuted;
         if(isMuted) {
           soundButton.innerText = '🔇';
@@ -87,6 +91,7 @@ window.onload = function() {
           soundButton.innerText = '🔊';
         }
         SoundManager.changeVolume(isMuted);
+        this.blur();// remove focus
     });
 }
 
