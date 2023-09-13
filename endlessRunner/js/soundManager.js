@@ -88,8 +88,8 @@
         isMusicMuted = muted;
 
         if(isMusicMuted) {
-            currentMusic.stop();
-            currentSource.stop();
+            if(currentMusic) currentMusic.stop();
+            if(currentSource) currentSource.stop();
         } else {
             playMusic(currentMusicPath, true);
         }
