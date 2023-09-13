@@ -43,7 +43,7 @@ soundButton.addEventListener("click", () => {
       soundButton.innerText = '🔊';
     }
     SoundManager.changeVolume(isMuted);
-})
+});
 
 let timeOuts = []
 

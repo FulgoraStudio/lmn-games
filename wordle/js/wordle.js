@@ -5,6 +5,7 @@ let row = 0; //current guess
 let column = 0; //current letter
 
 let gameOver = false;
+let isMuted = false;
 
 const wordList = [
 "Perro",
@@ -75,6 +76,17 @@ window.onload = function() {
 
     document.getElementById("close-modal-btn").addEventListener("click", function() {
         document.getElementById("modal-container").style.display = "none";
+    });
+
+    const soundButton = document.getElementById("sound-button");
+    soundButton.addEventListener("click", () => {
+        isMuted = !isMuted;
+        if(isMuted) {
+          soundButton.innerText = '🔇';
+        } else {
+          soundButton.innerText = '🔊';
+        }
+        SoundManager.changeVolume(isMuted);
     });
 }
 
