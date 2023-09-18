@@ -10,50 +10,51 @@
     <script src="./js/wordle.js"></script>
 </head>
 <body>
-    <h1 id="title">Wordle</h1>
-    <hr>
-    <br>
-    <!-- GAME-->
-    <div id="board"></div>
-    <br>
-    <h3 id="answer"></h3>
-    <div id="keyboard-container"></div>
-    <div id="controls-container">
-        <div id="digits" class="box"></div>
-    </div>
+    <main>
+        <h1 id="title">Wordle</h1>
+        <div id="game-container">
+            <div id="display-container">
+                <div id="board-container">
+                    <div id="wrapper-board">
+                        <!-- GAME-->
+                        <div id="board"></div>
+                        <br>
+                        <h3 id="answer"></h3>
+                        <div id="keyboard-container"></div>
 
-    <!-- BUTOONS -->
-    <div id="buttons-container">
-        <button id="htp-button" class="btn">¿Cómo jugar?</button>
-        <button id="new-game-button" class="btn">Jugar de vuelta</button>
-        <button id="sound-button" class="button">🔊</button>
-    </div>
-
-    <!-- SLIDER -->
-    <div id="wrapper-image">
-        <img id="bg-image" src="assets/img/005.webp" alt="Image">
-        <p id="epigraph-text"></p>
-    </div>
-
-    <!-- MODAL -->
-    <div id="modal-container" class="modal">
-        <div class="modal-content">
-            <h4>Instrucciones</h4>
-            <p>Juego del wordle</p>
-            <p>Un wordle</p>
-            <button id="close-modal-btn" class="btn">Volver</button>
+                        <!-- BUTOONS -->
+                        <div id="buttons-container">
+                            <button id="htp-button" class="btn">¿Cómo jugar?</button>
+                            <button id="new-game-button" class="btn">Jugar de vuelta</button>
+                            <button id="sound-button" class="button">🔊</button>
+                        </div>
+                    </div>
+                </div>
+                <div id="wrapper-image">
+                    <!-- IMAGE-->
+                    <img id="bg-image" src="assets/img/005.webp" alt="Image">
+                    <p id="epigraph-text"></p>
+                </div>
+                <div id="modal-container" class="modal">
+                    <!-- MODAL -->
+                    <div class="modal-content">
+                        <h4>Instrucciones</h4>
+                        <p>Sud Ocu es un juego de rompecabezas numérico que se juega en una cuadrícula de 9x9 casillas. El objetivo es llenar todas las casillas con números del 1 al 9, asegurándose de que no se repitan en ninguna fila, columna o región.</p>
+                        <p>Las pistas iniciales ayudan a empezar, y el juego se resuelve aplicando razonamiento lógico y técnicas deductivas sin necesidad de adivinar. El Sud Ocu se considera resuelto cuando todas las casillas están llenas y se cumplen las reglas.</p>
+                        <button id="close-modal-btn" class="btn">Volver</button>
+                    </div>
+                </div>
+            </div>
         </div>
-    </div>
-
-        <!-- 
-        *******************************************************************
-        *                                                                 *
-        *            Made with ❤️ by Fúlgora Studio                      *
-        *                                                                 *
-        *            https://www.fulgorastudio.com/                       *
-        *******************************************************************
-    -->
-
+    </main>
     <script src="./js/slider.js"></script>
+    <!-- 
+    *******************************************************************
+    *                                                                 *
+    *            Made with ❤️ by Fúlgora Studio                      *
+    *                                                                 *
+    *            https://www.fulgorastudio.com/                       *
+    *******************************************************************
+    -->
 </body>
 </html>
