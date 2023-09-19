@@ -216,7 +216,7 @@ function initialize() {
                 keyTile.classList.add("tile-ru");
             } else if (key == "Enter"){
                 keyTile.classList.add("tile-ld")
-            } else if (key == "Backspace") {
+            } else if (key == "⌫") {
                 keyTile.classList.add("tile-rd")
             }
 
@@ -246,7 +246,7 @@ function proccesInput(e) {
     } else if (e.code == "Backspace") {
         eraseLetter();
         SoundManager.playSound(gameSounds.ERASE);
-    } else if (e.code == "Enter") {
+    } else if (e.code == "Enter" || e.code == "NumpadEnter") {
         if(column != width) return; //all tiles
         update();
     }
