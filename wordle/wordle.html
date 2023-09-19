@@ -8,16 +8,19 @@
     <link rel="stylesheet" href="./css/wordle.css">
     <script src="./js/soundManager.js"></script>
     <script src="./js/wordle.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Encode+Sans+Semi+Condensed:wght@300;500;600;700;800&display=swap" rel="stylesheet">
 </head>
 <body>
     <main>
-        <h1 id="title">Wordle</h1>
+        <h1 id="title">Quechu</h1>
         <div id="game-container">
             <div id="display-container">
                 <div id="board-container">
                     <div id="wrapper-board">
                         <!-- GAME-->
-                        <div id="board"></div>
+                        <div id="board" class="box"></div>
                         <br>
                         <h3 id="answer"></h3>
                         <div id="keyboard-container"></div>
@@ -39,8 +42,8 @@
                     <!-- MODAL -->
                     <div class="modal-content">
                         <h4>Instrucciones</h4>
-                        <p>Sud Ocu es un juego de rompecabezas numérico que se juega en una cuadrícula de 9x9 casillas. El objetivo es llenar todas las casillas con números del 1 al 9, asegurándose de que no se repitan en ninguna fila, columna o región.</p>
-                        <p>Las pistas iniciales ayudan a empezar, y el juego se resuelve aplicando razonamiento lógico y técnicas deductivas sin necesidad de adivinar. El Sud Ocu se considera resuelto cuando todas las casillas están llenas y se cumplen las reglas.</p>
+                        <p>Quechu es un juego de palabras en el que tienes seis intentos para adivinar una palabra oculta de cinco letras.</p>
+                        <p>El juego te da pistas sobre la palabra oculta, indicando si una letra está en la palabra y en la posición correcta (verde), en la palabra pero no en la posición correcta (amarillo), o no está en la palabra (gris).</p>
                         <button id="close-modal-btn" class="btn">Volver</button>
                     </div>
                 </div>

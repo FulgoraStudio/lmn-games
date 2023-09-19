@@ -44,12 +44,26 @@ hr {
 }
 
 #board {
-    width: 350px;
-    height: 420px;
-    margin: 0 auto;
-    margin-top: 3px;
     display: flex;
+    
+    width: 26.5rem;
+    height: 31.8rem;
+    
+    border-radius: 2.1rem;
+    margin: 1.8rem auto 3rem 0;
     flex-wrap: wrap;
+    
+    position: relative;
+    top: 1rem;
+    z-index: 2;
+}
+
+.box {
+    background : #2F2F2F;
+    border-radius : 2.4rem;
+    -moz-border-radius : 2.4rem;
+    -webkit-border-radius : 2.4rem;
+    box-shadow: 0px 0.8rem #ffffff, 0px 0.7rem 1rem  rgba(0, 0, 0, 0.24);
 }
 
 #buttons-container {
@@ -122,29 +136,46 @@ hr {
 }
 
 .tile {
-    /* Box */
-    border: 2px solid lightgray;
-    width: 60px;
-    height: 60px;
-    margin: 2.5px;
+    width: 20%;
+    height: 16.66%;
+
+    border-right: 0.2rem dashed #aba4a4;
+    border-bottom: 0.2rem dashed #aba4a4;
+
+    color: white;
 
     /* Text */
-    color: black;
-    font-size: 36px;
+    font-size: 2.1rem;
     font-weight: bold;
     display: flex;
     justify-content: center;
     align-items: center;
 }
 
+.tile-lu {
+    border-radius: 2.1rem 0 0 0;
+}
+
+.tile-ru {
+    border-radius: 0 2.1rem 0 0;
+}
+
+.tile-rd {
+    border-radius: 0 0 2.1rem 0;
+}
+
+.tile-ld {
+    border-radius: 0 0 0 2.1rem;
+}
+
 .correct {
-    background-color: #6AAA64;
+    background-color: #438d3c;
     color: white;
     border-color: white;
 }
 
 .present {
-    background-color: #C9B458;
+    background-color: #F7CF2A;
     color: white;
     border-color: white;
 }
@@ -155,42 +186,88 @@ hr {
     border-color: white;
 }
 
+#keyboard-container {
+    width: 48rem;
+    position: relative;
+    margin: 1.8rem auto 3rem auto;
+    z-index: 2;
+  display: flex;
+  flex-wrap: wrap;
+
+  background : #2F2F2F;
+  border-radius : 2.4rem;
+  -moz-border-radius : 2.4rem;
+  -webkit-border-radius : 2.4rem;
+  box-shadow: 0px 0.8rem #ffffff, 0px 0.7rem 1rem  rgba(0, 0, 0, 0.24);
+}
+
 .keyboard-row {
-    width: 400px;
-    margin: 0 auto;
     display: flex;
     flex-wrap: wrap;
 }
 
 .key-tile {
-    /* Box */
-    border: 1px solid lightgray;
-    width: 36px;
-    height: 40px;
-    margin: 1px;
+  height: 4.8rem;
+  width: 4.8rem;
+  margin: 0;
+  border-style: none;
+  border-right: 0.2rem dashed #aba4a4;
+  border-bottom: 0.2rem dashed #aba4a4;
 
-    /* Text */
-    font-size: 20px;
-    font-weight: bold;
+  cursor: pointer;
+
+  /*font*/
+  color:#C9C9C9;
+  font-size: 2.1rem;
+  font-weight: bold;
     display: flex;
     justify-content: center;
     align-items: center;
+
+  background : #2f2f2f; 
 }
 
 .enter-key-tile {
-    /* Box */
-    border: 1px solid lightgray;
-    width: 76px;
-    height: 40px;
-    margin: 1px;
+  height: 4.8rem;
+  width: 9.6rem;
+  margin: 0;
+  border-style: none;
+  border-right: 0.2rem dashed #aba4a4;
+  border-bottom: 0.2rem dashed #aba4a4;
 
-    /* Text */
-    font-size: 20px;
-    font-weight: bold;
+  cursor: pointer;
+
+  /*font*/
+  color:#C9C9C9;
+  font-size: 2.1rem;
+  font-weight: bold;
+
     display: flex;
     justify-content: center;
     align-items: center;
 }
+
+#Backspace {
+  height: 4.8rem;
+  width: 4.8rem;
+  margin: 0;
+  border-style: none;
+  border-right: 0.2rem dashed #aba4a4;
+  border-bottom: 0.2rem dashed #aba4a4;
+
+  cursor: pointer;
+
+  /*font*/
+  color:#C9C9C9;
+  font-size: 2.1rem;
+  font-weight: bold;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+
 
 /*
 
