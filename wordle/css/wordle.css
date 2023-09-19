@@ -50,7 +50,7 @@ hr {
     height: 31.8rem;
     
     border-radius: 2.1rem;
-    margin: 1.8rem auto;
+    margin: 1.8rem auto 3rem 0;
     flex-wrap: wrap;
     
     position: relative;
@@ -204,18 +204,18 @@ hr {
 }
 
 #keyboard-container {
-    width: 48rem;
+    width: 40rem;
     position: relative;
     margin: 1.8rem auto 3rem auto;
     z-index: 2;
-  display: flex;
-  flex-wrap: wrap;
+    display: flex;
+    flex-wrap: wrap;
 
-  background : #2F2F2F;
-  border-radius : 2.4rem;
-  -moz-border-radius : 2.4rem;
-  -webkit-border-radius : 2.4rem;
-  box-shadow: 0px 0.8rem #ffffff, 0px 0.7rem 1rem  rgba(0, 0, 0, 0.24);
+    background : #2F2F2F;
+    border-radius : 2.4rem;
+    -moz-border-radius : 2.4rem;
+    -webkit-border-radius : 2.4rem;
+    box-shadow: 0px 0.8rem #ffffff, 0px 0.7rem 1rem  rgba(0, 0, 0, 0.24);
 }
 
 .keyboard-row {
@@ -224,8 +224,8 @@ hr {
 }
 
 .key-tile {
-  height: 4.8rem;
-  width: 4.8rem;
+  height: 4rem;
+  width: 4rem;
   margin: 0;
   border-style: none;
   border-right: 0.2rem dashed #aba4a4;
@@ -245,8 +245,8 @@ hr {
 }
 
 .enter-key-tile {
-  height: 4.8rem;
-  width: 9.6rem;
+  height: 4rem;
+  width: 7.2rem;
   margin: 0;
   border-style: none;
   border-right: 0.2rem dashed #aba4a4;
@@ -265,7 +265,7 @@ hr {
 }
 
 #Backspace {
-  height: 4.8rem;
+  height: 4rem;
   width: 4.8rem;
   margin: 0;
   border-style: none;
@@ -284,7 +284,25 @@ hr {
     align-items: center;
 }
 
+#result-text {
+    text-align: left;
+    margin: 2rem auto;
+    font-weight: 600;
+}
 
+#finish-message {
+    font-size: 1.8rem;
+    font-weight: 300;
+    margin: auto;
+    text-align: left;
+}
+
+#finish-message span{
+    color: #fe5152;
+    font-size: 2.1rem;
+    font-weight: bold;
+    /* margin: 1.8rem auto 3rem auto; */
+}
 
 /*
 

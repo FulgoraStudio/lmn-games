@@ -196,12 +196,6 @@ h1 {
   border: 0;
 }
 
-#result-text {
-  text-align: center;
-  margin: 2rem auto;
-  font-weight: 600;
-}
-
 canvas {
   display: block;
   margin: auto;
@@ -264,11 +258,17 @@ canvas {
   margin: 1.8rem auto 3rem 1rem;
 }
 
+#result-text {
+  text-align: left;
+  margin: 2rem auto;
+  font-weight: 600;
+}
+
 #finish-message {
   font-size: 1.8rem;
   font-weight: 300;
   margin: auto;
-  text-align: center;
+  text-align: left;
 }
 
 #finish-message span{

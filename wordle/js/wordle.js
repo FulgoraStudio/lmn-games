@@ -280,17 +280,17 @@ function eraseLetter(){
 function showGameOver(isWin){
     if(isWin)
     {
-        document.getElementById("answer").innerText = `Felicidades, la palabra era ${word}`;
+        document.getElementById("result-text").innerHTML = `<p id='finish-message'>La palabra era: <span>${word}</span></p>`;
         SoundManager.playOneShoot(gameSounds.VICTORY);
     } else {
-        document.getElementById("answer").innerText = word;
+        document.getElementById("result-text").innerHTML = `<p id='finish-message'>La palabra era: <span>${word}</span></p>`;
         SoundManager.playOneShoot(gameSounds.LOSE);
     }
 }
 
 
 function update() {
-    document.getElementById("answer").innerText = "";
+    document.getElementById("result-text").innerText = "";
 
     let correct = 0;
     let letterCount = {};
