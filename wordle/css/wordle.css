@@ -50,7 +50,7 @@ hr {
     height: 31.8rem;
     
     border-radius: 2.1rem;
-    margin: 1.8rem auto 3rem 0;
+    margin: 1.8rem auto;
     flex-wrap: wrap;
     
     position: relative;
@@ -72,6 +72,23 @@ hr {
     text-align: left;
 }
 
+/* Corners */
+
+.tile-lu {
+    border-radius: 2.4rem 0 0 0;
+}
+
+.tile-ru {
+    border-radius: 0 2.4rem 0 0;
+}
+
+.tile-rd {
+    border-radius: 0 0 2.4rem 0;
+}
+
+.tile-ld {
+    border-radius: 0 0 0 2.4rem;
+}
 
 
 #wrapper-image {

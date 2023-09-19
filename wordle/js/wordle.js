@@ -8,7 +8,7 @@ let gameOver = false;
 let isMuted = false;
 
 const wordList = [
-"Perro",
+"Ñandu",
 // "Amigo",
 // "Arena",
 // "Barco",
@@ -154,6 +154,18 @@ function initialize() {
             let tile = document.createElement("span");
             tile.id = r.toString() + "-" + c.toString();
             tile.classList.add("tile");
+            if(r == 0 && c == 0) {
+                tile.classList.add("tile-lu");
+            }
+            if(r == 0 && c == 4) {
+                tile.classList.add("tile-ru");
+            }
+            if(r == 5 && c == 0) {
+                tile.classList.add("tile-ld");
+            }
+            if(r == 5 && c == 4) {
+                tile.classList.add("tile-rd");
+            }
             tile.innerText = "";
             document.getElementById("board").appendChild(tile);
         }
@@ -162,7 +174,7 @@ function initialize() {
     //Create keyboard
     let keyboard = [
         ["Q", "W", "E", "R", "T", "Y", "U", "I", "O", "P"],
-        ["A", "S", "D", "F", "G", "H", "J", "K", "L", " "],
+        ["A", "S", "D", "F", "G", "H", "J", "K", "L", "Ñ"],
         ["Enter", "Z", "X", "C", "V", "B", "N", "M", "⌫" ]
     ]
 
@@ -176,21 +188,36 @@ function initialize() {
 
             let key = currentRow[j];
             keyTile.innerText = key;
-            
+            // Set Id's
             if(key == "Enter"){
                 keyTile.id = "Enter";
             } else if(key == "⌫") {
                 keyTile.id = "Backspace";
-            } else if ("A" <= key && key <= "Z") {
+            } else if (key == "Ñ") {
+                keyTile.id = "KeyÑ"
+                console.log("Added Ñ");
+            }else if ("A" <= key && key <= "Z") {
                 keyTile.id = "Key" + key;
             }
 
             keyTile.addEventListener("click", proccesKey);
         
+            //Classes
             if(key == "Enter") {
                 keyTile.classList.add("enter-key-tile");
             } else {
                 keyTile.classList.add("key-tile");
+            }
+
+            // Corners
+            if(key == "Q"){
+                keyTile.classList.add("tile-lu");
+            }else if (key == "P"){
+                keyTile.classList.add("tile-ru");
+            } else if (key == "Enter"){
+                keyTile.classList.add("tile-ld")
+            } else if (key == "Backspace") {
+                keyTile.classList.add("tile-rd")
             }
 
             keyboardRow.appendChild(keyTile);
@@ -208,10 +235,13 @@ function proccesKey() {
 }
 
 function proccesInput(e) {
+    console.log("Code: ",e.code)
     if(gameOver) return;
-
     if("KeyA" <= e.code && e.code <= "KeyZ") {
         checkLetter(e.code[3]);//the letter of event
+        SoundManager.playSound(gameSounds.SELECTION);
+    } else if (e.code == "Semicolon") {
+        checkLetter("Ñ");//the letter of event
         SoundManager.playSound(gameSounds.SELECTION);
     } else if (e.code == "Backspace") {
         eraseLetter();
@@ -229,6 +259,7 @@ function proccesInput(e) {
 }
 
 function checkLetter(letter){
+    console.log("Current letter:", letter)
     if(column < width) {
         let currentTile = document.getElementById(row.toString() + "-" + column.toString());
         if(currentTile.innerText == "") {
