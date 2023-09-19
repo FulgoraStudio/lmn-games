@@ -98,6 +98,8 @@ window.onload = function() {
 function reset(){
     selectNewWord();
 
+    document.getElementById("result-text").innerHTML = "";
+
     const tiles = document.getElementsByClassName('tile');
     const tilesArray = [...tiles]
 
