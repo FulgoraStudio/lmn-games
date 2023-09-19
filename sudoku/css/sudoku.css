@@ -235,11 +235,11 @@ IN GAME
 }
 
 .horizontal-line {
-    border-bottom: 0.2rem solid #aba4a4;
+    border-bottom: 0.4rem solid #aba4a4;
 }
 
 .vertical-line {
-    border-right: 0.2rem solid #aba4a4;
+    border-right: 0.4rem solid #aba4a4;
 }
 
 .letter {
