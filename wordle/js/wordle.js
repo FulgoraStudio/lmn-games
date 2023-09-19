@@ -197,7 +197,6 @@ function initialize() {
                 keyTile.id = "Backspace";
             } else if (key == "Ñ") {
                 keyTile.id = "KeyÑ"
-                console.log("Added Ñ");
             }else if ("A" <= key && key <= "Z") {
                 keyTile.id = "Key" + key;
             }
@@ -233,11 +232,16 @@ function initialize() {
 
 function proccesKey() {
     let e = {"code" : this.id};
+    
+    //Check sepcial character
+    if(e.code == "KeyÑ"){
+        e.code = "Semicolon";
+    }
+
     proccesInput(e);
 }
 
 function proccesInput(e) {
-    console.log("Code: ",e.code)
     if(gameOver) return;
     if("KeyA" <= e.code && e.code <= "KeyZ") {
         checkLetter(e.code[3]);//the letter of event
@@ -261,7 +265,6 @@ function proccesInput(e) {
 }
 
 function checkLetter(letter){
-    console.log("Current letter:", letter)
     if(column < width) {
         let currentTile = document.getElementById(row.toString() + "-" + column.toString());
         if(currentTile.innerText == "") {
@@ -314,14 +317,17 @@ function update() {
         let currentTile = document.getElementById(row.toString() + "-" + c.toString());
         let letter = currentTile.innerText;
 
+        let keyTile = document.getElementById("Key" + letter);
+
         if(word[c] == letter) {
             currentTile.classList.add("correct");
 
-            let keyTile = document.getElementById("Key" + letter);
+            
+            keyTile.classList.remove("absent");
             keyTile.classList.remove("present");
             keyTile.classList.add("correct");
             correct += 1;
-
+            
             hasCorrect = true;
             letterCount[letter] -= 1;
         }
@@ -338,18 +344,23 @@ function update() {
         let letter = currentTile.innerText;
 
         if(!currentTile.classList.contains("correct")) {
+            let keyTile = document.getElementById("Key" + letter);
+
             if (word.includes(letter) && letterCount[letter] > 0) {
                 currentTile.classList.add("present");
-                let keyTile = document.getElementById("Key" + letter);
+
                 if(!keyTile.classList.contains("correct")) {
                     keyTile.classList.add("present");
-
+                } else {
+                    keyTile.classList.add("absent");
                 }
+
                 letterCount[letter] -= 1;
                 hasPresent = true;
             }
             else {
                 currentTile.classList.add("absent");
+                keyTile.classList.add("absent");
             }
         }
     }

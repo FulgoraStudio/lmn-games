@@ -186,19 +186,19 @@ hr {
 }
 
 .correct {
-    background-color: #438d3c;
+    background-color: #438d3c !important;
     color: white;
     border-color: white;
 }
 
 .present {
-    background-color: #F7CF2A;
+    background-color: #F7CF2A !important;
     color: white;
     border-color: white;
 }
 
 .absent {
-    background-color: #787C7E;
+    background-color: #787C7E !important;
     color: white;
     border-color: white;
 }
@@ -224,24 +224,24 @@ hr {
 }
 
 .key-tile {
-  height: 4rem;
-  width: 4rem;
-  margin: 0;
-  border-style: none;
-  border-right: 0.2rem dashed #aba4a4;
-  border-bottom: 0.2rem dashed #aba4a4;
+    height: 4rem;
+    width: 4rem;
+    margin: 0;
+    border-style: none;
+    border-right: 0.2rem dashed #aba4a4;
+    border-bottom: 0.2rem dashed #aba4a4;
 
-  cursor: pointer;
+    cursor: pointer;
 
-  /*font*/
-  color:#C9C9C9;
-  font-size: 2.1rem;
-  font-weight: bold;
+    /*font*/
+    color:#C9C9C9;
+    font-size: 2.1rem;
+    font-weight: bold;
     display: flex;
     justify-content: center;
     align-items: center;
 
-  background : #2f2f2f; 
+    background : #2f2f2f; 
 }
 
 .enter-key-tile {
