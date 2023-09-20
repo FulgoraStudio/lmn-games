@@ -406,4 +406,8 @@ MOBILE
     .modal-content {
         width: 88%;
     }
+
+    #epigraph-text {
+        display: none;
+    } 
 }
