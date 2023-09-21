@@ -995,7 +995,7 @@ const blocker = () => {
 
     //disable all letters
     letterButtons.forEach((button) => {
-        button.disabled.true;
+        button.disabled = true;
     });
 
     resultText.classList.remove("hide");
