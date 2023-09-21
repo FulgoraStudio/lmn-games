@@ -143,6 +143,7 @@ function selectTile() {
             if(boardResolved(gameBoard, boardsolution)) {
                 isPlaying = false;
                 winGame = true;
+                showGameOver();
             }
         }
         else
@@ -216,7 +217,7 @@ function createBoard() {
 function isResolved(board) {
     const isEmptyCell = findEmptyCell(board);
     if (!isEmptyCell) {
-        return true; // El Sudoku está resuelto
+        return true; // El Sudoku está listo para jugar
     }
 
     const [row, column] = isEmptyCell;
@@ -236,6 +237,7 @@ function isResolved(board) {
     return false; // No se encontró ninguna solución
 }
 
+
 function findEmptyCell(board) {
     for (let i = 0; i < 9; i++) {
         for (let j = 0; j < 9; j++) {
@@ -252,20 +254,20 @@ function isValidNumber(board, row, column, num) {
         !existsInRow(board, row, num) &&
         !existsInColumn(board, column, num) &&
         !existsInRegion(board, row, column, num)
-    );
-}
-
-function existsInRow(board, row, num) {
-    return board[row].includes(num);
-}
-
-function existsInColumn(board, column, num) {
-    for (let i = 0; i < 9; i++) {
-        if (board[i][column] === num) {
-        return true;
-        }
+        );
     }
-    return false;
+    
+    function existsInRow(board, row, num) {
+        return board[row].includes(num);
+    }
+    
+    function existsInColumn(board, column, num) {
+        for (let i = 0; i < 9; i++) {
+            if (board[i][column] === num) {
+        return true;
+    }
+}
+return false;
 }
 
 function existsInRegion(board, row, column, num) {
@@ -273,9 +275,9 @@ function existsInRegion(board, row, column, num) {
     const startCol = Math.floor(column / 3) * 3;
     for (let i = startRow; i < startRow + 3; i++) {
         for (let j = startCol; j < startCol + 3; j++) {
-        if (board[i][j] === num) {
-            return true;
-        }
+            if (board[i][j] === num) {
+                return true;
+            }
         }
     }
     return false;
@@ -283,18 +285,22 @@ function existsInRegion(board, row, column, num) {
 
 function boardResolved(boardArr, solutionArr) {
     if (boardArr.length !== solutionArr.length || boardArr[0].length !== solutionArr[0].length) {
-      return false;
+        return false;
     }
     
     for (var i = 0; i < boardArr.length; i++) {
-      for (var j = 0; j < boardArr[0].length; j++) {
-        if (boardArr[i][j] !== solutionArr[i][j]) {
-          return false;
+        for (var j = 0; j < boardArr[0].length; j++) {
+            if (boardArr[i][j] !== solutionArr[i][j]) {
+                return false;
+            }
         }
-      }
     }
     
     return true;
+}
+
+function showGameOver(){
+    document.getElementById("result-text").innerHTML = "<p id='finish-message'>Felicidades, complestaste el <span>Sud Ocu</span></p>";
 }
 
 window.onload=setGame

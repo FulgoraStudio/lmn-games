@@ -182,6 +182,26 @@ IN GAME
     flex-wrap: wrap;
 }
 
+#result-text {
+    margin: 2rem auto;
+    font-weight: 600;
+    text-align: left;
+}
+
+#finish-message {
+    font-size: 1.8rem;
+    font-weight: 300;
+    margin: auto;
+    text-align: left;
+}
+
+#finish-message span{
+    color: #fe5152;
+    font-size: 2.1rem;
+    font-weight: bold;
+    /* margin: 1.8rem auto 3rem auto; */
+}
+
 .number {
     width: 11.11%;
     height: 5rem;
