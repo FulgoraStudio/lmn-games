@@ -13,14 +13,13 @@ let boardsolution = [];
 let isCreating = true;
 let winGame = false;
 
-let clicks = 0;
-
 newGameButton.addEventListener('click', async function() {
     if (!isCreating) {
         isCreating = true;
-        this.disabled = true;
+        
         this.innerText = "";
         this.classList.add("generating");
+        this.disabled = true;
 
         setTimeout(async () => {
             try {
@@ -36,9 +35,8 @@ newGameButton.addEventListener('click', async function() {
             } finally {
                 isCreating = false;
             }
-        }, 0);
+        }, 2000);
     }
-    console.log("Clicks: ", clicks);
 });
 
 
@@ -53,8 +51,6 @@ document.getElementById("close-modal-btn").addEventListener("click", function() 
 function setGame() {
     return new Promise((resolve, reject) => {
         try {
-            console.log("Set Board")
-            console.time("Generation")
 
             document.getElementById("board").innerHTML = "";
             document.getElementById("digits").innerHTML = "";
@@ -120,9 +116,7 @@ function setGame() {
                     document.getElementById("board").append(tile);
                 }
             }
-            console.timeEnd("Generation");
             isCreating = false;
-            console.log("Is creating", isCreating);
             resolve();
         } catch (err) {
             reject();

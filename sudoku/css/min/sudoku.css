@@ -332,7 +332,7 @@ h4 {
 
 #new-game-button.generating::before {
     content: "Generando...";
-    animation: loading 1s infinite;
+    animation: loading 1s infinite steps(4);
 }
 
 @keyframes errorAnim {
