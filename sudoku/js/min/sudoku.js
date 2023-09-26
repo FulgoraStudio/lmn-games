@@ -35,7 +35,7 @@ newGameButton.addEventListener('click', async function() {
             } finally {
                 isCreating = false;
             }
-        }, 2000);
+        }, 2700);
     }
 });
 
