@@ -1,0 +1,445 @@
+/* ON PAGE */
+/* * {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    font-size: 62.5%;
+    font-family : Encode Sans Semi Condensed;
+}
+
+body {
+    font-family : Encode Sans Semi Condensed;
+    text-align: center;
+    margin: auto;
+
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    font-size: 62.5%;
+    font-family : Encode Sans Semi Condensed;
+} */
+
+/* MAIN */
+main, * {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    font-size: 62.5%;
+    font-family : Encode Sans Semi Condensed;
+    text-align: center;
+}
+
+hr {
+    width: 50rem;
+}
+
+h1 {
+    display: block;
+    margin: 0 auto;
+    font-size: 5rem;
+    font-weight: 600;
+    text-align: left;
+    max-width: 139.2rem;
+}
+
+#errors {
+    color: coral;
+}
+
+#game-container {
+    margin: 0 auto;
+    max-width: 139.2rem;
+    display: flex;
+}
+
+#display-container {
+    display: flex;
+    width: 128rem;
+    height: 60rem;
+    margin: 0 auto;
+}
+
+#board-container {
+    width: 30%;
+}
+
+#board {
+    display: flex;
+    
+    width: 43.2rem;
+    height: 43.2rem;
+    
+    border-radius: 2.1rem;
+    margin: 1.8rem auto 3rem auto;
+    flex-wrap: wrap;
+    
+    position: relative;
+    top: 1rem;
+    z-index: 2;
+}
+
+.box {
+    background : #2F2F2F;
+    border-radius : 2.4rem;
+    -moz-border-radius : 2.4rem;
+    -webkit-border-radius : 2.4rem;
+    box-shadow: 0px 0.8rem #ffffff, 0px 0.7rem 1rem  rgba(0, 0, 0, 0.24);
+}
+
+#controls-container {
+    position: relative;
+    top: 1rem;
+    z-index: 2;
+}
+
+#buttons-container {
+    width: 43.2rem;
+    margin: 1.8rem auto 3rem auto;
+    text-align: left;
+}
+
+#wrapper-image {
+    width: 100%;
+    height: 100%;
+
+    /* display: flex;
+    align-items: center;
+    justify-content: center; */
+
+    position: relative;
+
+    /* align-self: flex-end; */
+
+    top: -3rem;
+    right: 0;
+    z-index: 1;
+}
+
+#bg-image {
+    width: 100%;
+    height: 100%;
+    border-radius: 2.1rem;
+    object-fit: cover;
+}
+
+.btn {
+    background : #C9C9C9;
+    border-radius : 4rem;
+    border-width: 0;
+  
+    margin: 0 2.4rem 0 0;
+  
+    box-shadow: 0px 0.8rem #ffffff, 0px 0.7rem 1rem  rgba(0, 0, 0, 0.24);
+  
+    font-size: 1.6rem;
+    font-weight: bold;
+  
+    padding: 1rem 2rem 1.2rem 2rem;
+}
+
+.btn:hover {
+    color: white;
+    background : #6EA96E;
+}
+
+
+
+/* 
+
+IN GAME
+
+*/
+
+
+
+.tile {
+    width: 11.11%;
+    height: 11.11%;
+
+    border-right: 0.2rem dashed #aba4a4;
+    border-bottom: 0.2rem dashed #aba4a4;
+
+    color: white;
+
+    /* Text */
+    font-size: 2rem;
+    font-weight: bold;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+
+#digits {
+    width: 43.2rem;
+    height: 5rem;
+
+    color: white;
+
+    /* background-color: yellow; */
+    margin: 1.8rem auto 3rem auto;
+    display: flex;
+    flex-wrap: wrap;
+}
+
+#result-text {
+    margin: 2rem auto;
+    font-weight: 600;
+    text-align: left;
+}
+
+#finish-message {
+    font-size: 1.8rem;
+    font-weight: 300;
+    margin: auto;
+    text-align: left;
+}
+
+#finish-message span{
+    color: #fe5152;
+    font-size: 2.1rem;
+    font-weight: bold;
+    /* margin: 1.8rem auto 3rem auto; */
+}
+
+.number {
+    width: 11.11%;
+    height: 5rem;
+    border-right: 0.2rem dashed #aba4a4;
+
+    /* Text */
+    font-size: 2rem;
+    font-weight: bold;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    background : #2F2F2F;
+    box-shadow: 0px 1rem #ffffff;
+    box-shadow: 0px 0.7rem 1rem  rgba(0, 0, 0, 0.24);
+}
+
+.number:first-child {
+    border-radius: 2.1rem 0 0 2.1rem;
+}
+
+.number:last-child {
+    border-radius: 0 2.1rem 2.1rem 0;
+    border-right: 0;
+}
+
+.number-selected {
+    background-color: white;
+    color: #cb4a3e;
+}
+
+.tile-start {
+    background-color: #cb4a3e;
+    color: white;
+}
+
+.tile-lu {
+    border-radius: 2.1rem 0 0 0;
+}
+
+.tile-ru {
+    border-radius: 0 2.1rem 0 0;
+}
+
+.tile-rd {
+    border-radius: 0 0 2.1rem 0;
+}
+
+.tile-ld {
+    border-radius: 0 0 0 2.1rem;
+}
+
+.horizontal-line {
+    border-bottom: 0.4rem solid #aba4a4;
+}
+
+.vertical-line {
+    border-right: 0.4rem solid #aba4a4;
+}
+
+.letter {
+    font-size: 2.1rem;
+    font-weight: 800;
+    font-weight: 800;
+}
+
+
+/*
+
+MODAL
+
+*/
+
+
+h4 {
+    font-size: 3rem;
+    font-weight: 600;
+    margin-bottom: 3rem;
+  }
+
+.modal {
+    display: none; 
+    position: fixed; 
+    z-index: 2; /* for board*/
+    padding-top: 10rem; 
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(47,47,47,0.88);
+}
+
+.modal-content {
+    background-color: #fefefe;
+    margin: auto;
+    padding: 20px;
+    width: 30%;
+    border-radius : 2.4rem;
+    -moz-border-radius : 2.4rem;
+    -webkit-border-radius : 2.4rem;
+    box-shadow: 0px 0.8rem #ffffff, 0px 0.7rem 1rem  rgba(0, 0, 0, 0.24);
+}
+
+.modal-content p {
+    font-size: 1.8rem;
+    font-weight: 300;
+    text-align: left;
+    margin-bottom: 3rem;
+}
+
+
+/* EPIGRAPH */
+#epigraph-text {
+    text-align: right;
+    font-size: 1.8rem;
+    font-weight: 300;
+    margin: 1.8rem 0 auto 0;
+    padding: auto 2rem;
+}
+
+@keyframes loading {
+    0% { content: "Generando"; }
+    25% { content: "Generando."; }
+    50% { content: "Generando.."; }
+    75% { content: "Generando..."; }
+}
+
+#new-game-button.generating::before {
+    content: "Generando...";
+    animation: loading 1s infinite;
+}
+
+@keyframes errorAnim {
+    0% {
+        background: gainsboro;
+    }
+    
+    100% {
+        background: #2F2F2F;
+    }
+}
+
+.error-anim{
+    animation-name: errorAnim;
+    animation-duration: 1s;
+    animation-fill-mode: forwards;
+}
+
+
+
+
+/*
+
+MOBILE
+
+*/
+
+
+
+@media (max-width: 600px) {
+    #display-container {
+        width: 100%;
+        margin: 0 auto;
+    }
+
+    #board-container {
+        width: 100%;
+    }
+    
+    #board {
+        width: 100%;
+        height: 36rem;
+    }
+
+    .tile {
+
+        color: white;
+    
+        /* Text */
+        font-size: 2rem;
+        font-weight: bold;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .letter {
+        font-size: 2.1rem;
+        font-weight: 800;
+        font-weight: 800;
+    }
+
+    #controls-container {
+        position: relative;
+        top: 1rem;
+        z-index: 2;
+        width: 100%;
+    }
+
+    #board-container {
+        position: absolute;
+    }
+
+    #wrapper-board {
+        width: 100%;
+    }
+
+    
+    #digits {
+        width: 100%;
+        height: 4rem;
+    }
+    
+    .number {
+        width: 11.11%;
+        height: 4rem;
+        font-size: 2rem;
+    }
+
+    #buttons-container {
+        width: 100%;
+        text-align: center;
+    }
+
+    .btn {
+        margin: 0 0.5rem;
+    }
+
+    #bg-image {
+        opacity: 0%;
+    }
+
+    .modal-content {
+        width: 88%;
+    }
+
+    #epigraph-text {
+        display: none;
+    } 
+}

@@ -10,10 +10,37 @@ let errors = 0;
 let gameBoard = [];
 let boardsolution = [];
 
-let isPlaying = false;
+let isCreating = true;
 let winGame = false;
 
-newGameButton.addEventListener('click', setGame);
+let clicks = 0;
+
+newGameButton.addEventListener('click', async function() {
+    if (!isCreating) {
+        isCreating = true;
+        this.disabled = true;
+        this.innerText = "";
+        this.classList.add("generating");
+
+        setTimeout(async () => {
+            try {
+                await setGame();
+    
+                // La promesa se resolvió correctamente, restablece el botón
+                this.classList.remove("generating");
+                this.innerText = "Jugar de vuelta";
+                this.disabled = false;
+            } catch (error) {
+                // Maneja cualquier error que ocurra durante la ejecución de setGame
+                console.error("Error en setGame:", error);
+            } finally {
+                isCreating = false;
+            }
+        }, 0);
+    }
+    console.log("Clicks: ", clicks);
+});
+
 
 htpButton.addEventListener("click", () => {
     document.getElementById("modal-container").style.display = "block";
@@ -23,89 +50,84 @@ document.getElementById("close-modal-btn").addEventListener("click", function() 
     document.getElementById("modal-container").style.display = "none";
 });
 
-function resetGame() {
-    while (board.firstChild) {
-        board.removeChild(board.firstChild);
-    }
-    
-    while (digitspanel.firstChild) {
-        digitspanel.removeChild(digitspanel.firstChild);
-    }
-
-    isPlaying = false;
-    winGame = false;
-}
-
 function setGame() {
-    if (isPlaying == true) return;
-    isPlaying = true;
+    return new Promise((resolve, reject) => {
+        try {
+            console.log("Set Board")
+            console.time("Generation")
 
-    newGameButton.innerText = "Jugar de vuelta";
+            document.getElementById("board").innerHTML = "";
+            document.getElementById("digits").innerHTML = "";
 
-    document.getElementById("board").innerHTML = "";
-    document.getElementById("digits").innerHTML = "";
-
-    //Set Board Game
-    setBoard();
-    
-    //Digits
-    for (let i = 1; i <= 9; i++) {
-        let number = document.createElement("div");
-        number.id = i;
-        number.innerText = i;
-        number.addEventListener("click", selectNumber);
-        number.classList.add("number");
-        number.classList.add("letter");
-        document.getElementById("digits").appendChild(number);
-    }
-
-    //Board
-    for (let r = 0; r < 9; r++) {
-        for (let c = 0; c < 9; c++) {
-            let tile = document.createElement("div");
-            tile.id = r.toString() + "-" + c.toString();
-
-            if(gameBoard[r][c] != "0") {
-                tile.innerText = gameBoard[r][c];
-                tile.classList.add("tile-start");
-                tile.classList.add("letter");
-            }
-
-            //Check is corner grid
-            if(r == 0 && c == 0) {
-                tile.classList.add("tile-lu");
-            }
-            if(r == 0 && c == 8) {
-                tile.classList.add("tile-ru");
-            }
-            if(r == 8 && c == 0) {
-                tile.classList.add("tile-ld");
-            }
-            if(r == 8 && c == 8) {
-                tile.classList.add("tile-rd");
-            }
-
-            if(r == 2 || r == 5) {
-                tile.classList.add("horizontal-line");
-            }
+            //Set Board Game
+            setBoard();
             
-            if(c == 2 || c == 5) {
-                tile.classList.add("vertical-line");
+            //Digits
+            for (let i = 1; i <= 9; i++) {
+                let number = document.createElement("div");
+                number.id = i;
+                number.innerText = i;
+                number.addEventListener("click", selectNumber);
+                number.classList.add("number");
+                number.classList.add("letter");
+                document.getElementById("digits").appendChild(number);
             }
-            tile.addEventListener("click", selectTile);
 
-            tile.addEventListener('animationend', () => {
-                tile.classList.remove('error-anim');
-              
-                // Restablecer el fondo a negro
-                // body.style.backgroundColor = 'black';
-              });
+            //Board
+            for (let r = 0; r < 9; r++) {
+                for (let c = 0; c < 9; c++) {
+                    let tile = document.createElement("div");
+                    tile.id = r.toString() + "-" + c.toString();
 
-            tile.classList.add("tile");
-            tile.classList.add("letter");
-            document.getElementById("board").append(tile);
+                    if(gameBoard[r][c] != "0") {
+                        tile.innerText = gameBoard[r][c];
+                        tile.classList.add("tile-start");
+                        tile.classList.add("letter");
+                    }
+
+                    //Check is corner grid
+                    if(r == 0 && c == 0) {
+                        tile.classList.add("tile-lu");
+                    }
+                    if(r == 0 && c == 8) {
+                        tile.classList.add("tile-ru");
+                    }
+                    if(r == 8 && c == 0) {
+                        tile.classList.add("tile-ld");
+                    }
+                    if(r == 8 && c == 8) {
+                        tile.classList.add("tile-rd");
+                    }
+
+                    if(r == 2 || r == 5) {
+                        tile.classList.add("horizontal-line");
+                    }
+                    
+                    if(c == 2 || c == 5) {
+                        tile.classList.add("vertical-line");
+                    }
+                    tile.addEventListener("click", selectTile);
+
+                    tile.addEventListener('animationend', () => {
+                        tile.classList.remove('error-anim');
+                    
+                        // Restablecer el fondo a negro
+                        // body.style.backgroundColor = 'black';
+                    });
+
+                    tile.classList.add("tile");
+                    tile.classList.add("letter");
+                    document.getElementById("board").append(tile);
+                }
+            }
+            console.timeEnd("Generation");
+            isCreating = false;
+            console.log("Is creating", isCreating);
+            resolve();
+        } catch (err) {
+            reject();
         }
-    }
+    });
 }
 
 function setBoard() {
@@ -141,7 +163,6 @@ function selectTile() {
             gameBoard[r][c] = Number(numSelected.id);
 
             if(boardResolved(gameBoard, boardsolution)) {
-                isPlaying = false;
                 winGame = true;
                 showGameOver();
             }
