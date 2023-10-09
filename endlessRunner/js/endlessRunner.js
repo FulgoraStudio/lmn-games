@@ -360,6 +360,14 @@ document.addEventListener('keyup', function(event) {
  * FUNCTIONS
  */
 
+function repositionActor(){
+    //TODO: activeInGame -> Actor
+}
+
+function hiddenActor(){
+
+}
+
 function spawnFX(fxName, xPos, yPos) {
     const fx = Object.assign(Object.create(Object.getPrototypeOf(originalObstacle)), originalObstacle, {
         _tag: TAGS.FX,
@@ -647,7 +655,7 @@ function checkCollisionActorTag(tag){
 }
 
 function checkGameOver() {
-    lives--;
+    // lives--;
 
     textLife.innerText = "❤️".repeat(lives);
 

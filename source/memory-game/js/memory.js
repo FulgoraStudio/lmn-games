@@ -121,7 +121,6 @@ function start(){
 }
 
 function startGame() {
-
     selectBackCard();
     shuffleCardImage();
     
