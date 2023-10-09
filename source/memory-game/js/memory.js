@@ -41,6 +41,9 @@ let cardList = [
     "card14",
     "card15",
     "card16",
+    "card17",
+    "card18",
+    "card19",
 ]
 
 let backCardImgs = [
@@ -88,6 +91,7 @@ SoundManager.loadSounds(Object.values(gameSounds))
 });
 
 function shuffleCards() {
+    cardSet = null;
     cardQuantity = cardList.slice(0, 10)
     cardSet = cardQuantity.concat(cardQuantity) //two of each card
 
@@ -135,11 +139,13 @@ function startGame() {
             //Create card in document
             let card = document.createElement("img");
             card.id = r.toString() + "-" + c.toString();
-            card.src = "assets/images/" + cardImg + ".webp";
+            card.src = `assets/images/${cardImg}.webp`;
             card.classList.add("card");
+
             card.addEventListener("click", selectCard);
             card.addEventListener('mouseenter', hoverCard);
             card.addEventListener('mouseleave', leaveCard);
+
             document.getElementById("board").append(card);
         }
         board.push(row);
@@ -239,6 +245,8 @@ function restartGame() {
     cleanBoard();
     clearAllTimeouts();
     SoundManager.stopMusic();
+    errors = 0;
+    document.getElementById("errors").innerText = errors;
     startGame();
 }
 
