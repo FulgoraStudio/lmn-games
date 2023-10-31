@@ -29,8 +29,10 @@ class ProfileManager {
                     "puntaje": points,
                     "hitos": milestone,
                 };
+
+                let link = ${{ vars.URL_SEND_RESULTS }};
         
-                const response = await fetch('https://juegos.lmnjuegos.com/api/resultado', {
+                const response = await fetch(link, {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json',
