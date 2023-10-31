@@ -11,22 +11,26 @@ let MILESTONES = {
     FIRST: {
         value: 4,
         complete: false,
-        code: 1
+        code: 1,
+        points: 1000
     },
     SECOND: {
         value: 2,
         complete: false,
-        code: 2
+        code: 2,
+        points: 2000
     },
     THIRD: {
         value: 1,
         complete: false,
-        code: 3
+        code: 3,
+        points: 3000
     },
     FOURD: {
         value: 0,
         complete: false,
-        code: 4
+        code: 4,
+        points: 4000
     }
 }
 
@@ -321,16 +325,16 @@ function checkMilestone(){
     
     if (row >= MILESTONES.FIRST.value && !MILESTONES.FIRST.complete) {
         MILESTONES.FIRST.complete = true;
-        ProfileManager.SaveNewPoint(1000, 1);
+        ProfileManager.SaveNewPoint(MILESTONES.FIRST.points, MILESTONES.FIRST.code);
     } else if (row >= MILESTONES.SECOND.value && !MILESTONES.SECOND.complete) {
         MILESTONES.SECOND.complete = true;
-        ProfileManager.SaveNewPoint(2000, 2);
+        ProfileManager.SaveNewPoint(MILESTONES.SECOND.points, MILESTONES.SECOND.code);
     } else if (row >= MILESTONES.THIRD.value && !MILESTONES.THIRD.complete) {
         MILESTONES.THIRD.complete = true;
-        ProfileManager.SaveNewPoint(3000, 3);
+        ProfileManager.SaveNewPoint(MILESTONES.THIRD.points, MILESTONES.THIRD.code);
     } else if (row == MILESTONES.FOURD.value && !MILESTONES.FOURD.complete) {
         MILESTONES.FOURD.complete = true;
-        ProfileManager.SaveNewPoint(4000, 4);
+        ProfileManager.SaveNewPoint(MILESTONES.FOURD.points, MILESTONES.FOURD.code);
     } 
 
 

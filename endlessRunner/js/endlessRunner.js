@@ -125,19 +125,23 @@ let lives = PLAYER_LIVES;
 let MILESTONES = {
     FIRST: {
         complete: false,
-        code: 1
+        code: 1,
+        points: 1000
     },
     SECOND: {
         complete: false,
-        code: 2
+        code: 2,
+        points: 2000
     },
     THIRD: {
         complete: false,
-        code: 3
+        code: 3,
+        points: 3000
     },
     FOURD: {
         complete: false,
-        code: 4
+        code: 4,
+        points: 4000
     }
 }
 
@@ -805,22 +809,22 @@ function checkMilestone(){
     
     if (distance >= 100 && points >= 50 && lives == PLAYER_LIVES && !MILESTONES.FIRST.complete) {
         MILESTONES.FIRST.complete = true;
-        ProfileManager.SaveNewPoint(4000, 4);
+        ProfileManager.SaveNewPoint(MILESTONES.FIRST.points, MILESTONES.FIRST.code);
     }
     
     if (distance >= 100 && points >= 40 && lives >= 3 && !MILESTONES.SECOND.complete) {
         MILESTONES.SECOND.complete = true;
-        ProfileManager.SaveNewPoint(3000, 3);
+        ProfileManager.SaveNewPoint(MILESTONES.SECOND.points, MILESTONES.SECOND.code);
     }
     
     if (distance >= 50 && points >= 30 && !MILESTONES.THIRD.complete) {
         MILESTONES.THIRD.complete = true;
-        ProfileManager.SaveNewPoint(2000, 2);
+        ProfileManager.SaveNewPoint(MILESTONES.THIRD.points, MILESTONES.THIRD.code);
     }
     
     if (distance >= 20 && !MILESTONES.FOURD.complete) {
         MILESTONES.FOURD.complete = true;
-        ProfileManager.SaveNewPoint(1000, 1);
+        ProfileManager.SaveNewPoint(MILESTONES.FOURD.points, MILESTONES.FOURD.code);
     } 
 }
 
