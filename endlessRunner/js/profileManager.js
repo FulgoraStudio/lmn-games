@@ -1,7 +1,7 @@
 class ProfileManager {
     static playerId = null;
     static link = "https://juegos.lmnjuegos.com/api/resultado";
-    static token = "M2M4NWFjZmEtOTIwMi00NzExLTg4YjEtZTI2YzM4MGZlZTM5";
+    static token = "MmViMDc3YTctNWJhZi00Njg5LTg5NGUtOThlN2RlNzJjZjg4";
 
     static async GetProfileCode() {
         this.initLink();

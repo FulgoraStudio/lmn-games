@@ -122,6 +122,25 @@ let scoreDistance = 0;
 const PLAYER_LIVES = 5;
 let lives = PLAYER_LIVES;
 
+let MILESTONES = {
+    FIRST: {
+        complete: false,
+        code: 1
+    },
+    SECOND: {
+        complete: false,
+        code: 2
+    },
+    THIRD: {
+        complete: false,
+        code: 3
+    },
+    FOURD: {
+        complete: false,
+        code: 4
+    }
+}
+
 // Spawner settings
 const obstacleSpawnInterval = 500; // msec
 const collectableSpawnInterval = 600; // msec
@@ -664,6 +683,7 @@ function checkGameOver() {
         isPlaying = false;
         SoundManager.stopMusic();
         SoundManager.playSound(gameSounds.LOSE_GAME);
+        checkMilestone();
         showEndGame();
     }
 }
@@ -780,6 +800,31 @@ function savePlayerData(points, distance){
     const data = {points, distance};
     localStorage.setItem('playerData', JSON.stringify(data));
 }
+
+function checkMilestone(){
+    
+    if (distance >= 100 && points >= 50 && lives == PLAYER_LIVES && !MILESTONES.FIRST.complete) {
+        MILESTONES.FIRST.complete = true;
+        ProfileManager.SaveNewPoint(4000, 4);
+    }
+    
+    if (distance >= 100 && points >= 40 && lives >= 3 && !MILESTONES.SECOND.complete) {
+        MILESTONES.SECOND.complete = true;
+        ProfileManager.SaveNewPoint(3000, 3);
+    }
+    
+    if (distance >= 50 && points >= 30 && !MILESTONES.THIRD.complete) {
+        MILESTONES.THIRD.complete = true;
+        ProfileManager.SaveNewPoint(2000, 2);
+    }
+    
+    if (distance >= 20 && !MILESTONES.FOURD.complete) {
+        MILESTONES.FOURD.complete = true;
+        ProfileManager.SaveNewPoint(1000, 1);
+    } 
+}
+
+ProfileManager.GetProfileCode();
 
 
 window.onload = () => {
