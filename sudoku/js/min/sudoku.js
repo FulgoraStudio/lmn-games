@@ -13,6 +13,29 @@ let boardsolution = [];
 let isCreating = true;
 let winGame = false;
 
+let MILESTONES = {
+    FIRST: {
+        complete: false,
+        code: 1,
+        points: 1000
+    },
+    SECOND: {
+        complete: false,
+        code: 2,
+        points: 2000
+    },
+    THIRD: {
+        complete: false,
+        code: 3,
+        points: 3000
+    },
+    FOURD: {
+        complete: false,
+        code: 4,
+        points: 4000
+    }
+}
+
 newGameButton.addEventListener('click', async function() {
     if (!isCreating) {
         isCreating = true;
@@ -47,6 +70,8 @@ htpButton.addEventListener("click", () => {
 document.getElementById("close-modal-btn").addEventListener("click", function() {
     document.getElementById("modal-container").style.display = "none";
 });
+
+ProfileManager.GetProfileCode();
 
 function setGame() {
     return new Promise((resolve, reject) => {
@@ -315,7 +340,31 @@ function boardResolved(boardArr, solutionArr) {
 }
 
 function showGameOver(){
+    checkMilestone();
     document.getElementById("result-text").innerHTML = "<p id='finish-message'>Felicidades, complestaste el <span>Sud Ocu</span></p>";
+}
+
+function checkMilestone(){
+    
+    if (errors == 0 && !MILESTONES.FOURD.complete) {
+        MILESTONES.FOURD.complete = true;
+        ProfileManager.SaveNewPoint(MILESTONES.FOURD.points, MILESTONES.FOURD.code);
+    }
+    
+    if (distance <= 15 && !MILESTONES.THIRD.complete) {
+        MILESTONES.THIRD.complete = true;
+        ProfileManager.SaveNewPoint(MILESTONES.THIRD.points, MILESTONES.THIRD.code);
+    }
+    
+    if (distance <= 30 && !MILESTONES.SECOND.complete) {
+        MILESTONES.SECOND.complete = true;
+        ProfileManager.SaveNewPoint(MILESTONES.SECOND.points, MILESTONES.SECOND.code);
+    }
+    
+    if (!MILESTONES.FIRST.complete) {
+        MILESTONES.FIRST.complete = true;
+        ProfileManager.SaveNewPoint(MILESTONES.FIRST.points, MILESTONES.FIRST.code);
+    } 
 }
 
 window.onload=setGame
