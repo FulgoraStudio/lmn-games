@@ -5,18 +5,59 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Wordle</title>
-    <link rel="stylesheet" href="./wordle.css">
-    <script src="./wordle.js"></script>
+    <link rel="stylesheet" href="./css/min/wordle.min.css">
+    <script src="./js/min/soundManager.min.js"></script>
+    <script src="./js/min/wordle.min.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Encode+Sans+Semi+Condensed:wght@300;500;600;700;800&display=swap" rel="stylesheet">
 </head>
 <body>
-    <h1 id="title">Wordle</h1>
-    <hr>
-    <br>
-    <div id="board">
+    <main>
+        <h1 id="title">Quechu</h1>
+        <div id="game-container">
+            <div id="display-container">
+                <div id="board-container">
+                    <div id="wrapper-board">
+                        <!-- GAME-->
+                        <div id="board" class="box"></div>
+                        <br>
+                        <div id="result-text"></div>
+                        <div id="keyboard-container"></div>
 
-    </div>
-
-    <br>
-    <h3 id="answer"></h3>
+                        <!-- BUTOONS -->
+                        <div id="buttons-container">
+                            <button id="htp-button" class="btn">¿Cómo jugar?</button>
+                            <button id="new-game-button" class="btn">Jugar de vuelta</button>
+                            <button id="sound-button" class="button">🔊</button>
+                        </div>
+                    </div>
+                </div>
+                <div id="wrapper-image">
+                    <!-- IMAGE-->
+                    <img id="bg-image" src="assets/img/005.webp" alt="Image">
+                    <p id="epigraph-text"></p>
+                </div>
+                <div id="modal-container" class="modal">
+                    <!-- MODAL -->
+                    <div class="modal-content">
+                        <h4>Instrucciones</h4>
+                        <p>Quechu es un juego de palabras en el que tienes seis intentos para adivinar una palabra oculta de cinco letras.</p>
+                        <p>El juego te da pistas sobre la palabra oculta, indicando si una letra está en la palabra y en la posición correcta (verde), en la palabra pero no en la posición correcta (amarillo), o no está en la palabra (gris).</p>
+                        <button id="close-modal-btn" class="btn">Volver</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+    <script src="./js/min/slider.min.js"></script>
+    <!-- 
+    *******************************************************************
+    *                                                                 *
+    *            Made with ❤️ by Fúlgora Studio                      *
+    *                                                                 *
+    *            https://www.fulgorastudio.com/                       *
+    *******************************************************************
+    -->
 </body>
 </html>
