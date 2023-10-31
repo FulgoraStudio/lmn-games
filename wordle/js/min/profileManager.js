@@ -1,7 +1,7 @@
 class ProfileManager {
     static playerId = null;
     static link = "https://juegos.lmnjuegos.com/api/resultado";
-    static token = "";
+    static token = "NWQ3MGI3ZTQtZjUzNS00NTYyLWE2MTEtYWQ5Njk5MjY5MjI2";
 
     static async GetProfileCode() {
         this.initLink();
@@ -24,7 +24,7 @@ class ProfileManager {
         if (this.playerId !== null) {
             try {
                 const playerStats = {
-                    "juego_token": this.token,
+                    "juego_token": atob(this.token),
                     "user_id": this.playerId,
                     "puntaje": points,
                     "hitos": milestone,
