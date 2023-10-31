@@ -1,6 +1,6 @@
 class ProfileManager {
     static playerId = null;
-    static link = "";
+    static link = "https://juegos.lmnjuegos.com/api/resultado";
     static token = "";
 
     static async GetProfileCode() {
@@ -30,8 +30,6 @@ class ProfileManager {
                     "hitos": milestone,
                 };
 
-                let link = ${{ vars.URL_SEND_RESULTS }};
-        
                 const response = await fetch(link, {
                     method: 'POST',
                     headers: {
