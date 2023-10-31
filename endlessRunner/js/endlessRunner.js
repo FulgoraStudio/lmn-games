@@ -807,24 +807,24 @@ function savePlayerData(points, distance){
 
 function checkMilestone(){
     
-    if (distance >= 100 && points >= 50 && lives == PLAYER_LIVES && !MILESTONES.FIRST.complete) {
-        MILESTONES.FIRST.complete = true;
-        ProfileManager.SaveNewPoint(MILESTONES.FIRST.points, MILESTONES.FIRST.code);
+    if (distance >= 100 && points >= 50 && lives == PLAYER_LIVES && !MILESTONES.FOURD.complete) {
+        MILESTONES.FOURD.complete = true;
+        ProfileManager.SaveNewPoint(MILESTONES.FOURD.points, MILESTONES.FOURD.code);
     }
     
-    if (distance >= 100 && points >= 40 && lives >= 3 && !MILESTONES.SECOND.complete) {
-        MILESTONES.SECOND.complete = true;
-        ProfileManager.SaveNewPoint(MILESTONES.SECOND.points, MILESTONES.SECOND.code);
-    }
-    
-    if (distance >= 50 && points >= 30 && !MILESTONES.THIRD.complete) {
+    if (distance >= 100 && points >= 40 && lives >= 3 && !MILESTONES.THIRD.complete) {
         MILESTONES.THIRD.complete = true;
         ProfileManager.SaveNewPoint(MILESTONES.THIRD.points, MILESTONES.THIRD.code);
     }
     
-    if (distance >= 20 && !MILESTONES.FOURD.complete) {
-        MILESTONES.FOURD.complete = true;
-        ProfileManager.SaveNewPoint(MILESTONES.FOURD.points, MILESTONES.FOURD.code);
+    if (distance >= 50 && points >= 30 && !MILESTONES.SECOND.complete) {
+        MILESTONES.SECOND.complete = true;
+        ProfileManager.SaveNewPoint(MILESTONES.SECOND.points, MILESTONES.SECOND.code);
+    }
+    
+    if (distance >= 20 && !MILESTONES.FIRST.complete) {
+        MILESTONES.FIRST.complete = true;
+        ProfileManager.SaveNewPoint(MILESTONES.FIRST.points, MILESTONES.FIRST.code);
     } 
 }
 
