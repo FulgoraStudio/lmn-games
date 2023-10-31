@@ -166,7 +166,6 @@ function reset(){
 
 function selectNewWord(){
     word = wordList[Math.floor(Math.random() * wordList.length)].toUpperCase();
-    console.log(word);
 }
 
 function initialize() {
