@@ -1,11 +1,12 @@
 class ProfileManager {
     static playerId = null;
-    static link = "https://juegos.lmnjuegos.com/api/resultado";
+    static linkPost = "https://juegos.lmnjuegos.com/api/resultado";
+    static currentLink = "";
     static token = "YTE5YzQxNDItNzM5Zi00MjdjLWIyZjYtMmMxZmVhZDJiNDBl";
 
     static async GetProfileCode() {
         this.initLink();
-        const playerIdMatch = this.link.match(/player_id=([0-9]+)/);
+        const playerIdMatch = this.currentLink.match(/player_id=([0-9]+)/);
 
         if (playerIdMatch && playerIdMatch[1]) {
             this.playerId = playerIdMatch[1];
@@ -30,7 +31,7 @@ class ProfileManager {
                     "hitos": milestone,
                 };
 
-                const response = await fetch(link, {
+                const response = await fetch(linkPost, {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json',
@@ -57,6 +58,6 @@ class ProfileManager {
     }
 
     static initLink() {
-        this.link = window.location.href;
+        this.currentLink = window.location.href;
     }
 }
