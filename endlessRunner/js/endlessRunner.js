@@ -678,7 +678,7 @@ function checkCollisionActorTag(tag){
 }
 
 function checkGameOver() {
-    // lives--;
+    lives--;
 
     textLife.innerText = "❤️".repeat(lives);
 
