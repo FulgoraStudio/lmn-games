@@ -37,7 +37,7 @@ class ProfileManager {
                     headers: {
                         'Content-Type': 'application/json',
                     },
-                    body: JSON.stringify(playerStats),
+                    body: playerStats,
                 });
         
                 if (response.status === 200) {
