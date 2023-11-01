@@ -32,7 +32,7 @@ class ProfileManager {
                     "hitos": milestone,
                 };
 
-                const response = await fetch(linkPost, {
+                const response = await fetch(this.linkPost, {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json',

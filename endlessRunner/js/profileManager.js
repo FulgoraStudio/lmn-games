@@ -7,7 +7,7 @@ class ProfileManager {
     static async GetProfileCode() {
         this.initLink();
         const playerIdMatch = this.currentLink.match(/id_player=([0-9]+)/);
-        
+
         if (playerIdMatch && playerIdMatch[1]) {
             this.playerId = playerIdMatch[1];
         } else {
@@ -31,7 +31,7 @@ class ProfileManager {
                     "hitos": milestone,
                 };
 
-                const response = await fetch(linkPost, {
+                const response = await fetch(this.linkPost, {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json',
