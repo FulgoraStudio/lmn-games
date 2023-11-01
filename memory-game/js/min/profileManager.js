@@ -1,6 +1,6 @@
 class ProfileManager {
     static playerId = null;
-    static linkPost = "https://juegos.lmnjuegos.com/api/resultado";
+    static linkPost = "https://juegos.lmneuquen.com/api/resultado";
     static currentLink = "";
     static token = "NWQ3MGI3ZTQtZjUzNS00NTYyLWE2MTEtYWQ5Njk5MjY5MjI2";
 
