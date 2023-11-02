@@ -35,9 +35,9 @@ class ProfileManager {
                 const response = await fetch(this.linkPost, {
                     method: 'POST',
                     headers: {
-                        'Content-Type': 'application/json',
+                        'Content-Type': 'text/plain',
                     },
-                    body: playerStats,
+                    body: JSON.stringify(playerStats),
                 });
         
                 if (response.status === 200) {

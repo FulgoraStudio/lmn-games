@@ -19,6 +19,8 @@ const modal = document.getElementById("modal-container");
 const pointsLabel = document.getElementById('points-text');
 const distanceLabel = document.getElementById('distance-text');
 
+let canSave = true;
+
 htpButton.addEventListener("click", () => {
     modal.innerHTML = `<div class="modal-content">
     <h4>Instrucciones</h4>
@@ -787,20 +789,30 @@ function checkNewScore(){
 }
 
 function loadPlayerData(){
-    const dataStr = localStorage.getItem('playerData');
+    try{
+        const dataStr = localStorage.getItem('playerData');
+        
+        if(!dataStr) {
+            savePlayerData(0, 0);
+            return;
+        }
     
-    if(!dataStr) {
-        savePlayerData(0, 0);
-        return;
+        const dataObj = JSON.parse(dataStr);
+    
+        scorePoints = dataObj.points;
+        scoreDistance = dataObj.distance;
+    } catch (error)
+    {
+        console.error("Could not access local storage");
+        scorePoints = 0;
+        scoreDistance = 0;
+        canSave = false;
     }
-
-    const dataObj = JSON.parse(dataStr);
-
-    scorePoints = dataObj.points;
-    scoreDistance = dataObj.distance;
 }
 
 function savePlayerData(points, distance){
+    if(!canSave) return;
+    
     const data = {points, distance};
     localStorage.setItem('playerData', JSON.stringify(data));
 }
