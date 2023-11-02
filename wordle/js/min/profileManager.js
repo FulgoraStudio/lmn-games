@@ -41,6 +41,7 @@ class ProfileManager {
                 });
 
                 console.log(playerStats);
+                console.log(response);
         
                 if (response.status === 200) {
                     console.log("New point saved successfully.");
