@@ -7,7 +7,7 @@ class ProfileManager {
     static async GetProfileCode() {
         this.initLink();
         console.log(this.currentLink);
-        const playerIdMatch = this.currentLink.match(/id_player=([0-9]+)/);
+        const playerIdMatch = this.currentLink.match(/player_id=([0-9]+)/);
 
         if (playerIdMatch && playerIdMatch[1]) {
             this.playerId = playerIdMatch[1];
