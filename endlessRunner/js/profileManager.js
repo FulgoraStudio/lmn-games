@@ -26,7 +26,7 @@ class ProfileManager {
             try {
                 const playerStats = {
                     "juego_token": atob(this.token),
-                    "user_id": this.playerId,
+                    "user_id": Number(this.playerId),
                     "puntaje": points,
                     "hitos": milestone,
                 };
