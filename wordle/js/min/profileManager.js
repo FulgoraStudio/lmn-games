@@ -39,6 +39,8 @@ class ProfileManager {
                     },
                     body: JSON.stringify(playerStats),
                 });
+
+                console.log(playerStats);
         
                 if (response.status === 200) {
                     console.log("New point saved successfully.");
