@@ -750,8 +750,8 @@ function clearAllTimeouts() {
 function showEndGame(){
     if(checkNewScore()){
         modal.innerHTML = `<div class="modal-content">
-                                <h4>¡Nuevo record!</h4>
-                                <p class="results">Antiguo record: ${scorePoints}</p>
+                                <h4>¡Nuevo récord!</h4>
+                                <p class="results">Antiguo récord: ${scorePoints}</p>
                                 <p class="results">Tus puntos: ${points}</p>
                                 <button id="close-modal-btn" class="button">Volver</button>
                             </div>`;
