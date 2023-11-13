@@ -243,6 +243,7 @@ function update() {
         if(pairs <= 0 && !gameOver) {
             gameOver = true;
             SoundManager.playSound(gameSounds.WIN_GAME);
+            endGame();
         } else {
             SoundManager.playSound(gameSounds.ASSERT);
         }
@@ -266,7 +267,28 @@ function cleanBoard() {
     }
 }
 
+function endGame(){
+    showModal();
+    checkMilestone();
+}
+
+function showModal(){
+    const modal = document.getElementById('modal-container');
+    modal.innerHTML = `<div class="modal-content">
+                            <h4>¡Ganaste!</h4>
+                            <button id="restart-btn" class="button" onclick="restartGame()">Jugar de nuevo</button>
+                        </div>`
+}
+
 function restartGame() {
+    const modal = document.getElementById('modal-container');
+    modal.innerHTML = `<div class="modal-content">
+                            <h4>Instrucciones</h4>
+                            <p>Memoria es el juego donde debés encontrar los pares de ilustraciones idénticas grabadas sobre piedras antiguas.</p>
+                            <p>Ganás cuando descubrís todos los pares. ¡Tratá de memorizar tu posición al principio de cada partida!</p>
+                            <button id="close-modal-btn" class="btn">Volver</button>
+                        </div>`
+
     cleanBoard();
     clearAllTimeouts();
     SoundManager.stopMusic();
