@@ -84,11 +84,7 @@ h1 {
   font-weight: bold;
 
   background : #2f2f2f00;
-  /* box-shadow: 0px 10px #ffffff;
-  box-shadow: 0px 7px 10px  rgba(0, 0, 0, 0.24); */
-  
 }
-
 
 .letter-first {
   border-radius : 2.4rem 0 0 0;
@@ -328,9 +324,7 @@ MOBILE
 */
 
 
-
 @media (max-width: 866px) {
-
   #widget-container {
     width: 43%;
   }
@@ -395,6 +389,57 @@ MOBILE
 
   .modal-content {
   width: 88%;
+  }
+
+}
+
+@media (max-height: 600px) {
+  h1 {
+  font-size: 4.2rem;
+  }
+
+  #widget-container {
+    width: 40%;
+  }
+
+  #options-container {
+  margin: 1.2rem auto 2rem 0;
+  }
+
+  .dashes {
+  height: 4rem;
+  width: 4rem;
+  }
+
+  #intents-display {
+  margin: 3rem auto 2rem 0;
+  }
+
+  #hint-button {
+  margin: 0rem auto 2rem 0;
+  }
+
+  .letter-container {
+  max-width: 28rem;
+  min-width: 28rem;
+  }
+
+  #letter-container button {
+  height: 4rem;
+  width: 4rem;
+  }
+
+  #widget-content {
+    justify-content: start;
+  }
+
+  #buttons-container {
+    text-align: left;
+  }
+
+  .btn {
+    padding: 1rem 1.6rem;
+    margin: 0 1.6rem 0 0;
   }
 
 }

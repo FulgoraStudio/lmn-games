@@ -1,23 +1,23 @@
 /* ON PAGE */
-/* * {
-    padding: 0;
-    margin: 0;
-    box-sizing: border-box;
-    font-size: 62.5%;
-    font-family : Encode Sans Semi Condensed;
-}
+    /* * {
+        padding: 0;
+        margin: 0;
+        box-sizing: border-box;
+        font-size: 62.5%;
+        font-family : Encode Sans Semi Condensed;
+    }
 
-body {
-    font-family : Encode Sans Semi Condensed;
-    text-align: center;
-    margin: auto;
+    body {
+        font-family : Encode Sans Semi Condensed;
+        text-align: center;
+        margin: auto;
 
-    padding: 0;
-    margin: 0;
-    box-sizing: border-box;
-    font-size: 62.5%;
-    font-family : Encode Sans Semi Condensed;
-} */
+        padding: 0;
+        margin: 0;
+        box-sizing: border-box;
+        font-size: 62.5%;
+        font-family : Encode Sans Semi Condensed;
+    } */
 
 /* MAIN */
 main, * {
@@ -88,13 +88,12 @@ h1 {
 
 #controls-container {
     position: relative;
-    top: 1rem;
+    top: 1.8rem;
     z-index: 2;
 }
 
 #buttons-container {
     width: 43.2rem;
-    margin: 1.8rem auto 3rem auto;
     text-align: left;
 }
 
@@ -176,8 +175,7 @@ IN GAME
 
     color: white;
 
-    /* background-color: yellow; */
-    margin: 1.8rem auto 3rem auto;
+    margin-bottom: 3rem;
     display: flex;
     flex-wrap: wrap;
 }
@@ -320,7 +318,6 @@ h4 {
     font-size: 1.8rem;
     font-weight: 300;
     margin: 1.8rem 0 auto 0;
-    padding: auto 2rem;
 }
 
 @keyframes errorAnim {
@@ -430,4 +427,48 @@ MOBILE
     #epigraph-text {
         display: none;
     } 
+}
+
+@media (max-height: 600px) {
+    h1 {
+    font-size: 4.2rem;
+    }
+
+    #display-container {
+    height: 50rem;
+    }
+
+    #board-container {
+    width: 25%;
+    }
+
+    #board {
+    width: 36rem;
+    height: 36rem;
+    margin: 0 auto 2.2rem auto;
+    }
+
+    #controls-container {
+    top: 1.2rem;
+    }
+
+    #digits {
+    width: 36rem;
+    height: 4rem;
+    margin: 2.8rem auto;
+    }
+
+    .number {
+    height: 4rem;
+    }
+
+    #epigraph-text {
+    font-size: 1.4rem;
+    margin: 1.2rem 0 auto 0;
+    }
+
+    .modal-content {
+    width: 40%;
+    }
+
 }
