@@ -435,6 +435,7 @@ MOBILE
 
   #buttons-container {
     text-align: left;
+    width: 130%;
   }
 
   .btn {

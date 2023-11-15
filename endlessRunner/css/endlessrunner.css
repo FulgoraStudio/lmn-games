@@ -210,14 +210,20 @@ MOBILE
 */
 
 
-@media (max-width: 600px) {
+@media (max-width: 1024px) {
     #container {
         display: flex;
         width: 42rem;
-        height: 70rem;
+        height: 56rem;
         margin: 0;
         position: relative;
-        top: 0;
+        top: -48px;
     }
 
+}
+
+@media (max-height: 600px) {
+    #container {
+    height: 56rem;
+    }
 }
