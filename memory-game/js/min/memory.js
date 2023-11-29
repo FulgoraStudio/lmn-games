@@ -320,19 +320,13 @@ function checkMilestone(){
     if (errors <= 5 && !MILESTONES.FOURD.complete) {
         MILESTONES.FOURD.complete = true;
         ProfileManager.SaveNewPoint(MILESTONES.FOURD.points, MILESTONES.FOURD.code);
-    }
-    
-    if (errors <= 10 && !MILESTONES.THIRD.complete) {
+    } else if (errors <= 10 && !MILESTONES.THIRD.complete) {
         MILESTONES.THIRD.complete = true;
         ProfileManager.SaveNewPoint(MILESTONES.THIRD.points, MILESTONES.THIRD.code);
-    }
-    
-    if (errors <= 15 && !MILESTONES.SECOND.complete) {
+    } else if (errors <= 15 && !MILESTONES.SECOND.complete) {
         MILESTONES.SECOND.complete = true;
         ProfileManager.SaveNewPoint(MILESTONES.SECOND.points, MILESTONES.SECOND.code);
-    }
-    
-    if (errors <= 20 &&!MILESTONES.FIRST.complete) {
+    } else if (errors <= 20 &&!MILESTONES.FIRST.complete) {
         MILESTONES.FIRST.complete = true;
         ProfileManager.SaveNewPoint(MILESTONES.FIRST.points, MILESTONES.FIRST.code);
     } 
