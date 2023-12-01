@@ -349,19 +349,13 @@ function checkMilestone(){
     if (errors == 0 && !MILESTONES.FOURD.complete) {
         MILESTONES.FOURD.complete = true;
         ProfileManager.SaveNewPoint(MILESTONES.FOURD.points, MILESTONES.FOURD.code);
-    }
-    
-    if (distance <= 15 && !MILESTONES.THIRD.complete) {
+    } else if (errors <= 15 && !MILESTONES.THIRD.complete) {
         MILESTONES.THIRD.complete = true;
         ProfileManager.SaveNewPoint(MILESTONES.THIRD.points, MILESTONES.THIRD.code);
-    }
-    
-    if (distance <= 30 && !MILESTONES.SECOND.complete) {
+    } else if (errors <= 30 && !MILESTONES.SECOND.complete) {
         MILESTONES.SECOND.complete = true;
         ProfileManager.SaveNewPoint(MILESTONES.SECOND.points, MILESTONES.SECOND.code);
-    }
-    
-    if (!MILESTONES.FIRST.complete) {
+    } else if (!MILESTONES.FIRST.complete) {
         MILESTONES.FIRST.complete = true;
         ProfileManager.SaveNewPoint(MILESTONES.FIRST.points, MILESTONES.FIRST.code);
     } 
